@@ -168,7 +168,7 @@ border: solid 2px;
   
   <details>
     <summary><label for="smPromotable">Promotable:</label>
-    <input type="checkbox" id="smPromotable">
+    <input type="checkbox" id="smPromotable" value=true>
     </summary>
     <p>MOS-T only.</p>
   </details>
@@ -1025,7 +1025,8 @@ function jsonGenerate(){
     smCategory : document.getElementById("smCategory").value,
     smMOS : document.getElementById("smMOS").value,
     smMOSPrev : document.getElementById("smMOSPrev").value,
-    smPromotable : document.getElementById("smPromotable").value,
+    smPromotable : document.getElementById("smPromotable").checked,
+    //smPromotable : document.getElementById("smPromotable").value,
     
     smMarital : document.getElementById("smMarital").value,
     smPhone : document.getElementById("smPhone").value,
@@ -1195,8 +1196,9 @@ function jsonLoad(src){
   document.getElementById("smCategory").value = ("smCategory" in j) ? j.smCategory : "";
   document.getElementById("smMOS").value = ("smMOS" in j) ? j.smMOS : "";
   document.getElementById("smMOSPrev").value = ("smMOSPrev" in j) ? j.smMOSPrev : "";
-  document.getElementById("smPromotable").value = ("smPromotable" in j) ? j.smPromotable : "";
-  
+  document.getElementById("smPromotable").checked = ("smPromotable" in j) ? j.smPromotable : false;
+  //document.getElementById("smPromotable").value = ("smPromotable" in j) ? j.smPromotable : "";
+ 
   document.getElementById("smMarital").value = ("smMarital" in j) ? j.smMarital : "";
   document.getElementById("smPhone").value = ("smPhone" in j) ? j.smPhone : "";
   document.getElementById("smEmail").value = ("smEmail" in j) ? j.smEmail : "";
