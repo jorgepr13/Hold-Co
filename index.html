@@ -93,8 +93,9 @@ border: solid 2px;
 
 <fieldset><legend>Personal Datasheet</legend>
   <details open><summary>Service Member (SM) data:</summary>
-    <p>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</p>
+    <details open><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
     <p>The following information is provided in accordance with 5 U.S.C. 552a(e)(3) and applies to this form. Authority for collection of the information is 44 U.S.C. 2907, 3101, and 3103, and E.O. 9397 of November 22, 1943. Disclosure of the information is voluntary. The purpose of the information on this form is to assist your unit servicing the records. This form is then filed in the requested military service record as a record of disclosure. The form may also be disclosed to the Department of Defense components, the Department of Veterans Affairs, the Department of Transportation (Coast Guard), or the National Archives and Records Administration when the original custodian of the military health and personnel records transfers all or part of those records to that agency. If the service member was a member of the National Guard, the form may also be disclosed to the Adjutant General of the appropriate state, District of Colombia, or Puerto Rico, where he or she served. The following information will not be shared with any unauthorized personnel.</p>
+    </details>
   <br>
   <label for="smRank">Rank:</label>
   <select name="smRank" id="smRank">
@@ -745,7 +746,7 @@ border: solid 2px;
 
 
 
-<br><button onclick="jsonShow()">Show JSON</button>
+<br><button onclick="jsonShow()">Show (preview) JSON</button>
 <button onclick="jsonFileDownload()">Download JSON</button>
 
 <br><br><label for="fileInput">Load JSON:</label>
@@ -810,6 +811,7 @@ border: solid 2px;
 <br><label>Co Email: </label><a href="mailto:usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil">usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil</a>
 
 
+</details>
 
 <footer>
   <p>Created by: HernandezGarcia, Jorge
@@ -817,7 +819,6 @@ border: solid 2px;
   <br><br><label>Source code: </label><a href="https://github.com/jorgepr13/hold-co">https://github.com/jorgepr13/hold-co</a>
   </p>
 </footer>
-</details>
 
 <script type="text/javascript">
 //https://jorgepr13.github.io/hold-co/
@@ -863,11 +864,11 @@ function fileLoad() {
       reader.readAsText(srcFiles.files[0], "UTF-8");
       reader.onerror = function (e) {ta.value = "";} //"Error reading file."
       reader.onload = function(e) {
-	ta.value = e.target.result;
-	//document.getElementById(tgtID).value = e.target.result;
-	jsonLoad(tgtID);
-	ta.value = "";
-	document.body.removeChild(ta);
+          ta.value = e.target.result;
+          //document.getElementById(tgtID).value = e.target.result;
+          jsonLoad(tgtID);
+          ta.value = "";
+          document.body.removeChild(ta);
       }
     //}
   }
@@ -917,7 +918,6 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
-  //var order = ["smNameLast", "smNameFirst", "smNameMiddle", "smSSN", "smDODID", "smGender", "smCategory", "smMOS", "smMOSprev", "smComponent", "smMarital", "smPhone", "smEmail", "smEmailMil", "smRace", "smEthnicity", "smColorEye", "smColorHair", "smHeight", "smWeight"];
     //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 		"PEBD", 		"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	"Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	"Height", 		"Weight", 		"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat",  "COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student Account", 	"Finance Class", 	"Remedial PT", 	"EFMP", 	"Req Fam Care Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
   var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"Promotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"BadgeID", 	"Phase_Level", 	"Phase_Date", 	"Shift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership_Position", 	"Unit_Prev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_", 	"Academic_Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal_Preference", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"EFMP", 	"Req_Fam_Care_Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
   
@@ -954,15 +954,16 @@ function csvFileDownload() {
     var i = 0
     var fileLoop = function(arr, tgt, csv) {
       csvFileLoadWait(arr[i], tgt, csv, function(csv){
-	// 1: runs fileLoadWaitCSV(); 2: within csvFileLoadWait, the callback (this) function 
-	// is called to continue with the rest of the files through recursion
+    // 1: runs fileLoadWaitCSV(); 2: within csvFileLoadWait, the callback (this) function 
+    // is called to continue with the rest of the files through recursion
         i++;
         if(i < arr.length) {fileLoop(arr, tgt, csv); } else {
-	  //perform any additional actions after all files were read
-	  document.body.removeChild(ta);
-	  //alert(csv);
-	  fileDownload(csv, 'test.csv', 'text/csv;charset=utf-8;')
-	}
+            //perform any additional actions after all files were read
+            document.body.removeChild(ta);
+            //alert(csv);
+            fileDownload(csv, 'test.csv', 'text/csv;charset=utf-8;')
+            
+        }
       });
     
     }
@@ -1018,23 +1019,23 @@ function jsonGenerate(){
     smMOS : document.getElementById("smMOS").value,
     smMOSPrev : document.getElementById("smMOSPrev").value,
     smPromotable : document.getElementById("smPromotable").value,
-	
+    
     smMarital : document.getElementById("smMarital").value,
     smPhone : document.getElementById("smPhone").value,
     smEmail : document.getElementById("smEmail").value,
     smEmailMil : document.getElementById("smEmailMil").value,
-	smComponent : document.getElementById("smComponent").value,
-	smNGARState : document.getElementById("smNGARState").value,
-	smUnitPrev : document.getElementById("smUnitPrev").value,
-	
-	smDateArrival : document.getElementById("smDateArrival").value,
+    smComponent : document.getElementById("smComponent").value,
+    smNGARState : document.getElementById("smNGARState").value,
+    smUnitPrev : document.getElementById("smUnitPrev").value,
+    
+    smDateArrival : document.getElementById("smDateArrival").value,
     smDateDOB : document.getElementById("smDateDOB").value,
     smDateDOR : document.getElementById("smDateDOR").value,
     smDateBASD : document.getElementById("smDateBASD").value,
-	smDatePEBD : document.getElementById("smDatePEBD").value,
+    smDatePEBD : document.getElementById("smDatePEBD").value,
     smDateETS : ets,
-	smDateMarried : document.getElementById("smDateMarried").value,
-	
+    smDateMarried : document.getElementById("smDateMarried").value,
+    
     smColorHair : document.getElementById("smColorHair").value,
     smColorEye : document.getElementById("smColorEye").value,
     smHeight : document.getElementById("smHeight").value,
@@ -1046,7 +1047,7 @@ function jsonGenerate(){
     smRace : document.getElementById("smRace").value,
     smEthnicity : document.getElementById("smEthnicity").value,
     smDutyStatus : document.getElementById("smDutyStatus").value,
-	
+    
     smBadgeSN : document.getElementById("smBadgeSN").value,
     smRoom : document.getElementById("smRoom").value,
     smGT : document.getElementById("smGT").value,
@@ -1055,7 +1056,7 @@ function jsonGenerate(){
     smDLPTl : document.getElementById("smDLPTl").value,
     smDLPTs : document.getElementById("smDLPTs").value,
     smDLPTLanguage : document.getElementById("smDLPTLanguage").value,
-	
+    
     smAirborne : document.getElementById("smAirborne").value,
     smRanger : document.getElementById("smRanger").value,
     smDLI : document.getElementById("smDLI").value,
@@ -1065,20 +1066,20 @@ function jsonGenerate(){
     smFamCarePlan : document.getElementById("smFamCarePlan").value,
     smEFMP : document.getElementById("smEFMP").value,
     smFRG : document.getElementById("smFRG").value,
-	
+    
     smPOBCity : document.getElementById("smPOBCity").value,
     smPOBState : document.getElementById("smPOBState").value,
-	
+    
     smHORAddress : document.getElementById("smHORAddress").value,
     smHORCity : document.getElementById("smHORCity").value,
     smHORState : document.getElementById("smHORState").value,
     smHORZip : document.getElementById("smHORZip").value,
-	
+    
     smLOCAddress : document.getElementById("smLOCAddress").value,
     smLOCCity : document.getElementById("smLOCCity").value,
     smLOCState : document.getElementById("smLOCState").value,
     smLOCZip : document.getElementById("smLOCZip").value,
-	
+    
     nok1Rel : document.getElementById("nok1Rel").value,
     nok1NameLast : document.getElementById("nok1NameLast").value,
     nok1NameFirst : document.getElementById("nok1NameFirst").value,
@@ -1090,8 +1091,8 @@ function jsonGenerate(){
     nok1City : document.getElementById("nok1City").value,
     nok1State : document.getElementById("nok1State").value,
     nok1Zip : document.getElementById("nok1Zip").value,
-	
-	nok2Rel : document.getElementById("nok2Rel").value,
+    
+    nok2Rel : document.getElementById("nok2Rel").value,
     nok2NameLast : document.getElementById("nok2NameLast").value,
     nok2NameFirst : document.getElementById("nok2NameFirst").value,
     nok2NameMiddle : document.getElementById("nok2NameMiddle").value,
@@ -1102,7 +1103,7 @@ function jsonGenerate(){
     nok2City : document.getElementById("nok2City").value,
     nok2State : document.getElementById("nok2State").value,
     nok2Zip : document.getElementById("nok2Zip").value,
-	
+    
     smPOV1Make : document.getElementById("smPOV1Make").value,
     smPOV1Model : document.getElementById("smPOV1Model").value,
     smPOV1Year : document.getElementById("smPOV1Year").value,
@@ -1113,7 +1114,7 @@ function jsonGenerate(){
     smPOV1DateIns : document.getElementById("smPOV1DateIns").value,
     smPOV1InsCo : document.getElementById("smPOV1InsCo").value,
     
-	smPOV2Make : document.getElementById("smPOV2Make").value,
+    smPOV2Make : document.getElementById("smPOV2Make").value,
     smPOV2Model : document.getElementById("smPOV2Model").value,
     smPOV2Year : document.getElementById("smPOV2Year").value,
     smPOV2Color : document.getElementById("smPOV2Color").value,
@@ -1122,8 +1123,8 @@ function jsonGenerate(){
     smPOV2DateReg : document.getElementById("smPOV2DateReg").value,
     smPOV2DateIns : document.getElementById("smPOV2DateIns").value,
     smPOV2InsCo : document.getElementById("smPOV2InsCo").value,
-	
-	dep1Rel : document.getElementById("dep1Rel").value,
+    
+    dep1Rel : document.getElementById("dep1Rel").value,
     dep1NameLast : document.getElementById("dep1NameLast").value,
     dep1NameFirst : document.getElementById("dep1NameFirst").value,
     dep1NameMiddle : document.getElementById("dep1NameMiddle").value,
@@ -1135,39 +1136,39 @@ function jsonGenerate(){
     dep1City : document.getElementById("dep1City").value,
     dep1State : document.getElementById("dep1State").value,
     dep1Zip : document.getElementById("dep1Zip").value,
-	
-	dep2Rel : document.getElementById("dep2Rel").value,
+    
+    dep2Rel : document.getElementById("dep2Rel").value,
     dep2NameLast : document.getElementById("dep2NameLast").value,
     dep2NameFirst : document.getElementById("dep2NameFirst").value,
     dep2NameMiddle : document.getElementById("dep2NameMiddle").value,
     dep2Gender : document.getElementById("dep2Gender").value,
     dep2Phone : document.getElementById("dep2Phone").value,
     dep2DateDOB : document.getElementById("dep2DateDOB").value,
-	
-	dep3Rel : document.getElementById("dep3Rel").value,
+    
+    dep3Rel : document.getElementById("dep3Rel").value,
     dep3NameLast : document.getElementById("dep3NameLast").value,
     dep3NameFirst : document.getElementById("dep3NameFirst").value,
     dep3NameMiddle : document.getElementById("dep3NameMiddle").value,
     dep3Gender : document.getElementById("dep3Gender").value,
     dep3Phone : document.getElementById("dep3Phone").value,
     dep3DateDOB : document.getElementById("dep3DateDOB").value,
-	
-	dep4Rel : document.getElementById("dep4Rel").value,
+    
+    dep4Rel : document.getElementById("dep4Rel").value,
     dep4NameLast : document.getElementById("dep4NameLast").value,
     dep4NameFirst : document.getElementById("dep4NameFirst").value,
     dep4NameMiddle : document.getElementById("dep4NameMiddle").value,
     dep4Gender : document.getElementById("dep4Gender").value,
     dep4Phone : document.getElementById("dep4Phone").value,
     dep4DateDOB : document.getElementById("dep4DateDOB").value,
-	
-	dep5Rel : document.getElementById("dep5Rel").value,
+    
+    dep5Rel : document.getElementById("dep5Rel").value,
     dep5NameLast : document.getElementById("dep5NameLast").value,
     dep5NameFirst : document.getElementById("dep5NameFirst").value,
     dep5NameMiddle : document.getElementById("dep5NameMiddle").value,
     dep5Gender : document.getElementById("dep5Gender").value,
     dep5Phone : document.getElementById("dep5Phone").value,
     dep5DateDOB : document.getElementById("dep5DateDOB").value
-	
+    
     //sm : document.getElementById("sm").value,
   };
   return JSON.stringify(j, null, 2);
@@ -1339,7 +1340,6 @@ function jsonLoad(src){
   document.getElementById("dep5DateDOB").value = ("dep5DateDOB" in j) ? j.dep5DateDOB : "";
   
   //document.getElementById("sm").value = ("sm" in j) ? j.sm : "";
-
 }
 
 </script>
