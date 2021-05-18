@@ -794,7 +794,7 @@ border: solid 2px;
 <button onclick="jsonFileDownload()">Download JSON</button>
 
 <br><br><label for="fileInput">Load JSON:</label>
-<input type="file" id="fileInput" multiple><button onclick="csvFileDownload()">Download CSV</button>
+<input type="file" id="fileInput" multiple><button id="csvFileDownload" onclick="csvFileDownload()" hidden>Download CSV</button>
 <br><br>
 
 <p>Send your JSON file to: 
@@ -858,6 +858,7 @@ function fileDrop(e) {
 }
 
 function fileLoad() {
+  document.getElementById("csvFileDownload").hidden = false;
   const srcFiles = document.getElementById("fileInput");
   const tgtID = "fileContent";
   var ta = document.createElement("textarea");
