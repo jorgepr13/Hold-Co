@@ -89,13 +89,14 @@ border: solid 2px;
 <h1>Hold Company, 111th MI BDE</h1>
 
 
-<!--summary>Personal Datasheet</summary-->
 
-<fieldset><legend>Personal Datasheet</legend>
-  <details open><summary>Service Member (SM) data:</summary>
-    <details open><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
+<fieldset><!--legend>Personal Datasheet</legend-->
+<details><summary>Personal Datasheet</summary>
+
+  <fieldset><details open><summary>Service Member (SM) data:</summary>
+    <fieldset><details open><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
     <p>The following information is provided in accordance with 5 U.S.C. 552a(e)(3) and applies to this form. Authority for collection of the information is 44 U.S.C. 2907, 3101, and 3103, and E.O. 9397 of November 22, 1943. Disclosure of the information is voluntary. The purpose of the information on this form is to assist your unit servicing the records. This form is then filed in the requested military service record as a record of disclosure. The form may also be disclosed to the Department of Defense components, the Department of Veterans Affairs, the Department of Transportation (Coast Guard), or the National Archives and Records Administration when the original custodian of the military health and personnel records transfers all or part of those records to that agency. If the service member was a member of the National Guard, the form may also be disclosed to the Adjutant General of the appropriate state, District of Colombia, or Puerto Rico, where he or she served. The following information will not be shared with any unauthorized personnel.</p>
-    </details>
+    </details></fieldset>
   <br>
   <label for="smRank">Rank:</label>
   <select name="smRank" id="smRank">
@@ -741,9 +742,9 @@ border: solid 2px;
   <br>
   <br>
   
-  </details>
+  </details></fieldset>
   <br>
-  <details open><summary>Info:</summary>
+  <fieldset><details open><summary>Info:</summary>
   
     <fieldset><legend>Find:</legend>
       <details><summary>DA31 - Request and Authority for Leave</summary>
@@ -780,9 +781,9 @@ border: solid 2px;
       </dl>
     </fieldset>
   
-  </details>
+  </details></fieldset>
   <br>
-  <details open><summary>Download/Load data:</summary>
+  <fieldset><details open><summary>Download/Load data:</summary>
   
   <br><button onclick="jsonShow()">Show (preview) JSON</button>
 <button onclick="jsonFileDownload()">Download JSON</button>
@@ -799,11 +800,10 @@ border: solid 2px;
 </details>
 
   
-  </details>
+  </details></fieldset><!-- Download -->
+</details><!-- Datasheet -->
+
 </fieldset>
-
-<!--/details><!-- Datasheet -->
-
 
 
 
@@ -811,7 +811,7 @@ border: solid 2px;
 
 
 <br><br>
-<details><summary>Do's & Dont's</summary>
+<fieldset><details><summary>Do's & Dont's</summary>
 <fieldset><legend>Do's</legend>
 <ul>
     <li>You might go to the shoppette or order food after 1830 on duty days.</li>
@@ -821,7 +821,51 @@ border: solid 2px;
 <fieldset><legend>Dont's</legend>
 
 </fieldset>
-</details>
+</details></fieldset>
+
+
+<br>
+<fieldset><details open><summary>Info</summary>
+
+Sick Call (SC):
+-Must have a new SC slip signed by DS
+-Must sign out in ‘Sick Call Roster’ (including battle buddy), not on CQ Sign out/in roster
+-Must turn in SC slip to DS
+-Illness: NLT 0420 @ CQ desk  |  NLT 0430 @ MISC
+-Injury:  NLT 0645 @ CQ desk  |  NLT 0700 @ MISC
+
+Appointments:
+-Must turn in to DS
+
+DS Office:
+-Knock on the door and wait to be acknowledged
+-Upon entering/leaving, announce: Shoppette
+“Students on/off the Floor”
+
+BN Moto: Sentinels of Security
+BN Response: Sentinel Pride!
+Company Moto: Maintain the Edge
+Company Response: Razor Sharp
+
+
+Mail Address: 
+RANK Last, First
+C CO, 309TH MI BN
+FORT HUACHUCA, AZ 85613
+
+Weinstein DFAC: 
+M-F: 0600-0730, 1130-1300, 1700-1830
+Weekends: 0600-0730, 1130-1300, 1700-1830
+
+Bed check:
+Su-Th: 2000 F-Sa: 2200
+Uniform: Summer PTs with shower shoes Phase badge, Room key, CAC, and dog tags
+
+
+In-Processing: Monday @ 0700 @ Eifler Gym // 0640 @ CQ desk or Drill Pad // Eat breakfast before you go there.
+Uniform: ACU (OCP), with In-Processing packet, BCT Packet, 10x copies of orders, 2x copies of DA31
+</details></fieldset>
+
 
 
 
@@ -853,6 +897,146 @@ border: solid 2px;
 <br><a href="https://www.facebook.com/groups/529117777235614">Fort Huachuca AIT Support Group</a>
 
 </details>
+
+<br>
+
+Commissary: M-Closed, Tu-F-0900-1900,
+Sa-0900-1800, Su-1000-1700
+Clothing Sales: Su-M-Closed, Tu-F-0900-1800, Sa-0900-1600 
+Shoppette: M-Th-0600-2000, F-0600-2100, 
+Sa-0800-2030, Su-0900-1930
+USPS: Sa-Su-Closed, M-F-0830-1600
+520-533-6664 - C CO, CQ Phone
+
+<br><a href="tel:520-533-2997">520-533-2997</a><label> - COVID Hotline</label>
+<br><a href="tel:520-538-6969">520-538-6969</a><label> - iWATCH (Report suspicious activity)</label>
+<br>
+Medical:
+<br><a href="tel:520-533-6709">520-533-6709</a><label> - MISC</label>
+<br><a href="tel:520-533-5970">520-533-5970</a><label> - MISC</label>
+<br><a href="tel:520-538-0043">520-538-0043</a><label> - MISC</label>: M-F 0430-1400
+<br>
+
+<br><a href="tel:520-533-9165">520-533-9165</a><label> - WAC</label>: Sat 0700-1600
+<br>
+520-533-2627 / 9200 - RW Bliss
+520-533-9102 / 9236 - Physical Therapy
+520-533-1492 / 3147 // 520-481-7219 - Dental 520-227-5563 - Dental CQ (after hours)
+520-533-9197 - Optometry: M-W, F 0700-1600 520-533-5311 - AWC
+Counseling:
+520-533-5161 - Behavioral Health
+808-291-7882 - Chaplain (Confidential) (CPT Gaskin) 520-533-2291 / 8774 - On-Call Chaplain (Confidential) 
+Family:
+520-515-9000 // 520-533-3083 - Housing www.mountainvistacommunities.com 520-533-2207 / 5631 / 5427 - Transportation 520-533-6871 - Exceptional Fam. Member (EFMP) 520-533-2767 - Veterinary
+520-678-8112 - Ecology (wildlife)
+520-538-6319 - CYS (Childcare)
+520-538-8649 - Family Action Plan (AFAP) 520-538-5899 - Employment Readiness Program (ERP) 520-533-5919 - Relocation
+520-533-8961 - New Parent Support
+520-533-6878 - Family Advocacy
+520-533-3686 / 2330 - Social Worker
+Ride:
+520-775-2448 - Evelyn’s Taxi
+520-439-8294 - Two Tone Taxi
+520-249-4350 - Vibe Ryde
+520-439-0439 - Huachuca Shuttle
+520-300-0000 - Yellow Cab Tucson
+520-458-3330 - AZ World Shuttle
+SHARP (24/7):
+1-877-995-5247 - DoD Safe Helpline
+520-732-3736 - Ft. Huachuca SH/SA Hotline 520-538-5971 - Garrison SARC/SHARP
+Facilities:
+520-533-1608 - DEERS
+520-533-4723 - Eifler Gym
+520-732-6933 - Ed Center
+520-533-1144 - IG
+520-533-2009 / 3208 - JAG
+520-538-5762 / 2982 - Finance
+520-533-2330 / 5719 // 520-538-5768 - ACS
+520-533-5312 / 1-877-272-7337 - AER
+520-533-2967 - Financial Readiness Program
+520-538-8649 - Volunteer Corps (AVC)
+1-877-272-7337 - Red Cross Emergency
+Law:
+520-533-2291 - IOC (After hrs Emergencies)
+520-533-3000 - Military Police (MP)
+520-533-2628 - Criminal Investigation Division (CID) 520-508-2772 / 2993 - Domestic Violence
+1-800-273-8255 - National Domestic Violence 1-888-767-2445 - Child Protective Services
+520-533-1670 / 8895 520-255-5133 - 309th MI BN On-Call VA Hatfield St
+520-533-4748 / 1278
+520-255-4437 - Mil. Family Life Consultant < Weinstein DFAC
+520-678-7178   (MFLC) (Confidential) Arizona St
+1-800-273-8255 - Mil. Crisis Line - Text: 838255
+1-800-342-9647 - Military One Source (Confidential, 24/7) Hunt Rd
+1-800-464-8107 Old MISC >
+1-866-495-6735 - AZ Complete Health (24/7) - TTY: 711
+1-866-780-9758 - Alcoholic Anonymous Stein St Warrior Sentinel Field
+520-459-0031 - Alcoholic Anonymous Cochise County Krueger Track
+520-538-1311 / 1315 - Substance Abuse (ASAP)
+Eifler Gym > < Shoppette
+< Bissel St
+Chapel Annex > < C Co (You are here)
+Whitside Rd 
+
+<br><a href="tel:520-533-">520-533-</a><label> - </label>
+
+
+
+CIF:
+https://maps.google.com/maps?q=31.563130,-110.313962
+
+Bliss:
+https://maps.google.com/maps?q=31.548841,-110.352132
+
+Bliss (specialty clinics):
+https://maps.google.com/maps?q=31.549320,-110.352721
+
+MISC:
+https://maps.google.com/maps?q=31.564339,-110.341770
+
+Ed center:
+https://maps.google.com/maps?q=31.559215,-110.352962
+
+JAG:
+https://maps.google.com/maps?q=31.557853,-110.355510
+
+Whitside Hall:
+https://maps.google.com/maps?q=31.554168,-110.361205
+
+Mail (pickup):
+https://maps.google.com/maps?q=31.549881,-110.368520
+
+SFL-TAP:
+https://maps.google.com/maps?q=31.550440,-110.368767
+
+TMAC:
+https://maps.google.com/maps?q=31.553448,-110.328368
+
+Murr:
+https://maps.google.com/maps?q=31.559242,-110.357346
+
+111th MI BDE:
+https://maps.google.com/maps?q=31.556927,-110.358357
+
+Transportation/Housing:
+https://maps.google.com/maps?q=31.554725,-110.353461
+
+O'Neil Hall:
+https://maps.google.com/maps?q=31.565838,-110.348074
+
+Friedman Hall:
+https://maps.google.com/maps?q=31.564004,-110.344256
+
+Davis Hall:
+https://maps.google.com/maps?q=31.563346,-110.346873
+
+Goddard Hall:
+https://maps.google.com/maps?q=31.561408,-110.345105
+
+Herrera Field:
+https://maps.google.com/maps?q=31.549915,-110.339767
+
+
+
 
 <br><br>
 <footer>
