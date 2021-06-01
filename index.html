@@ -250,9 +250,9 @@ border: solid 2px;
   
   <details>
     <summary><label for="smDateETS">ETS:</label>
-  <input type="date" id="smDateETS">
-  <input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0>
-  </summary>
+    <input type="date" id="smDateETS">
+    <input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0>
+    </summary>
     <p>Expiration of Term of Service
     <br>If unknown, write for how many years was your contract.</p>
   </details>
@@ -358,8 +358,29 @@ border: solid 2px;
       <option value="TDY en-Route">TDY en-Route</option>
       <option value="TDY and Return">TDY and Return</option>
   </select>
+  <br><br>
+  
+  
+  
+  
+  <label for="smCOVIDVacVolunteer">COVID Vac. Volunteer:</label>
+  <input type="checkbox" id="smCOVIDVacVolunteer" value=true>
   <br>
+  <label for="smCOVIDVacManu">Vaccine Manufacturer :</label>
+  <input list="COVIDVacManu" id="smCOVIDVacManu">
   <br>
+  <label for="smCOVIDVacDose1">Vac. Dose 1:</label>
+  <input type="date" id="smCOVIDVacDose1">
+  <br>
+  <label for="smCOVIDVacDose2">Vac. Dose 2:</label>
+  <input type="date" id="smCOVIDVacDose2">
+  <br>
+  
+  
+  
+  
+  
+  <br><br>
   <label for="smBadgeSN">Badge SN:</label>
   <input type="number" id="smBadgeSN" min=0>
   <br>
