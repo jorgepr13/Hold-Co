@@ -1328,7 +1328,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   var j = JSON.parse(data);
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
     //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 		"PEBD", 		"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	"Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	"Height", 		"Weight", 		"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat",  "COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student Account", 	"Finance Class", 	"Remedial PT", 	"EFMP", 	"Req Fam Care Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
-  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"Promotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"BadgeID", 	"Phase_Level", 	"Phase_Date", 	"Shift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership_Position", 	"Unit_Prev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_", 	"Academic_Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal_Preference", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"EFMP", 	"Req_Fam_Care_Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
+  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"Promotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"BadgeID", 	"Phase_Level", 	"Phase_Date", 	"Shift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership_Position", 	"Unit_Prev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_", 	"Academic_Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal_Preference", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"EFMP", 	"Req_Fam_Care_Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
   
   //data_Family
   //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last_Name", 	"First_Name", 	"Middle_Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"]
@@ -1457,6 +1457,13 @@ function jsonGenerate(){
     smRace : document.getElementById("smRace").value,
     smEthnicity : document.getElementById("smEthnicity").value,
     smDutyStatus : document.getElementById("smDutyStatus").value,
+    
+    
+    smCOVIDVacVolunteer : document.getElementById("smCOVIDVacVolunteer").checked,
+    smCOVIDVacManu : document.getElementById("smCOVIDVacManu").value,
+    smCOVIDVacDose1 : document.getElementById("smCOVIDVacDose1").value,
+    smCOVIDVacDose2 : document.getElementById("smCOVIDVacDose2").value,
+    
     
     smBadgeSN : document.getElementById("smBadgeSN").value,
     smRoom : document.getElementById("smRoom").value,
@@ -1628,6 +1635,13 @@ function jsonLoad(src){
   document.getElementById("smRace").value = ("smRace" in j) ? j.smRace : "";
   document.getElementById("smEthnicity").value = ("smEthnicity" in j) ? j.smEthnicity : "";
   document.getElementById("smDutyStatus").value = ("smDutyStatus" in j) ? j.smDutyStatus : "";
+  
+  
+  document.getElementById("smCOVIDVacVolunteer").checked = ("smCOVIDVacVolunteer" in j) ? j.smCOVIDVacVolunteer : false;
+  document.getElementById("smCOVIDVacManu").value = ("smCOVIDVacManu" in j) ? j.smCOVIDVacManu : "";
+  document.getElementById("smCOVIDVacDose1").value = ("smCOVIDVacDose1" in j) ? j.smCOVIDVacDose1 : "";
+  document.getElementById("smCOVIDVacDose2").value = ("smCOVIDVacDose2" in j) ? j.smCOVIDVacDose2 : "";
+  
   
   document.getElementById("smBadgeSN").value = ("smBadgeSN" in j) ? j.smBadgeSN : "";
   document.getElementById("smRoom").value = ("smRoom" in j) ? j.smRoom : "";
