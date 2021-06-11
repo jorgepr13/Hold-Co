@@ -81,13 +81,102 @@ border: solid 2px;
   <option value="Father">
   <option value="Brother">
   <option value="Sister">
+  <option value="Grandmother">
+  <option value="Grandfather">
+  <option value="Friend">
+  <option value="Father-in-law">
+  <option value="Mother-in-law">
 </datalist>
 <datalist id="COVIDVacManu">
   <option value="Moderna">
   <option value="Pfizer">
   <option value="Johnson and Johnson">
 </datalist>
-
+<datalist id="Religion">
+  <option value="None">
+  <option value="Christian">
+  <option value="Catholic">
+  <option value="LDS">
+  <option value="Mormon">
+  <option value="Islam">
+  <option value="Buddhist">
+  <option value="Jewish">
+</datalist>
+<datalist id="Allergies">
+  <option value="None">
+  <option value="Nuts">
+  <option value="Latex">
+  <option value="Sea food">
+  <option value="Pollen">
+</datalist>
+<datalist id="MealPref">
+  <option value="No Preference">
+  <option value="Vegetarian">
+  <option value="Vegan">
+  <option value="No pork">
+  <option value="">
+</datalist>
+<datalist id="usStates">
+  <option value="AL">
+  <option value="AK">
+  <option value="AS">
+  <option value="AZ">
+  <option value="AR">
+  <option value="CA">
+  <option value="CO">
+  <option value="CT">
+  <option value="DE">
+  <option value="DC">
+  <option value="FM">
+  <option value="FL">
+  <option value="GA">
+  <option value="GU">
+  <option value="HI">
+  <option value="ID">
+  <option value="IL">
+  <option value="IN">
+  <option value="IA">
+  <option value="KS">
+  <option value="KY">
+  <option value="LA">
+  <option value="ME">
+  <option value="MH">
+  <option value="MD">
+  <option value="MA">
+  <option value="MI">
+  <option value="MN">
+  <option value="MS">
+  <option value="MO">
+  <option value="MT">
+  <option value="NE">
+  <option value="NV">
+  <option value="NH">
+  <option value="NJ">
+  <option value="NM">
+  <option value="NY">
+  <option value="NC">
+  <option value="ND">
+  <option value="MP">
+  <option value="OH">
+  <option value="OK">
+  <option value="OR">
+  <option value="PW">
+  <option value="PA">
+  <option value="PR">
+  <option value="RI">
+  <option value="SC">
+  <option value="SD">
+  <option value="TN">
+  <option value="TX">
+  <option value="UT">
+  <option value="VT">
+  <option value="VI">
+  <option value="VA">
+  <option value="WA">
+  <option value="WV">
+  <option value="WI">
+  <option value="WY">
+</datalist><!-- armyUnits Language -->
 
 
 </head>
@@ -161,7 +250,7 @@ border: solid 2px;
   <br>
   <details>
     <summary><label for="smMOS">MOS:</label>
-    <input list="MOS" id="smMOS">
+    <input type="text" id="smMOS" list="MOS">
     </summary>
     <p>Type only the 3 characters. i.e. 35X.<br>MOS: Military Occupational Specialty</p>
   </details>
@@ -205,11 +294,11 @@ border: solid 2px;
   </select>
   <br>
   <label for="smNGARState">NG/AR State (two letter) :</label>
-  <input list="usStates" id="smNGARState">
+  <input type="text" id="smNGARState" list="usStates">
   <br>
   <details>
     <summary><label for="smUnitPrev">Prev. Unit:</label>
-    <input list="armyUnits" id="smUnitPrev">
+    <input type="text" id="smUnitPrev" list="armyUnits">
     </summary>
     <p>If you know the Company and Battallion, type them. Otherwise, just type the Instalation (Fort).</p>
   </details>
@@ -268,10 +357,10 @@ border: solid 2px;
   <br>
   <br>
   <label for="smColorHair">Hair Color:</label>
-  <input list="colorHair" id="smColorHair">
+  <input type="text" id="smColorHair" list="colorHair">
   <br>
   <label for="smColorEye">Eye Color:</label>
-  <input list="colorEye" id="smColorEye">
+  <input type="text" id="smColorEye" list="colorEye">
   <br>
   <label for="smHeight">Height:</label>
   <input type="number" id="smHeight" min=0 placeholder='87 in'>
@@ -293,13 +382,13 @@ border: solid 2px;
   </select>
   <br>
   <label for="smAllergy">Allergies:</label>
-  <input list="Allergies" id="smAllergy">
+  <input type="text" id="smAllergy" list="Allergies">
   <br>
   <label for="smMealPref">Meal Preference:</label>
-  <input list="MealPref" id="smMealPref">
+  <input type="text" id="smMealPref" list="MealPref">
   <br>
   <label for="smReligion">Religion:</label>
-  <input list="Religion" id="smReligion">
+  <input type="text" id="smReligion" list="Religion">
   <br>
   
   <details>
@@ -367,13 +456,11 @@ border: solid 2px;
   <br><br>
   
   
-  
-  
   <label for="smCOVIDVacVolunteer">COVID Vac. Volunteer:</label>
   <input type="checkbox" id="smCOVIDVacVolunteer" value=true>
   <br>
   <label for="smCOVIDVacManu">Vaccine Manufacturer :</label>
-  <input list="COVIDVacManu" id="smCOVIDVacManu">
+  <input type="text" id="smCOVIDVacManu" list="COVIDVacManu">
   <br>
   <label for="smCOVIDVacDose1">Vac. Dose 1:</label>
   <input type="date" id="smCOVIDVacDose1">
@@ -381,9 +468,6 @@ border: solid 2px;
   <label for="smCOVIDVacDose2">Vac. Dose 2:</label>
   <input type="date" id="smCOVIDVacDose2">
   <br>
-  
-  
-  
   
   
   <br><br>
@@ -409,42 +493,42 @@ border: solid 2px;
   <input type="number" id="smDLPTs" min=0>
   <br>
   <label for="smDLPTLanguage">DLPT Language:</label>
-  <input list="Language" id="smDLPTLanguage">
+  <input type="text" id="smDLPTLanguage" list="Language">
   <br>
   
   <label for="smAirborne">Airborne:</label>
-  <input list="ABNRASP" id="smAirborne">
+  <input type="text" id="smAirborne" list="ABNRASP">
   <br>
   <label for="smRanger">Ranger:</label>
-  <input list="ABNRASP" id="smRanger">
+  <input type="text" id="smRanger" list="ABNRASP">
   <br>
   <label for="smDLI">DLI:</label>
-  <input list="DLI" id="smDLI">
+  <input type="text" id="smDLI" list="DLI">
   <br>
   <label for="smMedTag">Medical (red) Tag:</label>
-  <input list="YN" id="smMedTag">
+  <input type="text" id="smMedTag" list="YN">
   <br>
   <label for="smHeatCat">Heat Cat (Injury):</label>
-  <input list="YN" id="smHeatCat">
+  <input type="text" id="smHeatCat" list="YN">
   <br>
   <label for="smColdCat">Cold Cat (Injury):</label>
-  <input list="YN" id="smColdCat">
+  <input type="text" id="smColdCat" list="YN">
   <br>
   <label for="smFamCarePlan">Family Care Plan:</label>
-  <input list="YN" id="smFamCarePlan">
+  <input type="text" id="smFamCarePlan" list="YN">
   <br>
   <label for="smEFMP">EFMP:</label>
-  <input list="YN" id="smEFMP">
+  <input type="text" id="smEFMP" list="YN">
   <br>
   <label for="smFRG">FRG:</label>
-  <input list="YN" id="smFRG">
+  <input type="text" id="smFRG" list="YN">
   <br>
   <br>
   <label for="smPOBCity">Place of Birth (PoB) City:</label>
   <input type="text" id="smPOBCity">
   <br>
   <label for="smPOBState">PoB State (two letter) or Country (if you were born outside of US):</label>
-  <input type="text" id="smPOBState">
+  <input type="text" id="smPOBState" list="usStates">
   <br>
   <br>
   <label for="smHORAddress">Home of Record (HoR) Street:</label>
@@ -454,7 +538,7 @@ border: solid 2px;
   <input type="text" id="smHORCity">
   <br>
   <label for="smHORState">HoR State (two letter):</label>
-  <input type="text" id="smHORState">
+  <input type="text" id="smHORState" list="usStates">
   <br>
   <label for="smHORZip">HoR Zip:</label>
   <input type="number" id="smHORZip">
@@ -467,7 +551,7 @@ border: solid 2px;
   <input type="text" id="smLOCCity">
   <br>
   <label for="smLOCState">Local State (two letter):</label>
-  <input type="text" id="smLOCState">
+  <input type="text" id="smLOCState" list="usStates">
   <br>
   <label for="smLOCZip">Local Zip:</label>
   <input type="number" id="smLOCZip">
@@ -477,7 +561,7 @@ border: solid 2px;
   <p>NoK - Next of Kin / Emergency Contact</p><br>
   
   <label for="nok1Rel">Relationship:</label>
-  <input list="Relationship" id="nok1Rel">
+  <input type="text" id="nok1Rel" list="Relationship">
   <br>
   <label for="nok1NameLast">Last Name:</label>
   <input type="text" id="nok1NameLast">
@@ -508,7 +592,7 @@ border: solid 2px;
   <input type="text" id="nok1City">
   <br>
   <label for="nok1State">State (two letter):</label>
-  <input type="text" id="nok1State">
+  <input type="text" id="nok1State" list="usStates">
   <br>
   <label for="nok1Zip">Zip:</label>
   <input type="number" id="nok1Zip">
@@ -516,7 +600,7 @@ border: solid 2px;
   <br>
   
   <label for="nok2Rel">Relationship:</label>
-  <input list="Relationship" id="nok2Rel">
+  <input type="text" id="nok2Rel" list="Relationship">
   <br>
   <label for="nok2NameLast">Last Name:</label>
   <input type="text" id="nok2NameLast">
@@ -547,7 +631,7 @@ border: solid 2px;
   <input type="text" id="nok2City">
   <br>
   <label for="nok2State">State (two letter):</label>
-  <input type="text" id="nok2State">
+  <input type="text" id="nok2State" list="usStates">
   <br>
   <label for="nok2Zip">Zip:</label>
   <input type="number" id="nok2Zip">
@@ -566,13 +650,13 @@ border: solid 2px;
   <input type="number" id="smPOV1Year">
   <br>
   <label for="smPOV1Color">Color:</label>
-  <input list="colorVehicle" id="smPOV1Color">
+  <input type="text" id="smPOV1Color" list="colorVehicle">
   <br>
   <label for="smPOV1Plate">Plate:</label>
   <input type="text" id="smPOV1Plate">
   <br>
   <label for="smPOV1State">State (two letter):</label>
-  <input type="text" id="smPOV1State">
+  <input type="text" id="smPOV1State" list="usStates">
   <br>
   <label for="smPOV1DateReg">Registration Expiration Date:</label>
   <input type="date" id="smPOV1DateReg">
@@ -595,13 +679,13 @@ border: solid 2px;
   <input type="number" id="smPOV2Year">
   <br>
   <label for="smPOV2Color">Color:</label>
-  <input list="colorVehicle" id="smPOV2Color">
+  <input type="text" id="smPOV2Color" list="colorVehicle">
   <br>
   <label for="smPOV2Plate">Plate:</label>
   <input type="text" id="smPOV2Plate">
   <br>
   <label for="smPOV2State">State (two letter):</label>
-  <input type="text" id="smPOV2State">
+  <input type="text" id="smPOV2State" list="usStates">
   <br>
   <label for="smPOV2DateReg">Registration Expiration Date:</label>
   <input type="date" id="smPOV2DateReg">
@@ -617,7 +701,7 @@ border: solid 2px;
   <p>Dependents</p><br>
   
   <label for="dep1Rel">Relationship:</label>
-  <input list="Relationship" id="dep1Rel">
+  <input type="text" id="dep1Rel" list="Relationship">
   <br>
   <label for="dep1NameLast">Last Name:</label>
   <input type="text" id="dep1NameLast">
@@ -651,7 +735,7 @@ border: solid 2px;
   <input type="text" id="dep1City">
   <br>
   <label for="dep1State">State (two letter):</label>
-  <input type="text" id="dep1State">
+  <input type="text" id="dep1State" list="usStates">
   <br>
   <label for="dep1Zip">Zip:</label>
   <input type="number" id="dep1Zip">
@@ -659,7 +743,7 @@ border: solid 2px;
   <br>
   
   <label for="dep2Rel">Relationship:</label>
-  <input list="Relationship" id="dep2Rel">
+  <input type="text" id="dep2Rel" list="Relationship">
   <br>
   <label for="dep2NameLast">Last Name:</label>
   <input type="text" id="dep2NameLast">
@@ -687,7 +771,7 @@ border: solid 2px;
   
   
   <label for="dep3Rel">Relationship:</label>
-  <input list="Relationship" id="dep3Rel">
+  <input type="text" id="dep3Rel" list="Relationship">
   <br>
   <label for="dep3NameLast">Last Name:</label>
   <input type="text" id="dep3NameLast">
@@ -715,7 +799,7 @@ border: solid 2px;
   
   
   <label for="dep4Rel">Relationship:</label>
-  <input list="Relationship" id="dep4Rel">
+  <input type="text" id="dep4Rel" list="Relationship">
   <br>
   <label for="dep4NameLast">Last Name:</label>
   <input type="text" id="dep4NameLast">
@@ -743,7 +827,7 @@ border: solid 2px;
   
   
   <label for="dep5Rel">Relationship:</label>
-  <input list="Relationship" id="dep5Rel">
+  <input type="text" id="dep5Rel" list="Relationship">
   <br>
   <label for="dep5NameLast">Last Name:</label>
   <input type="text" id="dep5NameLast">
