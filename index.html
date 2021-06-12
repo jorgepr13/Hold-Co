@@ -1485,6 +1485,69 @@ function csvTextReplace(txt){
 function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n") {
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
+  
+  var mos = j.smMOS;
+  var bde = "111th";
+  var bn = "";
+  var co = "";
+  var plt = "3rd";
+  if (mos != undefined && mos != null && mos != "") {
+    switch(mos) {
+        case "35G":
+            bn = "305th";
+            co = "A";
+            break;
+        case "35F":
+            bn = "305th";
+            co = "C"; //"B";
+            break;
+        case "09L":
+        case "35L":
+        case "35M":
+            bn = "309th";
+            co = "B";
+            break;
+        case "35T":
+            bn = "309th";
+            co = "C";
+            break;
+    }
+  }
+  
+  j.smBDE = bde;
+  j.smBN = bn;
+  j.smCO = co;
+  j.smPLT = plt;
+  
+  var comp = j.smComponent;
+  if (comp != undefined && comp != null && comp != "") {
+    switch(comp) {
+        case "NG":
+            comp = "ARNG";
+            break;
+        case "Reserve":
+            comp = "USAR";
+            break;
+        default:
+            comp = "RA";
+            break;
+    }
+  }
+  j.smComponent = comp;
+  
+  var ssn = j.smSSN;
+  if (ssn != undefined && ssn != null && ssn != "") {
+      ssn = ssn.replace(/-/g, "");
+  }
+  j.smSSN = ssn;
+  
+  var ph = j.smPhone;
+  if (ph != undefined && ph != null && ph != "") {
+      ph = ph.replace(/-/g, "");
+  }
+  j.smPhone = ph;
+  
+  
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
     //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 		"PEBD", 		"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	"Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	"Height", 		"Weight", 		"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat",  "COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student Account", 	"Finance Class", 	"Remedial PT", 	"EFMP", 	"Req Fam Care Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
   var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"Promotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"BadgeID", 	"Phase_Level", 	"Phase_Date", 	"Shift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"Unit_Prev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_", 	"Academic_Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal_Preference", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"EFMP", 	"Req_Fam_Care_Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
@@ -1575,7 +1638,7 @@ function jsonGenerate(){
     ets = yy + "-" + mm + "-" + dd;
   }
   
-  var mos = document.getElementById("smMOS").value;
+  /*var mos = document.getElementById("smMOS").value;
   var bde = "111th";
   var bn = "";
   var co = "";
@@ -1602,7 +1665,7 @@ function jsonGenerate(){
             break;
     }
   }
-  
+  */
   var j = {
     smRank : document.getElementById("smRank").value,
     smNameLast : document.getElementById("smNameLast").value,
@@ -1612,7 +1675,7 @@ function jsonGenerate(){
     smDODID : document.getElementById("smDODID").value,
     smGender : document.getElementById("smGender").value,
     smCategory : document.getElementById("smCategory").value,
-    smMOS : mos,
+    smMOS : document.getElementById("smMOS").value,
     smMOSPrev : document.getElementById("smMOSPrev").value,
     smPromotable : document.getElementById("smPromotable").checked,
     //smPromotable : document.getElementById("smPromotable").value,
@@ -1625,10 +1688,10 @@ function jsonGenerate(){
     smNGARState : document.getElementById("smNGARState").value,
     smUnitPrev : document.getElementById("smUnitPrev").value,
     
-    smBDE : bde,
-    smBN : bn,
-    smCO : co,
-    smPLT : plt,
+    //smBDE : bde,
+    //smBN : bn,
+    //smCO : co,
+    //smPLT : plt,
     
     smDateArrival : document.getElementById("smDateArrival").value,
     smDateDOB : document.getElementById("smDateDOB").value,
