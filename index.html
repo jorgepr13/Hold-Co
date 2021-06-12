@@ -1549,6 +1549,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   
   j.smShift = "Day";
   j.smPhaseLvl = "BLACK";
+  j.smCitizenship = "US";
   
   j.Academic_Probation = "No";
   j.Recycle = "No";
@@ -1560,6 +1561,14 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   j.Finance_Class = "No";
   j.Remedial_PT = "No";
   j.Active_Student = "Yes";
+  
+  //var val = j.sm;
+  //if (val == undefined || val == null || val == "") {j.sm = "";}
+  
+  var val = j.smMealPref;
+  if (val == undefined || val == null || val == "") {j.smMealPref = "No Preference";}
+  var val = j.smReligion;
+  if (val == undefined || val == null || val == "") {j.smReligion = "None";}
   
   var val = j.smAirborne;
   if (val == undefined || val == null || val == "") {j.smAirborne = "No";}
@@ -1580,7 +1589,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
     //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 		"PEBD", 		"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	"Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	"Height", 		"Weight", 		"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat",  "COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student Account", 	"Finance Class", 	"Remedial PT", 	"EFMP", 	"Req Fam Care Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
-  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"smPromotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"smBadgeSN", 	"smPhaseLvl", 	"Phase_Date", 	"smShift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"smUnitPrev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_num", 	"Academic_Probation", 	"Recycle", 	"smGT", 	"smDLI",	"smDLAB", 	"smDLPTr", 	"smDLPTl", 	"smDLPTs", 	"smDLPTLanguage", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"smDutyStatus", 	"Citizenship", 	"smMealPref", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"smBlood", 	"smAllergy", 	"smMedTag", 	"smHeatCat", 	"smColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"smEFMP", 	"smFamCarePlan", 	"Active_Student", 	"Notes", 	"timestamp" ];
+  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"smPromotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"smBadgeSN", 	"smPhaseLvl", 	"Phase_Date", 	"smShift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"smUnitPrev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_num", 	"Academic_Probation", 	"Recycle", 	"smGT", 	"smDLI",	"smDLAB", 	"smDLPTr", 	"smDLPTl", 	"smDLPTs", 	"smDLPTLanguage", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"smDutyStatus", 	"smCitizenship", 	"smMealPref", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"smBlood", 	"smAllergy", 	"smMedTag", 	"smHeatCat", 	"smColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"smEFMP", 	"smFamCarePlan", 	"Active_Student", 	"Notes", 	"timestamp" ];
   
   //data_Family
   //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last_Name", 	"First_Name", 	"Middle_Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"]
