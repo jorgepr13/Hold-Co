@@ -1368,7 +1368,8 @@ function emailSend() {
     var subject = "In-Processing Data Sheet";
     var body = "DS,\r\n\r\nAttached is my personal datasheet.\r\n\r\nVery respectfully,\r\n" + document.getElementById("smRank").value + " " + document.getElementById("smNameLast").value;
     //body += "<" + window.location.href + ">";
-    var uri = "mailto:usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil?subject=";
+    //var uri = "mailto:usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil?subject=";
+    var uri = "mailto:jorge.hernandezgarcia.mil@mail.mil?subject=";
     uri += encodeURIComponent(subject);
     uri += "&body=";
     uri += encodeURIComponent(body);
