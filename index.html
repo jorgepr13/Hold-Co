@@ -1563,7 +1563,7 @@ function jsonShow(){ alert( jsonGenerate() ); }
 
 function jsonGenerate(){
   var ets = document.getElementById("smDateETS").value;
-  if (ets == undefined || ets == null || ets =="") {
+  if (ets == undefined || ets == null || ets == "") {
     var pebd = document.getElementById("smDatePEBD").value;
     var yrs = parseInt(document.getElementById("smDateETSyrs").value);
     if (yrs == undefined || yrs == null || yrs == "" || isNaN(yrs)) {yrs = 0;} else {yrs = parseInt(yrs);}
@@ -1580,7 +1580,28 @@ function jsonGenerate(){
   var bn = "";
   var co = "";
   var plt = "3rd";
-  
+  if (mos != undefined && mos != null && mos != "") {
+    switch(mos) {
+        case "35G":
+            bn = "305th";
+            co = "A";
+            break;
+        case "35F":
+            bn = "305th";
+            co = "C"; //"B";
+            break;
+        case "09L":
+        case "35L":
+        case "35M":
+            bn = "309th";
+            co = "B";
+            break;
+        case "35T":
+            bn = "309th";
+            co = "C";
+            break;
+    }
+  }
   
   var j = {
     smRank : document.getElementById("smRank").value,
