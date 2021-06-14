@@ -1570,6 +1570,10 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   //var val = j.sm;
   //if (val == undefined || val == null || val == "") {j.sm = "";}
   
+  var val = j.smGender;
+  if (val == undefined || val == null || val == "") {val = "Male";}
+  j.smGender = val.slice(0,1).toUpperCase();
+  
   var val = j.smMealPref;
   if (val == undefined || val == null || val == "") {j.smMealPref = "No Preference";}
   var val = j.smReligion;
