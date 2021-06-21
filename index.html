@@ -270,6 +270,7 @@ border: solid 2px;
   <select name="smCategory" id="smCategory">
       <option value="IET">IET</option>
       <option value="MOS-T">MOS-T</option>
+      <option value="Prior">Prior</option>
   </select>
   <br>
   <details>
@@ -1425,6 +1426,81 @@ If you are married, your orders says Dependents: Yes, and your MOS is longer tha
 <script type="text/javascript">
 //https://jorgepr13.github.io/hold-co/
 
+
+function academicQuota() {
+    var quota = "";
+    vat cat = document.getElementById("smCategory").value;
+    var comp = document.getElementById("smComponent").value;
+    var gender = document.getElementById("smGender").value;
+    var duty = document.getElementById("smDutyStatus").value;
+    
+    //VKAER //permanent party
+    switch(comp) {
+        case "Active":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "WLAP";
+                    } else {quota = "WMAP";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "WJANM";
+                    } else {quota = "WKANF";}
+                    break;
+                case "MOS-T":
+                    switch(duty) {
+                        case "TDY and Return":
+                            quota = "WFAER";
+                            break;
+                        case "TDY en-Route":
+                            quota = "WFAEE";
+                            break;
+                        case "PCS":
+                            quota = "WFAEP";
+                            break;
+                    }
+                    break;
+            }
+            break;
+        case "Reserve":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "MLRPM";
+                    } else {quota = "MMRPF";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "MJRNM";
+                    } else {quota = "MKRNF";}
+                    break;
+                case "MOS-T":
+                    quota = "RPRET";
+                    break;
+            }
+            break;
+        case "NG":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "NLGPM";
+                    } else {quota = "NMGPF";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "NJGNM";
+                    } else {quota = "NKGNF";}
+                    break;
+                case "MOS-T":
+                    quota = "NBGED";
+                    break;
+            }
+            break;
+    }
+    alert(quota);
+}
+
 function emailSend() {
     var subject = "In-Processing Data Sheet";
     var body = "DS,\r\n\r\nAttached is my personal datasheet.\r\n\r\nVery respectfully,\r\n" + document.getElementById("smRank").value + " " + document.getElementById("smNameLast").value;
@@ -1718,34 +1794,6 @@ function jsonGenerate(){
     ets = yy + "-" + mm + "-" + dd;
   }
   
-  /*var mos = document.getElementById("smMOS").value;
-  var bde = "111th";
-  var bn = "";
-  var co = "";
-  var plt = "3rd";
-  if (mos != undefined && mos != null && mos != "") {
-    switch(mos) {
-        case "35G":
-            bn = "305th";
-            co = "A";
-            break;
-        case "35F":
-            bn = "305th";
-            co = "C"; //"B";
-            break;
-        case "09L":
-        case "35L":
-        case "35M":
-            bn = "309th";
-            co = "B";
-            break;
-        case "35T":
-            bn = "309th";
-            co = "C";
-            break;
-    }
-  }
-  */
   var j = {
     smRank : document.getElementById("smRank").value,
     smNameLast : document.getElementById("smNameLast").value,
