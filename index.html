@@ -213,7 +213,7 @@ border: solid 2px;
 <details><summary>Personal Datasheet (New inbounds)</summary>
 
   <fieldset><details open><summary>Service Member (SM) data:</summary>
-    <fieldset><details open><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
+    <fieldset><details><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
     <p>The following information is provided in accordance with 5 U.S.C. 552a(e)(3) and applies to this form. Authority for collection of the information is 44 U.S.C. 2907, 3101, and 3103, and E.O. 9397 of November 22, 1943. Disclosure of the information is voluntary. The purpose of the information on this form is to assist your unit servicing the records. This form is then filed in the requested military service record as a record of disclosure. The form may also be disclosed to the Department of Defense components, the Department of Veterans Affairs, the Department of Transportation (Coast Guard), or the National Archives and Records Administration when the original custodian of the military health and personnel records transfers all or part of those records to that agency. If the service member was a member of the National Guard, the form may also be disclosed to the Adjutant General of the appropriate state, District of Colombia, or Puerto Rico, where he or she served. The following information will not be shared with any unauthorized personnel.</p>
     </details></fieldset>
   <br>
@@ -266,13 +266,19 @@ border: solid 2px;
       <option value="Female">Female</option>
   </select>
   <br>
- <label for="smCategory">Category:</label>
+  <details>
+  <summary><label for="smCategory">Category:</label>
   <select name="smCategory" id="smCategory">
       <option value="IET">IET</option>
       <option value="MOS-T">MOS-T</option>
       <option value="Prior">Prior</option>
   </select>
-  <br>
+  </summary>
+  <p>IET: Initial Entry Soldier. You don't have a MOS yet.
+  <br>MOS-T: MOS Transfer/Reclass. You have a MOS, but are trying to get a new one.
+  <br>Prior: Break in Service. You were in the military, got out, and are coming back. This also includes transfers from another branches (Marine Corps, Navy, etc.).</p>
+  </details>
+  
   <details>
     <summary><label for="smMOS">MOS:</label>
     <input type="text" id="smMOS" list="MOS">
@@ -937,7 +943,9 @@ border: solid 2px;
   <p>If when you click on 'Download JSON' a new page opens with your information coded, copy all of it, go back to the previous page, click on 'Send your JSON file...' and paste the contents of the information coded to the body of the email.</p>
 </details>
 
-  
+<br><br>
+<button onclick="academicQuota()">Academic Quota test</button>
+
   </details></fieldset><!-- Download -->
 </details><!-- Datasheet -->
 
@@ -1426,80 +1434,6 @@ If you are married, your orders says Dependents: Yes, and your MOS is longer tha
 <script type="text/javascript">
 //https://jorgepr13.github.io/hold-co/
 
-
-function academicQuota() {
-    var quota = "";
-    vat cat = document.getElementById("smCategory").value;
-    var comp = document.getElementById("smComponent").value;
-    var gender = document.getElementById("smGender").value;
-    var duty = document.getElementById("smDutyStatus").value;
-    
-    //VKAER //permanent party
-    switch(comp) {
-        case "Active":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "WLAP";
-                    } else {quota = "WMAP";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "WJANM";
-                    } else {quota = "WKANF";}
-                    break;
-                case "MOS-T":
-                    switch(duty) {
-                        case "TDY and Return":
-                            quota = "WFAER";
-                            break;
-                        case "TDY en-Route":
-                            quota = "WFAEE";
-                            break;
-                        case "PCS":
-                            quota = "WFAEP";
-                            break;
-                    }
-                    break;
-            }
-            break;
-        case "Reserve":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "MLRPM";
-                    } else {quota = "MMRPF";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "MJRNM";
-                    } else {quota = "MKRNF";}
-                    break;
-                case "MOS-T":
-                    quota = "RPRET";
-                    break;
-            }
-            break;
-        case "NG":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "NLGPM";
-                    } else {quota = "NMGPF";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "NJGNM";
-                    } else {quota = "NKGNF";}
-                    break;
-                case "MOS-T":
-                    quota = "NBGED";
-                    break;
-            }
-            break;
-    }
-    alert(quota);
-}
 
 function emailSend() {
     var subject = "In-Processing Data Sheet";
@@ -2149,6 +2083,82 @@ function jsonLoad(src){
   
   //document.getElementById("sm").value = ("sm" in j) ? j.sm.trim() : "";
 }
+
+
+
+function academicQuota() {
+    var quota = "";
+    var cat = document.getElementById("smCategory").value;
+    var comp = document.getElementById("smComponent").value;
+    var gender = document.getElementById("smGender").value;
+    var duty = document.getElementById("smDutyStatus").value;
+    //VKAER //permanent party
+    switch(comp) {
+        case "Active":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "WLAP";
+                    } else {quota = "WMAP";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "WJANM";
+                    } else {quota = "WKANF";}
+                    break;
+                case "MOS-T":
+                    switch(duty) {
+                        case "TDY and Return":
+                            quota = "WFAER";
+                            break;
+                        case "TDY en-Route":
+                            quota = "WFAEE";
+                            break;
+                        case "PCS":
+                            quota = "WFAEP";
+                            break;
+                    }
+                    break;
+            }
+            break;
+        case "Reserve":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "MLRPM";
+                    } else {quota = "MMRPF";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "MJRNM";
+                    } else {quota = "MKRNF";}
+                    break;
+                case "MOS-T":
+                    quota = "RPRET";
+                    break;
+            }
+            break;
+        case "NG":
+            switch(cat) {
+                case "Prior":
+                    if (gender == "Male") {
+                        quota = "NLGPM";
+                    } else {quota = "NMGPF";}
+                    break;
+                case "IET":
+                    if (gender == "Male") {
+                        quota = "NJGNM";
+                    } else {quota = "NKGNF";}
+                    break;
+                case "MOS-T":
+                    quota = "NBGED";
+                    break;
+            }
+            break;
+    }
+    alert(quota + "\n\nC: " + comp + "\nC: " + cat + "\nG: " + gender + "\nD: " + duty);
+}
+
 
 </script>
 
