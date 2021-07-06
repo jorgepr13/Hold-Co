@@ -559,8 +559,9 @@ border: solid 2px;
   <label for="smPOBCity">Place of Birth (PoB) City:</label>
   <input type="text" id="smPOBCity">
   <br>
-  <label for="smPOBState">PoB State (two letter) or Country (if you were born outside of US):</label>
-  <input type="text" id="smPOBState" list="usStates">
+  <label for="smPOBState">PoB State (two letter)
+  <br>or Country (if you were born outside of US):</label>
+  <br><input type="text" id="smPOBState" list="usStates">
   <br>
   <br>
   <label for="smHORAddress">Home of Record (HoR) Street:</label>
@@ -887,7 +888,7 @@ border: solid 2px;
   
   </details></fieldset>
   <br>
-  <fieldset><details open><summary>Info:</summary>
+  <fieldset><details open><summary>In-Processing Info:</summary>
   
     <fieldset><legend>Find:</legend>
       <details><summary>DA31 - Request and Authority for Leave</summary>
@@ -923,8 +924,15 @@ border: solid 2px;
         <dd>Next of Kin - Someone you would like us to contact in case of an emergency.</dd>
       </dl>
     </fieldset>
+    
+    <fieldset><legend>In-Processing:</legend>
+    Monday @ 0700 @ Eifler Gym
+    <br>***Eat breakfast before you go there.
+    <br>Uniform: ACU (OCP)
+    <br>Bring: In-Processing packet, BCT Packet, 5x copies of orders, 2x copies of DA31
+    </fieldset>
   
-  </details></fieldset>
+  </details></fieldset><!--In-Processing info-->
   <br>
   <fieldset><details open><summary>Download/Load data:</summary>
   
@@ -964,7 +972,7 @@ border: solid 2px;
     <li>You may go to the post office or dry cleaners during the duty day with permission from the DS.</li>
     <li>Keep a list of all the places (dates, address, supervisor, and a phone number) you have lived at since you joined the military (including BCT). You are going to need it later to renew your clearance.</li>
 </ul>
-</fieldset>
+</fieldset><!--Do-->
 <fieldset><legend>Dont's</legend>
 <ul>
     <li>Go anywhere without a battle buddy.</li>
@@ -978,14 +986,15 @@ border: solid 2px;
     <br>If you want to donate, it has to be for non-personal reasons, so most likely to a non-profit organization (Red Cross, AER, etc).
     <br>Army Emergency Relief (AER) Annual Campaign is conducted from March 1st through May 15th each year.
 </ul>
-</fieldset>
-</details></fieldset>
+</fieldset><!--Dont-->
+</details></fieldset><!--Do/Dont-->
 
 
 <br>
 <fieldset><details open><summary>General Info</summary>
 
-<br>Sick Call (SC):
+<br>
+<fieldset><legend>Sick Call (SC):</legend>
 <br>-Must have a new SC slip signed by DS
 <br>-Must sign out in ‘Sick Call Roster’ (including battle buddy), not on CQ Sign out/in roster
 <br>-Must turn in SC slip to DS
@@ -993,39 +1002,32 @@ border: solid 2px;
 <br>-Injury:  NLT 0420 @ CQ desk  |  NLT 0445 @ MISC
 <br>-Setup Appointments: NLT 0700 @ MISC
 <br>
-<br>Appointments:
+<br></fieldset>
+<fieldset><legend>Appointments:</legend>
 <br>-Must turn in to DS
-
 <br>
-<br>Weinstein DFAC: 
+<br></fieldset>
+<fieldset><legend>Weinstein DFAC:</legend>
 <br>M-Sa: 0230-0400, 0600-0730, 1130-1300, 1700-1830
 <br>Su/Holidays: 0900-1230, 1630-1800
-
 <br>
-<br>Bed check:
+<br></fieldset>
+<fieldset><legend>Bed check:</legend>
 <br>Su-Th: 2100
-<br>F-Sa: 2200
+<br>Fr-Sa: 2200
 <br>Uniform: Summer PTs with shower shoes, Phase badge, Room key, CAC, and dog tags.
-
-<br>
-<br>In-Processing: Monday @ 0700 @ Eifler Gym // Eat breakfast before you go there.
-<br>Uniform: ACU (OCP)
-<br>Bring: In-Processing packet, BCT Packet, 5x copies of orders, 2x copies of DA31
+</fieldset>
 
 <br><br>
 <fieldset><details open><summary>Housing</summary>
-If you are married, your orders says Dependents: Yes, and your MOS is longer than 6 months (35T, 35G); you may move out of the Barracks.
-
-<br><br>*** You MUST be GOLD phase to move out ***
-
+***IET are no longer allowed to move out of the barracks.***
+<br><br>If you are married, your orders says Dependents: Yes, and your MOS is longer than 6 months (35T, 35G); you may move out of the Barracks.
 
 <br><br>Required documents:
 <ul>
     <li>Orders bringing you to FH</li>
     <li><a href="#Finance">LES</a></li>
     <li><a href="#DEERS">DD1172 - DEERS</a></li>
-    
-    
 </ul>
 <br><br>To receive BAS (Stop Meal deductions)
 <br><br>Required documents:
@@ -1035,16 +1037,13 @@ If you are married, your orders says Dependents: Yes, and your MOS is longer tha
     <li><a href="#Finance">LES</a> - the last 3</li>
     <li><a href="#DEERS">DD1172 - DEERS</a></li>
     <li>Lease</li>
-    <li>Move out memo from the commander. The DS will generate it.</li>
-    <li>Move out counseling from the DS.</li>
     <li>DA4187 - The DS will generate and submit to S1 and eventually to finance. You might not see this form.</li>
-    
 </ul>
 
 
-</details></fieldset>
+</details></fieldset><!--Housing-->
 
-</details></fieldset>
+</details></fieldset><!--General Info-->
 
 
 
@@ -1053,7 +1052,7 @@ If you are married, your orders says Dependents: Yes, and your MOS is longer tha
 <fieldset><details open><summary>Hold Company Info</summary>
 
 <br><a href="tel:520-533-0906">520-533-0906</a><label> - Co CQ Phone</label>
-<br><label>Co Email: </label><a href="mailto:usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil">usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil</a>
+<br><label>Co Email: </label><a href="mailto:usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil" target="_blank">usarmy.huachuca.icoe.list.111th-hold-co-drill-sergeants@mail.mil</a>
 <br>
 
 <br><a href="https://www.facebook.com/groups/479906796509454">Hold Co Facebook page</a>
