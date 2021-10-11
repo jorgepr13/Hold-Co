@@ -2389,6 +2389,7 @@ function jsonGenerate(){
     smCOVIDVacManu : document.getElementById("smCOVIDVacManu").value,
     smCOVIDVacDose1 : document.getElementById("smCOVIDVacDose1").value,
     smCOVIDVacDose2 : document.getElementById("smCOVIDVacDose2").value,
+    smCOVIDVacDose3 : document.getElementById("smCOVIDVacDose3").value,
     
     
     smBadgeSN : document.getElementById("smBadgeSN").value,
@@ -2566,6 +2567,7 @@ function jsonLoad(src){
   document.getElementById("smCOVIDVacManu").value = ("smCOVIDVacManu" in j) ? j.smCOVIDVacManu.trim() : "";
   document.getElementById("smCOVIDVacDose1").value = ("smCOVIDVacDose1" in j) ? j.smCOVIDVacDose1.trim() : "";
   document.getElementById("smCOVIDVacDose2").value = ("smCOVIDVacDose2" in j) ? j.smCOVIDVacDose2.trim() : "";
+  document.getElementById("smCOVIDVacDose3").value = ("smCOVIDVacDose3" in j) ? j.smCOVIDVacDose3.trim() : "";
   
   document.getElementById("smBadgeSN").value = ("smBadgeSN" in j) ? j.smBadgeSN.trim() : "";
   document.getElementById("smRoom").value = ("smRoom" in j) ? j.smRoom.trim() : "";
