@@ -200,7 +200,12 @@ border: solid 2px;
   <option value="WV">
   <option value="WI">
   <option value="WY">
-</datalist><!-- armyUnits Language -->
+</datalist><!-- US States -->
+<datalist id="armyUnits">
+  <option value="Fort Jackson, SC">
+  <option value="Fort Leonard Wood, MO">
+  <option value="Fort Sill, OK">
+</datalist>
 
 
 </head>
@@ -210,7 +215,7 @@ border: solid 2px;
 
 
 <fieldset><!--legend>Personal Datasheet</legend-->
-<details><summary>Personal Datasheet (New inbounds)
+<details open><summary>Personal Datasheet (New inbounds)
 </summary>
 <br>Not mandatory, but highly appreciated
 <br><br>
@@ -333,26 +338,26 @@ border: solid 2px;
     <summary><label for="smUnitPrev">Prev. Unit:</label>
     <input type="text" id="smUnitPrev" list="armyUnits">
     </summary>
-    <p>If you know the Company and Battallion, type them. Otherwise, just type the Instalation (Fort).
-    <br>ex. A-12, Fort Jackson, SC</p>
+    <p>If you know the Company and Battalion, type them. Otherwise, just type the Installation (Fort).
+    <br>ex. Fort Jackson, SC - A-12</p>
   </details>
   
   <br>
-  <details>
+  <details open>
     <summary><label for="smDateArrival">Arrival date:</label>
     <input type="date" id="smDateArrival">
     </summary>
     <p>The date you arrived to Fort Huachuca (NOT the date you reported to the Company).</p>
   </details>
   
-  <details>
+  <details open>
     <summary><label for="smDateDOB">DoB:</label>
   <input type="date" id="smDateDOB" autocomplete="on">
   </summary>
     <p>Date of Birth</p>
   </details>
   
-  <details>
+  <details open>
     <summary><label for="smDateDOR">DoR:</label>
   <input type="date" id="smDateDOR">
   </summary>
@@ -360,7 +365,7 @@ border: solid 2px;
     <br>Usually the same date you joined the Army.</p>
   </details>
   
-  <details>
+  <details open>
     <summary><label for="smDateBASD">BASD:</label>
   <input type="date" id="smDateBASD">
   </summary>
@@ -369,7 +374,7 @@ border: solid 2px;
     <br>Active: The date you joined the Army.</p>
   </details>
   
-  <details>
+  <details open>
     <summary><label for="smDatePEBD">PEBD:</label>
   <input type="date" id="smDatePEBD">
   </summary>
@@ -377,7 +382,7 @@ border: solid 2px;
     <br>The date you joined the Army.</p>
   </details>
   
-  <details>
+  <details open>
     <summary><label for="smDateETS">ETS:</label>
     <input type="date" id="smDateETS">
     <input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0>
@@ -502,6 +507,9 @@ border: solid 2px;
   <label for="smCOVIDVacDose2">Vac. Dose 2:</label>
   <input type="date" id="smCOVIDVacDose2">
   <br>
+  <label for="smCOVIDVacDose3">Vac. Dose 3:</label>
+  <input type="date" id="smCOVIDVacDose3">
+  <br>
   
   
   <br><br>
@@ -557,23 +565,23 @@ border: solid 2px;
   <label for="smFRG">FRG:</label>
   <input type="text" id="smFRG" list="YN">
   <br>
-  <br>
-  <label for="smPOBCity">Place of Birth (PoB) City:</label>
+  <br>Place of Birth (PoB)<br>
+  <label for="smPOBCity">PoB City:</label>
   <input type="text" id="smPOBCity">
   <br>
   <label for="smPOBState">PoB State (two letter)
   <br>or Country (if you were born outside of US):</label>
   <br><input type="text" id="smPOBState" list="usStates">
   <br>
-  <br>
-  <label for="smHORAddress">Home of Record (HoR) Street:</label>
+  <br>Home of Record (HoR)<br>
+  <label for="smHORAddress">HoR Street:</label>
   <input type="text" id="smHORAddress">
   <br>
   <label for="smHORCity">HoR City:</label>
   <input type="text" id="smHORCity">
   <br>
-  <label for="smHORState">HoR State (two letter):</label>
-  <input type="text" id="smHORState" list="usStates">
+  <label for="smHORState">HoR State:</label>
+  <input type="text" id="smHORState" list="usStates"> (two letter)
   <br>
   <label for="smHORZip">HoR Zip:</label>
   <input type="number" id="smHORZip">
@@ -585,8 +593,8 @@ border: solid 2px;
   <label for="smLOCCity">Local City:</label>
   <input type="text" id="smLOCCity">
   <br>
-  <label for="smLOCState">Local State (two letter):</label>
-  <input type="text" id="smLOCState" list="usStates">
+  <label for="smLOCState">Local State:</label>
+  <input type="text" id="smLOCState" list="usStates"> (two letter)
   <br>
   <label for="smLOCZip">Local Zip:</label>
   <input type="number" id="smLOCZip">
@@ -626,8 +634,8 @@ border: solid 2px;
   <label for="nok1City">City:</label>
   <input type="text" id="nok1City">
   <br>
-  <label for="nok1State">State (two letter):</label>
-  <input type="text" id="nok1State" list="usStates">
+  <label for="nok1State">State:</label>
+  <input type="text" id="nok1State" list="usStates"> (two letter)
   <br>
   <label for="nok1Zip">Zip:</label>
   <input type="number" id="nok1Zip">
@@ -665,8 +673,8 @@ border: solid 2px;
   <label for="nok2City">City:</label>
   <input type="text" id="nok2City">
   <br>
-  <label for="nok2State">State (two letter):</label>
-  <input type="text" id="nok2State" list="usStates">
+  <label for="nok2State">State:</label>
+  <input type="text" id="nok2State" list="usStates"> (two letter)
   <br>
   <label for="nok2Zip">Zip:</label>
   <input type="number" id="nok2Zip">
@@ -690,8 +698,8 @@ border: solid 2px;
   <label for="smPOV1Plate">Plate:</label>
   <input type="text" id="smPOV1Plate">
   <br>
-  <label for="smPOV1State">State (two letter):</label>
-  <input type="text" id="smPOV1State" list="usStates">
+  <label for="smPOV1State">State:</label>
+  <input type="text" id="smPOV1State" list="usStates"> (two letter)
   <br>
   <label for="smPOV1DateReg">Registration Expiration Date:</label>
   <input type="date" id="smPOV1DateReg">
@@ -719,8 +727,8 @@ border: solid 2px;
   <label for="smPOV2Plate">Plate:</label>
   <input type="text" id="smPOV2Plate">
   <br>
-  <label for="smPOV2State">State (two letter):</label>
-  <input type="text" id="smPOV2State" list="usStates">
+  <label for="smPOV2State">State:</label>
+  <input type="text" id="smPOV2State" list="usStates"> (two letter)
   <br>
   <label for="smPOV2DateReg">Registration Expiration Date:</label>
   <input type="date" id="smPOV2DateReg">
@@ -769,8 +777,8 @@ border: solid 2px;
   <label for="dep1City">City:</label>
   <input type="text" id="dep1City">
   <br>
-  <label for="dep1State">State (two letter):</label>
-  <input type="text" id="dep1State" list="usStates">
+  <label for="dep1State">State:</label>
+  <input type="text" id="dep1State" list="usStates"> (two letter)
   <br>
   <label for="dep1Zip">Zip:</label>
   <input type="number" id="dep1Zip">
@@ -940,7 +948,7 @@ border: solid 2px;
 <br><br>
 
 <p>Send your JSON file to: 
-  <a href="javascript:(function()%7BemailSend()%3B%7D)()%3B">Co Gmail</a>
+  <a href="javascript:(function()%7BemailSend()%3B%7D)()%3B">SHC Gmail</a>
   <!--a href="javascript:void(0)" onclick="emailSend()">Hold Company Email</a-->
 <br><br>**Encrypt your email before sending it**
 
@@ -950,15 +958,11 @@ border: solid 2px;
 </details>
 <br>
 <details open><summary>Gmail users</summary>
-  <p>Before sending the email, go to the email options (three dots on Android) and choose 'Confidential mode'.
+  <p>Before sending the email, go to the email options (right side, three vertical dots on Android) and choose 'Confidential mode'.
   <br>Don't choose 1 day.
   <br>1 week should be long enough.
   <br>It'll create a temporary passcode protected link to your file (that will be automatically deleted after the link expires. Your file is most likely stored in your Drive or Gmail [ask Google!]).</p>
 </details>
-
-<!--br><br>
-<button onclick="academicQuota()">Academic Quota test</button-->
-
   </details></fieldset><!-- Download -->
 </details><!-- Datasheet -->
 
@@ -966,7 +970,7 @@ border: solid 2px;
 
 
 <br>
-<fieldset><details><summary>Do's & Dont's</summary>
+<fieldset><details><summary>Do's & Don'ts</summary>
 <fieldset><legend>Do's</legend>
 <ul>
     <li>You may go to the shoppette or order food after 1830 on duty days.</li>
@@ -974,21 +978,21 @@ border: solid 2px;
     <li>Keep a list of all the places (dates, address, supervisor, and a phone number) you have lived at since you joined the military (including BCT). You are going to need it later to renew your clearance.</li>
 </ul>
 </fieldset><!--Do-->
-<fieldset><legend>Dont's</legend>
+<fieldset><legend>Don'ts</legend>
 <ul>
     <li>Go anywhere without a battle buddy.</li>
     <li>Throw away any Army issued item.</li>
-    <li>Wear shorts, skirts, ect. that are shorter than your PT shorts.</li>
+    <li>Wear shorts, skirts, etc. that are shorter than your PT shorts.</li>
     <li>Wear tank tops outside the pool and maybe the gym.</li>
     <li>If you receive a phone call asking for money, 
     <br>unless you are 200% certain,
     <br><b>DON'T</b> give your money!</li>
     <br>If you owe money to the government, they'll take it and you'll see it in your LES.
-    <br>If you want to donate, it has to be for non-personal reasons, so most likely to a non-profit organization (Red Cross, AER, etc).
+    <br>If you want to donate, it has to be for non-personal reasons, so most likely to a non-profit organization (Red Cross, AER, etc.).
     <br>Army Emergency Relief (AER) Annual Campaign is conducted from March 1st through May 15th each year.
 </ul>
-</fieldset><!--Dont-->
-</details></fieldset><!--Do/Dont-->
+</fieldset><!--Don't-->
+</details></fieldset><!--Do/Don't-->
 
 <br>
 <fieldset><details open><summary>Hold Company Info</summary>
@@ -1058,7 +1062,7 @@ RANK Last, First
 <br>-Must sign out in ‘Sick Call Roster’ (including battle buddy), not on CQ Sign out/in roster
 <br>-Must turn in SC slip to DS
 <br>-Illness: NLT 0420 @ CQ desk  |  NLT 0445 @ MISC
-<br>-Injury:  NLT 0420 @ CQ desk  |  NLT 0645 @ MISC (if it didn't happened within the last two days, you need to setup an Appointment)
+<br>-Injury:  NLT 0420 @ CQ desk  |  NLT 0645 @ MISC (if it didn't happen within the last two days, you need to setup an Appointment)
 <br>-Setup Appointments: NLT 0700 @ MISC
 </fieldset>
 <br>
@@ -1260,7 +1264,7 @@ RANK Last, First
 <br><a href="https://www.facebook.com/FMWRFortHuachuca/" target="_blank">Fort Huachuca MWR - Facebook page</a>
 <br><a href="https://huachuca.armymwr.com/" target="_blank">Fort Huachuca MWR - Army page</a>
 <br><a href="https://www.sierravistaaz.gov/events" target="_blank">Sierra Vista events</a>
-<br>most activities on post are driven by MWR, if you want to known what activities might be happening in and around post, visit their page.
+<br>most activities on post are driven by MWR, if you want to know what activities might be happening in and around post, visit their page.
 <br>
 <br><a href="https://www.facebook.com/groups/529117777235614" target="_blank">Fort Huachuca AIT Support Group</a>
 
@@ -1369,7 +1373,7 @@ RANK Last, First
 
 <br><br>
 <fieldset><details><summary><a href="tel:520-508-8042">520-508-8042</a> - On-Call Chaplain (Confidential)
-<br>- Click for more info (Services, hospitality house, etc)
+<br>- Click for more info (Services, hospitality house, etc.)
 <br>
 </summary>
 
@@ -1393,7 +1397,7 @@ RANK Last, First
 
 <br>
 <br>0800 - Sunday (every other) - Prosser Chapel - Jewish
-<br>0900 - Sunday - Kino Chapel - Protestant Gospel/Worship  Service
+<br>0900 - Sunday - Kino Chapel - Protestant Gospel/Worship Service
 <br>0930 - Sunday - Main Post Chapel - Sunday mass
 <br>0930 - Sunday - 305th MI BN Classroom - General Protestant, Contemporary AIT Service
 <br>1015-1200 - Sunday - Blessed Sacrament Chapel (Annex at Main Post Chapel) - Individual Prayer
@@ -1471,7 +1475,7 @@ RANK Last, First
 <br><a href="tel:520-533-2767">520-533-2767</a><label> - Veterinary</label>
 <br><a href="tel:520-678-8112">520-678-8112</a><label> - Ecology (wildlife)</label>
 <br><a href="tel:520-538-6319">520-538-6319</a><label> - CYS (Child Youth Services / Childcare)</label>
-<br><a href="tel:520-538-8649">520-538-8649</a><label> - Family Action Plan(AFAP)</label>
+<br><a href="tel:520-538-8649">520-538-8649</a><label> - Family Action Plan (AFAP)</label>
 <br><a href="tel:520-538-5899">520-538-5899</a><label> - Employment Readiness Program (ERP)</label>
 <br><a href="tel:520-533-5919">520-533-5919</a><label> - Relocation</label>
 <br><a href="tel:520-533-8961">520-533-8961</a><label> - New Parent Support</label>
@@ -1661,7 +1665,7 @@ RANK Last, First
 <br><a href="mailto:usarmy.huachuca.icoe.mbx.inspector-general@mail.mil">usarmy.huachuca.icoe.mbx.inspector-general@mail.mil</a>
 <br>Website: <a href="https://www.ikn.army.mil/apps/IKNHostedWebsites/IG" target="_blank">https://www.ikn.army.mil/apps/IKNHostedWebsites/IG</a>
 <br>Services: Violations of Regulations/Policy,
-<br>reach to the agencies to get the right processes (to get BAH, FSA, correct pay, etc),
+<br>reach to the agencies to get the right processes (to get BAH, FSA, correct pay, etc.),
 <br>entitlements, reprisal
 
 
@@ -1768,7 +1772,7 @@ RANK Last, First
 <br>
 
 <br><a href="tel:520-538-5899">520-538-5899</a> - Exceptional Family Member Program (EFMP)
-<br>-A three tiered mandatory enrollment program (ACS / Medical / HRC) to provide a safety net for families with Special Needs (physical, intellectual,  or emotional disabilities).
+<br>-A three-tiered mandatory enrollment program (ACS / Medical / HRC) to provide a safety net for families with Special Needs (physical, intellectual, or emotional disabilities).
 <br>
 
 <br><a href="tel:520-533-2330">520-533-2330</a> - Family Advocacy Program (FAP)
@@ -1798,7 +1802,7 @@ RANK Last, First
 <br>
 
 <br><a href="tel:520-533-0282">520-533-0282</a> - Risk Reduction Program
-<br>-Analyses, assesses, and recommends solutions designed to decrease Soldier's high risk behaviors and increase mission readiness.
+<br>-Analyses, assesses, and recommends solutions designed to decrease Soldier's high-risk behaviors and increase mission readiness.
 <br>
 
 <br><a href="tel:520-538-1313">520-538-1313</a> - Suicide Prevention Program
@@ -1809,7 +1813,7 @@ RANK Last, First
 <br>
 
 <br><a href="tel:520-533-6879">520-533-6879</a> - Survivor Outreach Services (SOS)
-<br>-A muli-agency approach to delivering services to survivors.
+<br>-A multi-agency approach to delivering services to survivors.
 <br>
 
 </details></fieldset><!-- Soldier & Family Readiness Center (SFRC) -->
@@ -1830,7 +1834,7 @@ RANK Last, First
 <br>
 <br><a href="tel:520-533-5220">520-533-5220</a>
 <br><a href="tel:520-220-0670">520-220-0670</a>
-<br>-Guided trail rides, Riding lessons,  Birthday parties, Group trail rides, Open riding, Holiday parties, Horse camps, Lead arounds, Horse boarding
+<br>-Guided trail rides, Riding lessons, Birthday parties, Group trail rides, Open riding, Holiday parties, Horse camps, Lead arounds, Horse boarding
 <br>
 <br><a href="https://maps.google.com/maps?q=31.566515,-110.383163" target="_blank">Address</a>: Canelo Rd BLDG 13555, Fort Huachuca, AZ 85613
 <br>
@@ -1841,24 +1845,8 @@ RANK Last, First
 
 <br>
 <br><a href="tel:520-533-6707">520-533-6707</a> - MWR Rents
-<br>-Rentals, Parks reservations, Garden Canyon RV park
+<br>-Rentals, Parks reservations, Garden Canyon RV Park
 <br>
-
-<br>
-<br><a href="tel:520-533-">520-533-</a> - 
-<br>-
-<br>
-
-<br>
-<br><a href="tel:520-533-">520-533-</a> - 
-<br>-
-<br>
-
-<br>
-<br><a href="tel:520-533-">520-533-</a> - 
-<br>-
-<br>
-
 
 </details></fieldset><!-- MWR -->
 
@@ -2122,6 +2110,51 @@ function csvTextReplace(txt){
   return txt;
 }
 
+function csvFileDownload() {
+  const srcFiles = document.getElementById("fileInput");
+  const tgtID = "fileContent";
+  var csvSM = "";
+  var csvFam = "";
+  var csvVeh = "";
+  var ta = document.createElement("textarea");
+  ta.id = tgtID;
+  ta.hidden = "true"; ////ta.style.display = "none"; //to show = "block";
+  document.body.appendChild(ta);
+  if ('files' in srcFiles && srcFiles.files.length > 0) {
+    var i = 0
+    var fileLoop = function(arr, tgt, csvSM, csvFam, csvVeh) {
+      csvFileLoadWait(arr[i], tgt, csvSM, csvFam, csvVeh, function(csvSM, csvFam, csvVeh){
+    // 1: runs fileLoadWaitCSV(); 
+    //2: within csvFileLoadWait, the callback (this) function 
+    // is called to continue with the rest of the files through recursion
+        i++;
+        if(i < arr.length) {fileLoop(arr, tgt, csvSM, csvFam, csvVeh); } else {
+            //perform any additional actions after all files were read
+            document.body.removeChild(ta);
+            //alert(csv);
+            fileDownload(csvSM, 'dataSM.csv', 'text/csv;charset=utf-8;')
+            
+        }
+      });
+    
+    }
+    fileLoop(srcFiles.files, tgtID, csvSM, csvFam, csvVeh); //call the loop function
+  }
+}
+function csvFileLoadWait(file, tgt, csvSM, csvFam, csvVeh, callback) {
+  const reader = new FileReader();
+  reader.readAsText(file, "UTF-8");
+  reader.onerror = function (e) {document.getElementById(tgt).value = ""; callback(csvSM, csvFam, csvVeh);}
+  reader.onload = function(e) {
+    var txt = e.target.result;
+    if (csvSM == "") {csvSM += csvGenerateStudent(txt, true);} else {csvSM += csvGenerateStudent(txt);};
+    document.getElementById(tgt).value = txt;
+    jsonLoad(tgt);
+    document.getElementById(tgt).value = "";
+    callback(csvSM, csvFam, csvVeh);
+  }
+}
+
 function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n") {
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
@@ -2192,52 +2225,76 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   j.smPhaseLvl = "BLACK";
   j.smCitizenship = "US";
   j.Class_num = "HOLD UNDER";
-  j.Academic_Probation = "No";
-  j.Recycle = "No";
-  j.SASH = "No";
-  j.TAPS = "No";
-  j.CIF = "No";
-  j.DX = "No";
-  j.Student_Account = "No";
-  j.Finance_Class = "No";
-  j.Remedial_PT = "No";
-  j.Active_Student = "Yes";
+  j.Academic_Probation = "FALSE";
+  j.Recycle = "FALSE";
+  j.SASH = "FALSE";
+  j.TAPS = "FALSE";
+  j.CIF = "FALSE";
+  j.DX = "FALSE";
+  j.Student_Account = "FALSE";
+  j.Remedial_PT = "FALSE";
+  j.Recovery_PT = "FALSE";
+  j.brief_IP_BDE = "FALSE";
+  j.brief_IP_CO = "FALSE";
+  j.brief_REACH = "FALSE";
+  j.brief_RAPIDS = "FALSE";
+  j.brief_Finance = "FALSE";
+  j.brief_Safety = "FALSE";
+  j.brief_EO = "FALSE";
+  j.brief_ABN = "FALSE";
+  j.brief_RASP = "FALSE";
+  j.brief_MI_History = "FALSE";
+  j.biref_H2F = "FALSE";
+  j.brief_AWC = "FALSE";
+  j.Active_Student = "TRUE";
   
   //var val = j.sm;
   //if (val == undefined || val == null || val == "") {j.sm = "";}
   
+  var val = j.smDLI;
+  if (val == undefined || val == null || val == "" || val == "Not Attended") {j.smDLI = "No";}
+  
   var val = j.smGender;
   if (val == undefined || val == null || val == "") {val = "Male";}
   j.smGender = val.slice(0,1).toUpperCase();
+  
+  var val = j.smPromotable;
+  if (val == undefined || val == null || val == "") {j.smPromotable = "FALSE";}
+  
+  var val = j.smDutyStatus;
+  if (val == undefined || val == null || val == "") {j.smDutyStatus = "PCS";}
   
   var val = j.smMealPref;
   if (val == undefined || val == null || val == "") {j.smMealPref = "No Preference";}
   var val = j.smReligion;
   if (val == undefined || val == null || val == "") {j.smReligion = "None";}
   
+  var val = j.smCOVIDVacVolunteer;
+  if (val == undefined || val == null || val == "") {j.smCOVIDVacVolunteer = "FALSE";}
+  
   var val = j.smAirborne;
   if (val == undefined || val == null || val == "") {j.smAirborne = "No";}
   var val = j.smRanger;
   if (val == undefined || val == null || val == "") {j.smRanger = "No";}
   var val = j.smMedTag;
-  if (val == undefined || val == null || val == "") {j.smMedTag = "No";}
+  if (val == undefined || val == null || val == "") {j.smMedTag = "FALSE";}
   var val = j.smHeatCat;
-  if (val == undefined || val == null || val == "") {j.smHeatCat = "No";}
+  if (val == undefined || val == null || val == "") {j.smHeatCat = "FALSE";}
   var val = j.smColdCat;
-  if (val == undefined || val == null || val == "") {j.smColdCat = "No";}
+  if (val == undefined || val == null || val == "") {j.smColdCat = "FALSE";}
   var val = j.smEFMP;
-  if (val == undefined || val == null || val == "") {j.smEFMP = "No";}
+  if (val == undefined || val == null || val == "") {j.smEFMP = "FALSE";}
   var val = j.smFamCarePlan;
-  if (val == undefined || val == null || val == "") {j.smFamCarePlan = "No";}
+  if (val == undefined || val == null || val == "") {j.smFamCarePlan = "FALSE";}
   
   
   
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
-    //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 		"PEBD", 		"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI",	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	"Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	"Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	"Height", 		"Weight", 		"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat",  "COVID_Vac_Dose1",  	"COVID_Vac_Dose2",  	"COVID_Vac_Manu",  	"COVID_Vac_Vol",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student Account", 	"Finance Class", 	"Remedial PT", 	"EFMP", 	"Req Fam Care Plan", 	"Active_Student", 	"Notes", 	"timestamp" ];
-  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"smPromotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"smBadgeSN", 	"smPhaseLvl", 	"Phase_Date", 	"smShift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"smUnitPrev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_num", 	"Academic_Probation", 	"Recycle", 	"smGT", 	"smDLI",	"smDLAB", 	"smDLPTr", 	"smDLPTl", 	"smDLPTs", 	"smDLPTLanguage", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"smDutyStatus", 	"smCitizenship", 	"smMealPref", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"smBlood", 	"smAllergy", 	"smMedTag", 	"smHeatCat", 	"smColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"Student_Account", 	"Finance_Class", 	"Remedial_PT", 	"smEFMP", 	"smFamCarePlan", 	"Active_Student", 	"Notes", 	"timestamp" ];
+    //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 	"PEBD", 	"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI", 	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	          "Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	    "Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	      "Height", 	"Weight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"COVID_Vac_Dose1", 	"COVID_Vac_Dose2", 	"COVID_Vac_Dose3", 	"COVID_Vac_Manu", 	      "COVID_Vac_Vol", 	        "SASH", 	"TAPS", 	"CIF", 	"DX", 	"DX_Items", 	"Student Account", 	"Remedial PT", 	"Recovery_PT", 	"EFMP", 	"Req Fam Care Plan", 	"brief_IP_BDE", 	"brief_IP_CO", 	"brief_REACH", 	"brief_RAPIDS", 	"brief_Finance", 	"brief_Safety", 	"brief_EO", 	"brief_ABN", 	"brief_RASP", 	"brief_MI_History", 	"biref_H2F", 	"brief_AWC", 	"Active_Student", 	"Notes", 	"timestamp"];
+  var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"smPromotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"smBadgeSN", 	"smPhaseLvl", 	"Phase_Date", 	"smShift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"smUnitPrev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_num", 	"Academic_Probation", 	"Recycle", 	"smGT", 	"smDLI",	"smDLAB", 	"smDLPTr", 	"smDLPTl", 	"smDLPTs", 	"smDLPTLanguage", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"smDutyStatus", 	"smCitizenship", 	"smMealPref", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"smBlood", 	"smAllergy", 	"smMedTag", 	"smHeatCat", 	"smColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacDose3",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"smDXItems", 	"Student_Account", 	"Remedial_PT", 	"Recovery_PT", 	"smEFMP", 	"smFamCarePlan", 	"brief_IP_BDE", 	"brief_IP_CO", 	"brief_REACH", 	"brief_RAPIDS", 	"brief_Finance", 	"brief_Safety", 	"brief_EO", 	"brief_ABN", 	"brief_RASP", 	"brief_MI_History", 	"biref_H2F", 	"brief_AWC", 	"Active_Student", 	"Notes", 	"timestamp" ];
   
   //data_Family
-  //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last_Name", 	"First_Name", 	"Middle_Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"]
+  //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"]
 
   //data_Vehicle
   //var orderDB = ["ID", 	"Student_ID", 	"Type", 	"Make", 	"Model", 	"Year", 	"Color", 	"Plate", 	"State", 	"Registration_exp_Date", 	"Insurance_exp_Date", 	"Insurance_Co", 	"VIN", 	"Notes", 	"timestamp"]
@@ -2257,47 +2314,6 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   return str + sepRow;
 }
 
-function csvFileDownload() {
-  const srcFiles = document.getElementById("fileInput");
-  const tgtID = "fileContent";
-  var csv = "";
-  var ta = document.createElement("textarea");
-  ta.id = tgtID;
-  ta.hidden = "true"; ////ta.style.display = "none"; //to show = "block";
-  document.body.appendChild(ta);
-  if ('files' in srcFiles && srcFiles.files.length > 0) {
-    var i = 0
-    var fileLoop = function(arr, tgt, csv) {
-      csvFileLoadWait(arr[i], tgt, csv, function(csv){
-    // 1: runs fileLoadWaitCSV(); 2: within csvFileLoadWait, the callback (this) function 
-    // is called to continue with the rest of the files through recursion
-        i++;
-        if(i < arr.length) {fileLoop(arr, tgt, csv); } else {
-            //perform any additional actions after all files were read
-            document.body.removeChild(ta);
-            //alert(csv);
-            fileDownload(csv, 'test.csv', 'text/csv;charset=utf-8;')
-            
-        }
-      });
-    
-    }
-    fileLoop(srcFiles.files, tgtID, csv); //call the loop function
-  }
-}
-function csvFileLoadWait(file, tgt, csv, callback) {
-  const reader = new FileReader();
-  reader.readAsText(file, "UTF-8");
-  reader.onerror = function (e) {document.getElementById(tgt).value = ""; callback(csv);}
-  reader.onload = function(e) {
-    var txt = e.target.result;
-    if (csv == "") {csv += csvGenerateStudent(txt, true);} else {csv += csvGenerateStudent(txt);};
-    document.getElementById(tgt).value = txt;
-    jsonLoad(tgt);
-    document.getElementById(tgt).value = "";
-    callback(csv);
-  }
-}
 
 function jsonFileDownload() {
   var data = jsonGenerate();
@@ -2307,7 +2323,6 @@ function jsonFileDownload() {
 }
 
 function jsonShow(){ alert( jsonGenerate() ); }
-
 function jsonGenerate(){
   var ets = document.getElementById("smDateETS").value;
   if (ets == undefined || ets == null || ets == "") {
@@ -2547,12 +2562,10 @@ function jsonLoad(src){
   document.getElementById("smEthnicity").value = ("smEthnicity" in j) ? j.smEthnicity.trim() : "";
   document.getElementById("smDutyStatus").value = ("smDutyStatus" in j) ? j.smDutyStatus.trim() : "";
   
-  
   document.getElementById("smCOVIDVacVolunteer").checked = ("smCOVIDVacVolunteer" in j) ? j.smCOVIDVacVolunteer : false;
   document.getElementById("smCOVIDVacManu").value = ("smCOVIDVacManu" in j) ? j.smCOVIDVacManu.trim() : "";
   document.getElementById("smCOVIDVacDose1").value = ("smCOVIDVacDose1" in j) ? j.smCOVIDVacDose1.trim() : "";
   document.getElementById("smCOVIDVacDose2").value = ("smCOVIDVacDose2" in j) ? j.smCOVIDVacDose2.trim() : "";
-  
   
   document.getElementById("smBadgeSN").value = ("smBadgeSN" in j) ? j.smBadgeSN.trim() : "";
   document.getElementById("smRoom").value = ("smRoom" in j) ? j.smRoom.trim() : "";
@@ -2677,82 +2690,6 @@ function jsonLoad(src){
   
   //document.getElementById("sm").value = ("sm" in j) ? j.sm.trim() : "";
 }
-
-
-
-function academicQuota() {
-    var quota = "";
-    var cat = document.getElementById("smCategory").value;
-    var comp = document.getElementById("smComponent").value;
-    var gender = document.getElementById("smGender").value;
-    var duty = document.getElementById("smDutyStatus").value;
-    //VKAER //permanent party
-    switch(comp) {
-        case "Active":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "WLAP";
-                    } else {quota = "WMAP";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "WJANM";
-                    } else {quota = "WKANF";}
-                    break;
-                case "MOS-T":
-                    switch(duty) {
-                        case "TDY and Return":
-                            quota = "WFAER";
-                            break;
-                        case "TDY en-Route":
-                            quota = "WFAEE";
-                            break;
-                        case "PCS":
-                            quota = "WFAEP";
-                            break;
-                    }
-                    break;
-            }
-            break;
-        case "Reserve":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "MLRPM";
-                    } else {quota = "MMRPF";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "MJRNM";
-                    } else {quota = "MKRNF";}
-                    break;
-                case "MOS-T":
-                    quota = "RPRET";
-                    break;
-            }
-            break;
-        case "NG":
-            switch(cat) {
-                case "Prior":
-                    if (gender == "Male") {
-                        quota = "NLGPM";
-                    } else {quota = "NMGPF";}
-                    break;
-                case "IET":
-                    if (gender == "Male") {
-                        quota = "NJGNM";
-                    } else {quota = "NKGNF";}
-                    break;
-                case "MOS-T":
-                    quota = "NBGED";
-                    break;
-            }
-            break;
-    }
-    alert(quota + "\n\nC: " + comp + "\nC: " + cat + "\nG: " + gender + "\nD: " + duty);
-}
-
 
 </script>
 
