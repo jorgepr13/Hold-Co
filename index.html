@@ -940,8 +940,10 @@ border: solid 2px;
   <br>
   <fieldset><details open><summary>Download/Load data:</summary>
   
-  <br><button onclick="jsonShow()">Show (preview) JSON</button>
-<button onclick="jsonFileDownload()">Download JSON</button>
+  <br>JSON: <button onclick="jsonShow()">Show (preview)</button>
+<button onclick="jsonFileDownload()">Download</button>
+<button onclick="jsonCopy()">Copy to Clipboard</button>
+
 
 <br><br><label for="fileInput">Load JSON:</label>
 <input type="file" id="fileInput" multiple><button id="csvFileDownload" onclick="csvFileDownload()" formtarget="_blank" hidden>Download CSV</button>
@@ -2315,6 +2317,14 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
 }
 
 
+function copyToClipboard(txt){
+    navigator.clipboard.writeText(txt);
+}
+
+function jsonCopy(){
+    copyToClipboard(jsonGenerate());
+}
+
 function jsonFileDownload() {
   var data = jsonGenerate();
   var j = JSON.parse(data);
@@ -2515,7 +2525,7 @@ function jsonGenerate(){
     
     //sm : document.getElementById("sm").value,
   };
-  return JSON.stringify(j, null, 2);
+  return JSON.stringify(j, null, 1);
 }
 
 function jsonLoad(src){
