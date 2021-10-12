@@ -2155,7 +2155,7 @@ function csvTextReplace(txt){
   if (txt.replace(/ /g, '').match(/[\s,"]/)) {
     txt = '"' + txt.replace(/"/g, '""') + '"';
   }
-  return txt;
+  return txt.trim();
 }
 
 function csvFileDownload() {
@@ -2180,8 +2180,9 @@ function csvFileDownload() {
             //perform any additional actions after all files were read
             document.body.removeChild(ta);
             //alert(csv);
-            fileDownload(csvSM, 'dataSM.csv', 'text/csv;charset=utf-8;')
-            
+            fileDownload(csvSM, '00-dataSM.csv', 'text/csv;charset=utf-8;')
+            fileDownload(csvFam, '00-dataFam.csv', 'text/csv;charset=utf-8;')
+            fileDownload(csvVeh, '00-dataVeh.csv', 'text/csv;charset=utf-8;')
         }
       });
     
@@ -2196,6 +2197,8 @@ function csvFileLoadWait(file, tgt, csvSM, csvFam, csvVeh, callback) {
   reader.onload = function(e) {
     var txt = e.target.result;
     if (csvSM == "") {csvSM += csvGenerateStudent(txt, true);} else {csvSM += csvGenerateStudent(txt);};
+    if (csvFam == "") {csvFam += csvGenerateFam(txt, true);} else {csvFam += csvGenerateFam(txt);};
+    if (csvVeh == "") {csvVeh += csvGenerateVeh(txt, true);} else {csvVeh += csvGenerateVeh(txt);};
     document.getElementById(tgt).value = txt;
     jsonLoad(tgt);
     document.getElementById(tgt).value = "";
@@ -2203,52 +2206,6 @@ function csvFileLoadWait(file, tgt, csvSM, csvFam, csvVeh, callback) {
   }
 }
 
-function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
-  //var j = JSON.parse(jsonGenerate());
-  var j = JSON.parse(data);
-  
-  //data_Vehicle
-  //var orderDB = ["ID", 	"Student_ID", 	"Type", 	"Make", 	"Model", 	"Year", 	"Color", 	"Plate", 	"State", 	"Registration_exp_Date", 	"Insurance_exp_Date", 	"Insurance_Co", 	"VIN", 	"Notes", 	"timestamp"];
-
-  var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"Make", 	"Model", 	"Year", 	"Color", 	"Plate", 	"State", 	"Registration_exp_Date", 	"Insurance_exp_Date", 	"Insurance_Co", 	"VIN", 	"Notes", 	"timestamp"];
-
-  var str = "", hdr = "";
-  
-  orderJSON.forEach(function (property) {
-    //console.log(`${property}: ${object[property]}`);
-    hdr += csvTextReplace(property) + sepField;
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  hdr = hdr.slice(0,-sepField.length);
-  str = str.slice(0,-sepField.length);
-  if (header) {str = hdr + sepRow + str};
-  //alert(str);
-  return str + sepRow;
-}
-
-
-function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
-  //var j = JSON.parse(jsonGenerate());
-  var j = JSON.parse(data);
-  
-  //data_Family
-  //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"];
-
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"];
-
-  var str = "", hdr = "";
-  
-  orderJSON.forEach(function (property) {
-    //console.log(`${property}: ${object[property]}`);
-    hdr += csvTextReplace(property) + sepField;
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  hdr = hdr.slice(0,-sepField.length);
-  str = str.slice(0,-sepField.length);
-  if (header) {str = hdr + sepRow + str};
-  //alert(str);
-  return str + sepRow;
-}
 
 function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n") {
   //var j = JSON.parse(jsonGenerate());
@@ -2263,7 +2220,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
     switch(mos) {
         case "35F":
             bn = "305th";
-            co = "C"; //"B";
+            co = "C"; //"A" "B";
             break;
         case "35G":
             bn = "309th";
@@ -2343,11 +2300,11 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   j.brief_AWC = "FALSE";
   j.Active_Student = "TRUE";
   
-  //var val = j.sm;
-  //if (val == undefined || val == null || val == "") {j.sm = "";}
+  //var val = j.sm.toLowerCase();
+  //if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.sm = "";}
   
-  var val = j.smDLI;
-  if (val == undefined || val == null || val == "" || val == "Not Attended") {j.smDLI = "No";}
+  var val = j.smDLI.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a" || val == "not attended") {j.smDLI = "No";}
   
   var val = j.smGender;
   if (val == undefined || val == null || val == "") {val = "Male";}
@@ -2359,28 +2316,28 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   var val = j.smDutyStatus;
   if (val == undefined || val == null || val == "") {j.smDutyStatus = "PCS";}
   
-  var val = j.smMealPref;
-  if (val == undefined || val == null || val == "") {j.smMealPref = "No Preference";}
-  var val = j.smReligion;
-  if (val == undefined || val == null || val == "") {j.smReligion = "None";}
+  var val = j.smMealPref.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smMealPref = "No Preference";}
+  var val = j.smReligion.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smReligion = "None";}
   
   var val = j.smCOVIDVacVolunteer;
   if (val == undefined || val == null || val == "") {j.smCOVIDVacVolunteer = "FALSE";}
   
-  var val = j.smAirborne;
-  if (val == undefined || val == null || val == "") {j.smAirborne = "No";}
-  var val = j.smRanger;
-  if (val == undefined || val == null || val == "") {j.smRanger = "No";}
-  var val = j.smMedTag;
-  if (val == undefined || val == null || val == "") {j.smMedTag = "FALSE";}
-  var val = j.smHeatCat;
-  if (val == undefined || val == null || val == "") {j.smHeatCat = "FALSE";}
-  var val = j.smColdCat;
-  if (val == undefined || val == null || val == "") {j.smColdCat = "FALSE";}
-  var val = j.smEFMP;
-  if (val == undefined || val == null || val == "") {j.smEFMP = "FALSE";}
-  var val = j.smFamCarePlan;
-  if (val == undefined || val == null || val == "") {j.smFamCarePlan = "FALSE";}
+  var val = j.smAirborne.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smAirborne = "No";}
+  var val = j.smRanger.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smRanger = "No";}
+  var val = j.smMedTag.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smMedTag = "FALSE";}
+  var val = j.smHeatCat.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smHeatCat = "FALSE";}
+  var val = j.smColdCat.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smColdCat = "FALSE";}
+  var val = j.smEFMP.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smEFMP = "FALSE";}
+  var val = j.smFamCarePlan.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smFamCarePlan = "FALSE";}
   
   
   
@@ -2401,6 +2358,190 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   if (header) {str = hdr + sepRow + str};
   //alert(str);
   return str + sepRow;
+}
+
+function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
+  var str = "", hdr = "";
+  //var j = JSON.parse(jsonGenerate());
+  var j = JSON.parse(data);
+  
+  //data_Family
+  //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"];
+
+  var matchKey = j.smNameLast + "_" + j.smNameFirst + "_" + j.smNameMiddle + "_" + j.smDODID;
+  j.MatchKey = matchKey;
+  
+  var val = j.smFRG.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a" || val == "no") {j.smFRG = "FALSE";} else if (val == "yes") {j.smFRG = "TRUE";} else {j.smFRG = "FALSE";}
+  
+  j.smRelationship = "Self";
+  j.NoK = "FALSE";
+  if (j.smEmailMil == ".mil@mail.mil") {j.smEmailMil = "";}
+  
+  //PoB
+  j.Notes = "PoB";
+  var val = j.smPOBState.trim();
+  if (val.length > 2) {j.smPOBCity = j.smPOBCity.trim() + ", " + j.smPOBState.trim(); j.smPOBState = "";}
+  var orderJSON = ["ID", 	"Student_ID", 	"smFRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"smEmailMil", 	"Address", 	"smPOBCity", 	"smPOBState", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    hdr += csvTextReplace(property) + sepField;
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  hdr = hdr.slice(0,-sepField.length);
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  
+  j.FRG = "FALSE";
+  
+  //HoR
+  j.Notes = "HoR";
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smHORAddress", 	"smHORCity", 	"smHORState", 	"smHORZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  
+  //Local
+  var val = j.smLOCAddress;
+  if (val != undefined && val != null && val != "") {
+	  j.Notes = "Local";
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smLOCAddress", 	"smLOCCity", 	"smLOCState", 	"smLOCZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
+  }
+  
+  j.Notes = "";
+  var val = j.dep1Rel.toLowerCase();
+  j.NoK = "TRUE";
+  
+  //NoK1
+  j.FRG = "FALSE";
+  var val2 = j.nok1Rel.toLowerCase();
+  if (val2 != undefined && val2 != null && val2 != "") {
+  if (val == val2) {
+	j.FRG = j.smFRG;
+	j.DoB = j.dep1DateDOB;
+  }
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok1Rel", 	"nok1NameLast", 	"nok1NameFirst", 	"nok1NameMiddle", 	"nok1Gender", 	"DoB", 	"nok1Phone", 	"nok1Email", 	"nok1Address", 	"nok1City", 	"nok1State", 	"nok1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  //NoK2
+  j.DoB = "";
+  j.FRG = "FALSE";
+  var val3 = j.nok2Rel.toLowerCase();
+  if (val3 != undefined && val3 != null && val3 != "") {
+  if (val == val3) {
+	j.FRG = j.smFRG;
+	j.DoB = j.dep1DateDOB;
+  }
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok2Rel", 	"nok2NameLast", 	"nok2NameFirst", 	"nok2NameMiddle", 	"nok2Gender", 	"DoB", 	"nok2Phone", 	"nok2Email", 	"nok2Address", 	"nok2City", 	"nok2State", 	"nok2Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  j.DoB = "";
+  j.NoK = "FALSE";
+  j.FRG = j.smFRG;
+  
+  //Dep1
+  var val = j.dep1Rel.toLowerCase();
+  if (val != undefined && val != null && val != "") {
+  if (val != val2 && val != val3) {
+	var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep1Rel", 	"dep1NameLast", 	"dep1NameFirst", 	"dep1NameMiddle", 	"dep1Gender", 	"dep1DateDOB", 	"dep1Phone", 	"dep1Email", 	"dep1Address", 	"dep1City", 	"dep1State", 	"dep1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+    orderJSON.forEach(function (property) {
+      str += csvTextReplace(j[property]) + sepField;
+    })
+    str = str.slice(0,-sepField.length);
+    str = str + sepRow;
+  }
+  }
+  
+  //Dep2
+  var val = j.dep2Rel.toLowerCase();
+  if (val != undefined && val != null && val != "") {
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep2Rel", 	"dep2NameLast", 	"dep2NameFirst", 	"dep2NameMiddle", 	"dep2Gender", 	"dep2DateDOB", 	"dep2Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  //Dep3
+  var val = j.dep3Rel.toLowerCase();
+  if (val != undefined && val != null && val != "") {
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep3Rel", 	"dep3NameLast", 	"dep3NameFirst", 	"dep3NameMiddle", 	"dep3Gender", 	"dep3DateDOB", 	"dep3Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  //Dep4
+  var val = j.dep4Rel.toLowerCase();
+  if (val != undefined && val != null && val != "") {
+  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep4Rel", 	"dep4NameLast", 	"dep4NameFirst", 	"dep4NameMiddle", 	"dep4Gender", 	"dep4DateDOB", 	"dep4Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  if (header && str != "") {str = hdr + sepRow + str};
+  return str;
+}
+
+function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
+  var str = "", hdr = "";
+  //var j = JSON.parse(jsonGenerate());
+  var j = JSON.parse(data);
+  
+  var matchKey = j.smNameLast + "_" + j.smNameFirst + "_" + j.smNameMiddle + "_" + j.smDODID;
+  j.MatchKey = matchKey;
+  
+  //data_Vehicle
+  //var orderDB = ["ID", 	"Student_ID", 	"Type", 	"Make", 	"Model", 	"Year", 	"Color", 	"Plate", 	"State", 	"Registration_exp_Date", 	"Insurance_exp_Date", 	"Insurance_Co", 	"VIN", 	"Notes", 	"timestamp"];
+
+  var val = j.smPOV1Make;
+  if (val != undefined && val != null && val != "") {
+  var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+    hdr += csvTextReplace(property) + sepField;
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  hdr = hdr.slice(0,-sepField.length);
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+  
+  var val = j.smPOV2Make;
+  if (val != undefined && val != null && val != "") {
+  var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+  orderJSON.forEach(function (property) {
+	hdr += csvTextReplace(property) + sepField;
+    str += csvTextReplace(j[property]) + sepField;
+  })
+  hdr = hdr.slice(0,-sepField.length);
+  str = str.slice(0,-sepField.length);
+  str = str + sepRow;
+  }
+
+  if (header && str != "") {str = hdr + sepRow + str};
+  return str;
 }
 
 
@@ -2443,180 +2584,180 @@ function jsonGenerate(){
   }
   
   var j = {
-    smRank : document.getElementById("smRank").value,
-    smNameLast : document.getElementById("smNameLast").value,
-    smNameFirst : document.getElementById("smNameFirst").value,
-    smNameMiddle : document.getElementById("smNameMiddle").value,
-    smSSN : document.getElementById("smSSN").value,
-    smDODID : document.getElementById("smDODID").value,
-    smGender : document.getElementById("smGender").value,
-    smCategory : document.getElementById("smCategory").value,
-    smMOS : document.getElementById("smMOS").value,
-    smMOSPrev : document.getElementById("smMOSPrev").value,
+    smRank : document.getElementById("smRank").value.trim(),
+    smNameLast : document.getElementById("smNameLast").value.trim(),
+    smNameFirst : document.getElementById("smNameFirst").value.trim(),
+    smNameMiddle : document.getElementById("smNameMiddle").value.trim(),
+    smSSN : document.getElementById("smSSN").value.trim(),
+    smDODID : document.getElementById("smDODID").value.trim(),
+    smGender : document.getElementById("smGender").value.trim(),
+    smCategory : document.getElementById("smCategory").value.trim(),
+    smMOS : document.getElementById("smMOS").value.trim(),
+    smMOSPrev : document.getElementById("smMOSPrev").value.trim(),
     smPromotable : document.getElementById("smPromotable").checked,
-    //smPromotable : document.getElementById("smPromotable").value,
+    //smPromotable : document.getElementById("smPromotable").value.trim(),
     
-    smMarital : document.getElementById("smMarital").value,
-    smPhone : document.getElementById("smPhone").value,
-    smEmail : document.getElementById("smEmail").value,
-    smEmailMil : document.getElementById("smEmailMil").value,
-    smComponent : document.getElementById("smComponent").value,
-    smNGARState : document.getElementById("smNGARState").value,
-    smUnitPrev : document.getElementById("smUnitPrev").value,
+    smMarital : document.getElementById("smMarital").value.trim(),
+    smPhone : document.getElementById("smPhone").value.trim(),
+    smEmail : document.getElementById("smEmail").value.trim(),
+    smEmailMil : document.getElementById("smEmailMil").value.trim(),
+    smComponent : document.getElementById("smComponent").value.trim(),
+    smNGARState : document.getElementById("smNGARState").value.trim(),
+    smUnitPrev : document.getElementById("smUnitPrev").value.trim(),
     
     //smBDE : bde,
     //smBN : bn,
     //smCO : co,
     //smPLT : plt,
     
-    smDateArrival : document.getElementById("smDateArrival").value,
-    smDateDOB : document.getElementById("smDateDOB").value,
-    smDateDOR : document.getElementById("smDateDOR").value,
-    smDateBASD : document.getElementById("smDateBASD").value,
-    smDatePEBD : document.getElementById("smDatePEBD").value,
+    smDateArrival : document.getElementById("smDateArrival").value.trim(),
+    smDateDOB : document.getElementById("smDateDOB").value.trim(),
+    smDateDOR : document.getElementById("smDateDOR").value.trim(),
+    smDateBASD : document.getElementById("smDateBASD").value.trim(),
+    smDatePEBD : document.getElementById("smDatePEBD").value.trim(),
     smDateETS : ets,
-    smDateMarried : document.getElementById("smDateMarried").value,
+    smDateMarried : document.getElementById("smDateMarried").value.trim(),
     
-    smColorHair : document.getElementById("smColorHair").value,
-    smColorEye : document.getElementById("smColorEye").value,
-    smHeight : document.getElementById("smHeight").value,
-    smWeight : document.getElementById("smWeight").value,
-    smBlood : document.getElementById("smBlood").value,
-    smAllergy : document.getElementById("smAllergy").value,
-    smMealPref : document.getElementById("smMealPref").value,
-    smReligion : document.getElementById("smReligion").value,
-    smRace : document.getElementById("smRace").value,
-    smEthnicity : document.getElementById("smEthnicity").value,
-    smDutyStatus : document.getElementById("smDutyStatus").value,
+    smColorHair : document.getElementById("smColorHair").value.trim(),
+    smColorEye : document.getElementById("smColorEye").value.trim(),
+    smHeight : document.getElementById("smHeight").value.trim(),
+    smWeight : document.getElementById("smWeight").value.trim(),
+    smBlood : document.getElementById("smBlood").value.trim(),
+    smAllergy : document.getElementById("smAllergy").value.trim(),
+    smMealPref : document.getElementById("smMealPref").value.trim(),
+    smReligion : document.getElementById("smReligion").value.trim(),
+    smRace : document.getElementById("smRace").value.trim(),
+    smEthnicity : document.getElementById("smEthnicity").value.trim(),
+    smDutyStatus : document.getElementById("smDutyStatus").value.trim(),
     
     
     smCOVIDVacVolunteer : document.getElementById("smCOVIDVacVolunteer").checked,
-    smCOVIDVacManu : document.getElementById("smCOVIDVacManu").value,
-    smCOVIDVacDose1 : document.getElementById("smCOVIDVacDose1").value,
-    smCOVIDVacDose2 : document.getElementById("smCOVIDVacDose2").value,
-    smCOVIDVacDose3 : document.getElementById("smCOVIDVacDose3").value,
+    smCOVIDVacManu : document.getElementById("smCOVIDVacManu").value.trim(),
+    smCOVIDVacDose1 : document.getElementById("smCOVIDVacDose1").value.trim(),
+    smCOVIDVacDose2 : document.getElementById("smCOVIDVacDose2").value.trim(),
+    smCOVIDVacDose3 : document.getElementById("smCOVIDVacDose3").value.trim(),
     
     
-    smBadgeSN : document.getElementById("smBadgeSN").value,
-    smRoom : document.getElementById("smRoom").value,
-    smGT : document.getElementById("smGT").value,
-    smDLAB : document.getElementById("smDLAB").value,
-    smDLPTr : document.getElementById("smDLPTr").value,
-    smDLPTl : document.getElementById("smDLPTl").value,
-    smDLPTs : document.getElementById("smDLPTs").value,
-    smDLPTLanguage : document.getElementById("smDLPTLanguage").value,
+    smBadgeSN : document.getElementById("smBadgeSN").value.trim(),
+    smRoom : document.getElementById("smRoom").value.trim(),
+    smGT : document.getElementById("smGT").value.trim(),
+    smDLAB : document.getElementById("smDLAB").value.trim(),
+    smDLPTr : document.getElementById("smDLPTr").value.trim(),
+    smDLPTl : document.getElementById("smDLPTl").value.trim(),
+    smDLPTs : document.getElementById("smDLPTs").value.trim(),
+    smDLPTLanguage : document.getElementById("smDLPTLanguage").value.trim(),
     
-    smAirborne : document.getElementById("smAirborne").value,
-    smRanger : document.getElementById("smRanger").value,
-    smDLI : document.getElementById("smDLI").value,
-    smMedTag : document.getElementById("smMedTag").value,
-    smHeatCat : document.getElementById("smHeatCat").value,
-    smColdCat : document.getElementById("smColdCat").value,
-    smFamCarePlan : document.getElementById("smFamCarePlan").value,
-    smEFMP : document.getElementById("smEFMP").value,
-    smFRG : document.getElementById("smFRG").value,
+    smAirborne : document.getElementById("smAirborne").value.trim(),
+    smRanger : document.getElementById("smRanger").value.trim(),
+    smDLI : document.getElementById("smDLI").value.trim(),
+    smMedTag : document.getElementById("smMedTag").value.trim(),
+    smHeatCat : document.getElementById("smHeatCat").value.trim(),
+    smColdCat : document.getElementById("smColdCat").value.trim(),
+    smFamCarePlan : document.getElementById("smFamCarePlan").value.trim(),
+    smEFMP : document.getElementById("smEFMP").value.trim(),
+    smFRG : document.getElementById("smFRG").value.trim(),
     
-    smPOBCity : document.getElementById("smPOBCity").value,
-    smPOBState : document.getElementById("smPOBState").value,
+    smPOBCity : document.getElementById("smPOBCity").value.trim(),
+    smPOBState : document.getElementById("smPOBState").value.trim(),
     
-    smHORAddress : document.getElementById("smHORAddress").value,
-    smHORCity : document.getElementById("smHORCity").value,
-    smHORState : document.getElementById("smHORState").value,
-    smHORZip : document.getElementById("smHORZip").value,
+    smHORAddress : document.getElementById("smHORAddress").value.trim(),
+    smHORCity : document.getElementById("smHORCity").value.trim(),
+    smHORState : document.getElementById("smHORState").value.trim(),
+    smHORZip : document.getElementById("smHORZip").value.trim(),
     
-    smLOCAddress : document.getElementById("smLOCAddress").value,
-    smLOCCity : document.getElementById("smLOCCity").value,
-    smLOCState : document.getElementById("smLOCState").value,
-    smLOCZip : document.getElementById("smLOCZip").value,
+    smLOCAddress : document.getElementById("smLOCAddress").value.trim(),
+    smLOCCity : document.getElementById("smLOCCity").value.trim(),
+    smLOCState : document.getElementById("smLOCState").value.trim(),
+    smLOCZip : document.getElementById("smLOCZip").value.trim(),
     
-    nok1Rel : document.getElementById("nok1Rel").value,
-    nok1NameLast : document.getElementById("nok1NameLast").value,
-    nok1NameFirst : document.getElementById("nok1NameFirst").value,
-    nok1NameMiddle : document.getElementById("nok1NameMiddle").value,
-    nok1Gender : document.getElementById("nok1Gender").value,
-    nok1Phone : document.getElementById("nok1Phone").value,
-    nok1Email : document.getElementById("nok1Email").value,
-    nok1Address : document.getElementById("nok1Address").value,
-    nok1City : document.getElementById("nok1City").value,
-    nok1State : document.getElementById("nok1State").value,
-    nok1Zip : document.getElementById("nok1Zip").value,
+    nok1Rel : document.getElementById("nok1Rel").value.trim(),
+    nok1NameLast : document.getElementById("nok1NameLast").value.trim(),
+    nok1NameFirst : document.getElementById("nok1NameFirst").value.trim(),
+    nok1NameMiddle : document.getElementById("nok1NameMiddle").value.trim(),
+    nok1Gender : document.getElementById("nok1Gender").value.trim(),
+    nok1Phone : document.getElementById("nok1Phone").value.trim(),
+    nok1Email : document.getElementById("nok1Email").value.trim(),
+    nok1Address : document.getElementById("nok1Address").value.trim(),
+    nok1City : document.getElementById("nok1City").value.trim(),
+    nok1State : document.getElementById("nok1State").value.trim(),
+    nok1Zip : document.getElementById("nok1Zip").value.trim(),
     
-    nok2Rel : document.getElementById("nok2Rel").value,
-    nok2NameLast : document.getElementById("nok2NameLast").value,
-    nok2NameFirst : document.getElementById("nok2NameFirst").value,
-    nok2NameMiddle : document.getElementById("nok2NameMiddle").value,
-    nok2Gender : document.getElementById("nok2Gender").value,
-    nok2Phone : document.getElementById("nok2Phone").value,
-    nok2Email : document.getElementById("nok2Email").value,
-    nok2Address : document.getElementById("nok2Address").value,
-    nok2City : document.getElementById("nok2City").value,
-    nok2State : document.getElementById("nok2State").value,
-    nok2Zip : document.getElementById("nok2Zip").value,
+    nok2Rel : document.getElementById("nok2Rel").value.trim(),
+    nok2NameLast : document.getElementById("nok2NameLast").value.trim(),
+    nok2NameFirst : document.getElementById("nok2NameFirst").value.trim(),
+    nok2NameMiddle : document.getElementById("nok2NameMiddle").value.trim(),
+    nok2Gender : document.getElementById("nok2Gender").value.trim(),
+    nok2Phone : document.getElementById("nok2Phone").value.trim(),
+    nok2Email : document.getElementById("nok2Email").value.trim(),
+    nok2Address : document.getElementById("nok2Address").value.trim(),
+    nok2City : document.getElementById("nok2City").value.trim(),
+    nok2State : document.getElementById("nok2State").value.trim(),
+    nok2Zip : document.getElementById("nok2Zip").value.trim(),
     
-    smPOV1Make : document.getElementById("smPOV1Make").value,
-    smPOV1Model : document.getElementById("smPOV1Model").value,
-    smPOV1Year : document.getElementById("smPOV1Year").value,
-    smPOV1Color : document.getElementById("smPOV1Color").value,
-    smPOV1Plate : document.getElementById("smPOV1Plate").value,
-    smPOV1State : document.getElementById("smPOV1State").value,
-    smPOV1DateReg : document.getElementById("smPOV1DateReg").value,
-    smPOV1DateIns : document.getElementById("smPOV1DateIns").value,
-    smPOV1InsCo : document.getElementById("smPOV1InsCo").value,
+    smPOV1Make : document.getElementById("smPOV1Make").value.trim(),
+    smPOV1Model : document.getElementById("smPOV1Model").value.trim(),
+    smPOV1Year : document.getElementById("smPOV1Year").value.trim(),
+    smPOV1Color : document.getElementById("smPOV1Color").value.trim(),
+    smPOV1Plate : document.getElementById("smPOV1Plate").value.trim(),
+    smPOV1State : document.getElementById("smPOV1State").value.trim(),
+    smPOV1DateReg : document.getElementById("smPOV1DateReg").value.trim(),
+    smPOV1DateIns : document.getElementById("smPOV1DateIns").value.trim(),
+    smPOV1InsCo : document.getElementById("smPOV1InsCo").value.trim(),
     
-    smPOV2Make : document.getElementById("smPOV2Make").value,
-    smPOV2Model : document.getElementById("smPOV2Model").value,
-    smPOV2Year : document.getElementById("smPOV2Year").value,
-    smPOV2Color : document.getElementById("smPOV2Color").value,
-    smPOV2Plate : document.getElementById("smPOV2Plate").value,
-    smPOV2State : document.getElementById("smPOV2State").value,
-    smPOV2DateReg : document.getElementById("smPOV2DateReg").value,
-    smPOV2DateIns : document.getElementById("smPOV2DateIns").value,
-    smPOV2InsCo : document.getElementById("smPOV2InsCo").value,
+    smPOV2Make : document.getElementById("smPOV2Make").value.trim(),
+    smPOV2Model : document.getElementById("smPOV2Model").value.trim(),
+    smPOV2Year : document.getElementById("smPOV2Year").value.trim(),
+    smPOV2Color : document.getElementById("smPOV2Color").value.trim(),
+    smPOV2Plate : document.getElementById("smPOV2Plate").value.trim(),
+    smPOV2State : document.getElementById("smPOV2State").value.trim(),
+    smPOV2DateReg : document.getElementById("smPOV2DateReg").value.trim(),
+    smPOV2DateIns : document.getElementById("smPOV2DateIns").value.trim(),
+    smPOV2InsCo : document.getElementById("smPOV2InsCo").value.trim(),
     
-    dep1Rel : document.getElementById("dep1Rel").value,
-    dep1NameLast : document.getElementById("dep1NameLast").value,
-    dep1NameFirst : document.getElementById("dep1NameFirst").value,
-    dep1NameMiddle : document.getElementById("dep1NameMiddle").value,
-    dep1Gender : document.getElementById("dep1Gender").value,
-    dep1Phone : document.getElementById("dep1Phone").value,
-    dep1Email : document.getElementById("dep1Email").value,
-    dep1DateDOB : document.getElementById("dep1DateDOB").value,
-    dep1Address : document.getElementById("dep1Address").value,
-    dep1City : document.getElementById("dep1City").value,
-    dep1State : document.getElementById("dep1State").value,
-    dep1Zip : document.getElementById("dep1Zip").value,
+    dep1Rel : document.getElementById("dep1Rel").value.trim(),
+    dep1NameLast : document.getElementById("dep1NameLast").value.trim(),
+    dep1NameFirst : document.getElementById("dep1NameFirst").value.trim(),
+    dep1NameMiddle : document.getElementById("dep1NameMiddle").value.trim(),
+    dep1Gender : document.getElementById("dep1Gender").value.trim(),
+    dep1Phone : document.getElementById("dep1Phone").value.trim(),
+    dep1Email : document.getElementById("dep1Email").value.trim(),
+    dep1DateDOB : document.getElementById("dep1DateDOB").value.trim(),
+    dep1Address : document.getElementById("dep1Address").value.trim(),
+    dep1City : document.getElementById("dep1City").value.trim(),
+    dep1State : document.getElementById("dep1State").value.trim(),
+    dep1Zip : document.getElementById("dep1Zip").value.trim(),
     
-    dep2Rel : document.getElementById("dep2Rel").value,
-    dep2NameLast : document.getElementById("dep2NameLast").value,
-    dep2NameFirst : document.getElementById("dep2NameFirst").value,
-    dep2NameMiddle : document.getElementById("dep2NameMiddle").value,
-    dep2Gender : document.getElementById("dep2Gender").value,
-    dep2Phone : document.getElementById("dep2Phone").value,
-    dep2DateDOB : document.getElementById("dep2DateDOB").value,
+    dep2Rel : document.getElementById("dep2Rel").value.trim(),
+    dep2NameLast : document.getElementById("dep2NameLast").value.trim(),
+    dep2NameFirst : document.getElementById("dep2NameFirst").value.trim(),
+    dep2NameMiddle : document.getElementById("dep2NameMiddle").value.trim(),
+    dep2Gender : document.getElementById("dep2Gender").value.trim(),
+    dep2Phone : document.getElementById("dep2Phone").value.trim(),
+    dep2DateDOB : document.getElementById("dep2DateDOB").value.trim(),
     
-    dep3Rel : document.getElementById("dep3Rel").value,
-    dep3NameLast : document.getElementById("dep3NameLast").value,
-    dep3NameFirst : document.getElementById("dep3NameFirst").value,
-    dep3NameMiddle : document.getElementById("dep3NameMiddle").value,
-    dep3Gender : document.getElementById("dep3Gender").value,
-    dep3Phone : document.getElementById("dep3Phone").value,
-    dep3DateDOB : document.getElementById("dep3DateDOB").value,
+    dep3Rel : document.getElementById("dep3Rel").value.trim(),
+    dep3NameLast : document.getElementById("dep3NameLast").value.trim(),
+    dep3NameFirst : document.getElementById("dep3NameFirst").value.trim(),
+    dep3NameMiddle : document.getElementById("dep3NameMiddle").value.trim(),
+    dep3Gender : document.getElementById("dep3Gender").value.trim(),
+    dep3Phone : document.getElementById("dep3Phone").value.trim(),
+    dep3DateDOB : document.getElementById("dep3DateDOB").value.trim(),
     
-    dep4Rel : document.getElementById("dep4Rel").value,
-    dep4NameLast : document.getElementById("dep4NameLast").value,
-    dep4NameFirst : document.getElementById("dep4NameFirst").value,
-    dep4NameMiddle : document.getElementById("dep4NameMiddle").value,
-    dep4Gender : document.getElementById("dep4Gender").value,
-    dep4Phone : document.getElementById("dep4Phone").value,
-    dep4DateDOB : document.getElementById("dep4DateDOB").value,
+    dep4Rel : document.getElementById("dep4Rel").value.trim(),
+    dep4NameLast : document.getElementById("dep4NameLast").value.trim(),
+    dep4NameFirst : document.getElementById("dep4NameFirst").value.trim(),
+    dep4NameMiddle : document.getElementById("dep4NameMiddle").value.trim(),
+    dep4Gender : document.getElementById("dep4Gender").value.trim(),
+    dep4Phone : document.getElementById("dep4Phone").value.trim(),
+    dep4DateDOB : document.getElementById("dep4DateDOB").value.trim(),
     
-    dep5Rel : document.getElementById("dep5Rel").value,
-    dep5NameLast : document.getElementById("dep5NameLast").value,
-    dep5NameFirst : document.getElementById("dep5NameFirst").value,
-    dep5NameMiddle : document.getElementById("dep5NameMiddle").value,
-    dep5Gender : document.getElementById("dep5Gender").value,
-    dep5Phone : document.getElementById("dep5Phone").value,
-    dep5DateDOB : document.getElementById("dep5DateDOB").value
+    dep5Rel : document.getElementById("dep5Rel").value.trim(),
+    dep5NameLast : document.getElementById("dep5NameLast").value.trim(),
+    dep5NameFirst : document.getElementById("dep5NameFirst").value.trim(),
+    dep5NameMiddle : document.getElementById("dep5NameMiddle").value.trim(),
+    dep5Gender : document.getElementById("dep5Gender").value.trim(),
+    dep5Phone : document.getElementById("dep5Phone").value.trim(),
+    dep5DateDOB : document.getElementById("dep5DateDOB").value.trim()
     
     //sm : document.getElementById("sm").value,
   };
