@@ -30,6 +30,43 @@ button, input, select {
 border: solid 2px;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 </style>
 
 <datalist id="colorEye">
@@ -947,8 +984,10 @@ border: solid 2px;
   
   <br>JSON: <button onclick="jsonShow()">Show (preview)</button>
 <button onclick="jsonFileDownload()">Download</button>
-<button onclick="jsonCopy()">Copy to Clipboard</button>
-
+<div class="tooltip">
+<button onclick="jsonCopy()" onmouseout="jsonCopyOut()">
+    <span class="tooltiptext" id="tooltipCopyJSON">Copy to Clipboard</span>Copy to Clipboard</button>
+</div>
 
 <br><br><label for="fileInput">Load JSON:</label>
 <input type="file" id="fileInput" multiple><button id="csvFileDownload" onclick="csvFileDownload()" formtarget="_blank" hidden>Download CSV</button>
@@ -2371,6 +2410,14 @@ function copyToClipboard(txt){
 
 function jsonCopy(){
     copyToClipboard(jsonGenerate());
+    
+    var tooltip = document.getElementById("tooltipCopyJSON");
+    tooltip.innerHTML = "Text copied to Clipboard";
+}
+
+function jsonCopyOut(){
+    var tooltip = document.getElementById("tooltipCopyJSON");
+    tooltip.innerHTML = "Copy to Clipboard";
 }
 
 function jsonFileDownload() {
