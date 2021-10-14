@@ -2196,10 +2196,10 @@ function csvFileLoadWait(file, tgt, csvSM, csvFam, csvVeh, callback) {
   reader.onerror = function(e) {document.getElementById(tgt).value = ""; callback(csvSM, csvFam, csvVeh);}
   reader.onload = function(e) {
     var txt = e.target.result;
-	document.getElementById(tgt).value = txt;
-	jsonLoad(tgt);
-	var txt = jsonGenerate();
-	
+    document.getElementById(tgt).value = txt;
+    jsonLoad(tgt);
+    var txt = jsonGenerate();
+    
     if (csvSM == "") {csvSM += csvGenerateStudent(txt, true);} else {csvSM += csvGenerateStudent(txt);};
     if (csvFam == "") {csvFam += csvGenerateFam(txt, true);} else {csvFam += csvGenerateFam(txt);};
     if (csvVeh == "") {csvVeh += csvGenerateVeh(txt, true);} else {csvVeh += csvGenerateVeh(txt);};
@@ -2655,6 +2655,7 @@ function copyToClipboard(txt){
         textArea.style.top = "0";
         textArea.style.left = "0";
         textArea.style.position = "fixed";
+        textArea.style.display = "none";
         
         textArea.value = txt;
 
