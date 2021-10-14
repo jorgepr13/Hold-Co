@@ -2658,11 +2658,15 @@ function copyToClipboard(txt){
         textArea.style.display = "none";
         
         textArea.value = txt;
-
+        
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        document.execCommand('copy');
+        try {
+            document.execCommand("copy");
+        } catch (e) {
+            console.error("Copy error", e);
+        }
         document.body.removeChild(textArea);
     }
 }
