@@ -939,6 +939,50 @@ border: solid 2px;
   <br>
   <fieldset><details open><summary>In-Processing Info:</summary>
   
+  <br>
+  <fieldset><details open><summary>Download/Load data:</summary>
+  
+  <br>JSON: <button onclick="jsonShow()">Show (preview)</button>
+<button onclick="jsonFileDownload()">Download</button>
+<div class="tooltip">
+<button onclick="jsonCopy()" onmouseout="jsonCopyOut()">
+    <span class="tooltiptext" id="tooltipCopyJSON">Copy to Clipboard</span>Copy to Clipboard</button>
+</div>
+
+<br><br><label for="fileInput">Load JSON:</label>
+<input type="file" id="fileInput" multiple><button id="csvFileDownload" onclick="csvFileDownload()" target="_blank" hidden>Download CSV</button>
+<br><br>
+
+<p>Send your JSON file to: 
+  <a href="javascript:(function()%7BemailSend()%3B%7D)()%3B">SHC Gmail</a>
+  <br><label>SHC Gmail: </label><a href="mailto:shc111th@gmail.com?subject=In%2DProcessing%20Data%20Sheet" target="_blank">shc111th@gmail.com</a>
+<br>
+  <!--a href="javascript:void(0)" onclick="emailSend()">Hold Company Email</a-->
+
+<br>-Don't forget to attach your file!
+<br>
+<br>-If you can't download the file,
+<br>  try to copy the contents (copy to clipboard), 
+<br>  and send (paste) it in the body of the email.
+<br>
+<br>-Don't send a CSV file.
+
+<br><br><p hidden>**Encrypt your email before sending it**</p>
+
+</p>
+<details><summary>iPhone users</summary>
+  <p>If when you click on 'Download JSON' a new page opens with your information coded, copy all of it, go back to the previous page, click on 'Send your JSON file...' and paste the contents of the information coded to the body of the email.</p>
+</details>
+<br>
+<details open hidden><summary>Gmail users</summary>
+  <p>Before sending the email, go to the email options (right side, three vertical dots on Android) and choose 'Confidential mode'.
+  <br>Don't choose 1 day.
+  <br>1 week should be long enough.
+  <br>It'll create a temporary passcode protected link to your file (that will be automatically deleted after the link expires. Your file is most likely stored in your Drive or Gmail [ask Google!]).</p>
+</details>
+  </details></fieldset><!-- Download -->
+  <br>
+  
     <fieldset><legend>Find:</legend>
       <details><summary>DA31 - Request and Authority for Leave</summary>
       <p>Look in the top center or the bottom left of your documents. They might be with your itinerary.</p>
@@ -982,48 +1026,7 @@ border: solid 2px;
     <br>
   
   </details></fieldset><!--In-Processing info-->
-  <br>
-  <fieldset><details open><summary>Download/Load data:</summary>
   
-  <br>JSON: <button onclick="jsonShow()">Show (preview)</button>
-<button onclick="jsonFileDownload()">Download</button>
-<div class="tooltip">
-<button onclick="jsonCopy()" onmouseout="jsonCopyOut()">
-    <span class="tooltiptext" id="tooltipCopyJSON">Copy to Clipboard</span>Copy to Clipboard</button>
-</div>
-
-<br><br><label for="fileInput">Load JSON:</label>
-<input type="file" id="fileInput" multiple><button id="csvFileDownload" onclick="csvFileDownload()" target="_blank" hidden>Download CSV</button>
-<br><br>
-
-<p>Send your JSON file to: 
-  <a href="javascript:(function()%7BemailSend()%3B%7D)()%3B">SHC Gmail</a>
-  <br><label>SHC Gmail: </label><a href="mailto:shc111th@gmail.com?subject=In%2DProcessing%20Data%20Sheet" target="_blank">shc111th@gmail.com</a>
-<br>
-  <!--a href="javascript:void(0)" onclick="emailSend()">Hold Company Email</a-->
-
-<br>-Don't forget to attach your file!
-<br>
-<br>-If you can't download the file,
-<br>  try to copy the contents (copy to clipboard), 
-<br>  and send (paste) it in the body of the email.
-<br>
-<br>-Don't send a CSV file.
-
-<br><br><p hidden>**Encrypt your email before sending it**</p>
-
-</p>
-<details><summary>iPhone users</summary>
-  <p>If when you click on 'Download JSON' a new page opens with your information coded, copy all of it, go back to the previous page, click on 'Send your JSON file...' and paste the contents of the information coded to the body of the email.</p>
-</details>
-<br>
-<details open hidden><summary>Gmail users</summary>
-  <p>Before sending the email, go to the email options (right side, three vertical dots on Android) and choose 'Confidential mode'.
-  <br>Don't choose 1 day.
-  <br>1 week should be long enough.
-  <br>It'll create a temporary passcode protected link to your file (that will be automatically deleted after the link expires. Your file is most likely stored in your Drive or Gmail [ask Google!]).</p>
-</details>
-  </details></fieldset><!-- Download -->
 </details><!-- Datasheet -->
 
 </fieldset>
