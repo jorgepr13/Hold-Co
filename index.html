@@ -1310,7 +1310,7 @@ RANK Last, First
 <br><a href="https://huachucashuttle.com" target="_blank">https://huachucashuttle.com</a>
 <br>Should be about $35 per trip
 <br><br>
-<br>Call to report changes tonyour itinerary.
+<br>Call to report changes to your itinerary.
 <br><a href="tel:520-439-0439">520-439-0439</a><label> - Huachuca Shuttle</label>
 
 <br>
@@ -2297,7 +2297,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   
   var ph = j.smPhone;
   if (ph != undefined && ph != null && ph != "") {
-      ph = ph.replace(/-/g, "");
+      ph = ph.replace(/\+1|\s|-|\(|\)/g, ""); ph = ph.slice(ph.length - 10);
   }
   j.smPhone = ph;
   
@@ -2409,7 +2409,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.smEmailMil.toLowerCase().trim();
   if (val == ".mil@mail.mil" || val == "none" || val == "na" || val == "n/a" || val == "no") {j.smEmailMil = "";}
   var val = j.smEmailMil;
-  //if (/.*\@.*\.mil\w/i.test(val)) {j.smEmailMil = val;} else {j.smEmailMil = "";}
+  if (/.*\@.*\.mil/i.test(val)) {j.smEmailMil = val;} else {j.smEmailMil = "";}
   
   //PoB
   j.Notes = "PoB";
@@ -2447,7 +2447,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var vals = j.smLOCState.trim();
   if (vals.length > 2) {j.smLOCCity = valc + ", " + vals; j.smLOCState = "";}
   var val = j.smLOCAddress;
-  if (val != undefined && val != null && val != "") {
+  if (val != undefined && val != null && val != "" && val != j.smLOCAddress) {
 	  j.Notes = "Local";
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smLOCAddress", 	"smLOCCity", 	"smLOCState", 	"smLOCZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
