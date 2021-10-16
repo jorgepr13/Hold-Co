@@ -2280,6 +2280,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
     }
   }
   j.smComponent = comp;
+  if (comp == "RA") {j.smNGARState = "";}
   
   var ssn = j.smSSN;
   if (ssn != undefined && ssn != null && ssn != "") {
