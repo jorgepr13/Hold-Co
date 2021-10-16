@@ -2407,6 +2407,8 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.NoK = "FALSE";
   var val = j.smEmailMil.toLowerCase().trim();
   if (val == ".mil@mail.mil" || val == "none" || val == "na" || val == "n/a" || val == "no") {j.smEmailMil = "";}
+  var val = j.smEmailMil;
+  if (/.*\@.*\.mil\w/i.test(val)) {j.smEmailMil = val;} else {j.smEmailMil = "";}
   
   //PoB
   j.Notes = "PoB";
