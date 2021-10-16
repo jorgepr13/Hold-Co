@@ -2415,7 +2415,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.Notes = "PoB";
   var val = j.smPOBCity.trim();
   var vals = j.smPOBState.trim();
-  if (vals.length > 2) {j.smPOBCity = val + ", " + vals; j.smPOBState = "";}
+  if (vals.length > 2) {j.smPOBCity = val + ", " + vals; j.smPOBState = "";} else {j.smPOBState = vals.toUpperCase();}
   var orderJSON = ["ID", 	"Student_ID", 	"smFRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"smEmailMil", 	"Address", 	"smPOBCity", 	"smPOBState", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
     hdr += csvTextReplace(property) + sepField;
@@ -2433,7 +2433,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var vals = j.smHORState.trim();
   var val = j.smLOCAddress;
   if (val != undefined && val != null && val != "") {
-  if (vals.length > 2) {j.smHORCity = valc + ", " + vals; j.smHORState = "";}
+  if (vals.length > 2) {j.smHORCity = valc + ", " + vals; j.smHORState = "";} else {j.smHORState = vals.toUpperCase();}
   var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smHORAddress", 	"smHORCity", 	"smHORState", 	"smHORZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
     str += csvTextReplace(j[property]) + sepField;
@@ -2445,7 +2445,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   //Local
   var valc = j.smLOCCity.trim();
   var vals = j.smLOCState.trim();
-  if (vals.length > 2) {j.smLOCCity = valc + ", " + vals; j.smLOCState = "";}
+  if (vals.length > 2) {j.smLOCCity = valc + ", " + vals; j.smLOCState = "";} else {j.smLOCState = vals.toUpperCase();}
   var val = j.smLOCAddress;
   if (val != undefined && val != null && val != "" && val != j.smLOCAddress) {
 	  j.Notes = "Local";
@@ -2465,7 +2465,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.FRG = "FALSE";
   var valc = j.nok1City.trim();
   var vals = j.nok1State.trim();
-  if (vals.length > 2) {j.nok1City = valc + ", " + vals; j.nok1State = "";}
+  if (vals.length > 2) {j.nok1City = valc + ", " + vals; j.nok1State = "";} else {j.nok1State = vals.toUpperCase();}
   var val2 = j.nok1Rel.toLowerCase();
   if (val2 != undefined && val2 != null && val2 != "") {
   if (val == val2) {
@@ -2475,7 +2475,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.nok1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.nok1Phone = val;
   
-  var val = j.nok1Email.trim();
+  var val = j.nok1Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.nok1Email = val;} else {j.nok1Email = "";}
   
   var val = j.nok1Gender;
@@ -2495,7 +2495,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.FRG = "FALSE";
   var valc = j.nok2City.trim();
   var vals = j.nok2State.trim();
-  if (vals.length > 2) {j.nok2City = valc + ", " + vals; j.nok2State = "";}
+  if (vals.length > 2) {j.nok2City = valc + ", " + vals; j.nok2State = "";} else {j.nok2State = vals.toUpperCase();}
   var val3 = j.nok2Rel.toLowerCase();
   if (val3 != undefined && val3 != null && val3 != "") {
   if (val == val3) {
@@ -2505,7 +2505,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.nok2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.nok2Phone = val;
   
-  var val = j.nok2Email.trim();
+  var val = j.nok2Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.nok2Email = val;} else {j.nok2Email = "";}
   
   var val = j.nok2Gender;
@@ -2527,14 +2527,14 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   //Dep1
   var valc = j.dep1City.trim();
   var vals = j.dep1State.trim();
-  if (vals.length > 2) {j.dep1City = valc + ", " + vals; j.dep1State = "";}
+  if (vals.length > 2) {j.dep1City = valc + ", " + vals; j.dep1State = "";} else {j.dep1State = vals.toUpperCase();}
   var val = j.dep1Rel.toLowerCase();
   if (val != undefined && val != null && val != "") {
   if (val != val2 && val != val3) {
     var val = j.dep1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
     j.dep1Phone = val;
 	
-	var val = j.dep1Email.trim();
+	var val = j.dep1Email.trim().toLowerCase();
     if (/.*\@.*\.\w/i.test(val)) {j.dep1Email = val;} else {j.dep1Email = "";}
 	
 	var val = j.dep1Gender;
@@ -2556,7 +2556,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.dep2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.dep2Phone = val;
   
-  var val = j.dep2Email.trim();
+  var val = j.dep2Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.dep2Email = val;} else {j.dep2Email = "";}
   
   var val = j.dep2Gender;
@@ -2577,7 +2577,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.dep3Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.dep3Phone = val;
   
-  var val = j.dep3Email.trim();
+  var val = j.dep3Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.dep3Email = val;} else {j.dep3Email = "";}
   
   var val = j.dep3Gender;
@@ -2598,7 +2598,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.dep4Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.dep4Phone = val;
   
-  var val = j.dep4Email.trim();
+  var val = j.dep4Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.dep4Email = val;} else {j.dep4Email = "";}
   
   var val = j.dep4Gender;
@@ -2618,7 +2618,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.dep5Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
   j.dep5Phone = val;
   
-  var val = j.dep5Email.trim();
+  var val = j.dep5Email.trim().toLowerCase();
   if (/.*\@.*\.\w/i.test(val)) {j.dep5Email = val;} else {j.dep5Email = "";}
   
   var val = j.dep5Gender;
@@ -2650,6 +2650,7 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
 
   var val = j.smPOV1Make;
   if (val != undefined && val != null && val != "") {
+  j.smPOV1State = j.smPOV1State.toUpperCase();
   var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
     hdr += csvTextReplace(property) + sepField;
@@ -2662,6 +2663,7 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
   
   var val = j.smPOV2Make;
   if (val != undefined && val != null && val != "") {
+  j.smPOV2State = j.smPOV2State.toUpperCase();
   var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
 	hdr += csvTextReplace(property) + sepField;
