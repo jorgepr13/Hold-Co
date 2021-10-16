@@ -2173,7 +2173,7 @@ function fileDownload(data, filename, type) {
 
 
 function csvTextReplace(txt){
-  if (txt == null || txt == undefined ) {txt = "";} else {txt = txt.toString();}
+  if (txt == null || txt == undefined ) {txt = "";} else {txt = txt.toString().trim();}
   // We remove blanks and check if the column contains other whitespace,`,` or `"`.
   // In that case, we need to quote the column.
   if (txt.replace(/ /g, '').match(/[\s,"]/)) {
