@@ -2301,7 +2301,8 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   }
   j.smPhone = ph;
   
-  j.smEmail = j.smEmail.toLowerCase();
+  var val = j.smEmail.toLowerCase();
+  j.smEmail = val;
   
   j.smShift = "Day";
   j.smBuilding = "84402";
