@@ -2179,7 +2179,7 @@ function csvTextReplace(txt){
   if (txt.replace(/ /g, '').match(/[\s,"]/)) {
     txt = '"' + txt.replace(/"/g, '""') + '"';
   }
-  return txt.trim();
+  return txt;
 }
 
 function csvFileDownload() {
