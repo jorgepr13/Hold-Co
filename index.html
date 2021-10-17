@@ -329,14 +329,15 @@ border: solid 2px;
 
 <fieldset><!--legend>Personal Datasheet</legend-->
 <details><summary>Personal Datasheet (New inbounds)
-</summary>
-<br><p hidden>Not mandatory, but highly appreciated</p>
-<br><br>
-  <fieldset><details open><summary>Service Member (SM) data:</summary>
+</summary><br>
+<p hidden><br>Not mandatory, but highly appreciated<br></p>
+
+  <fieldset><details open><summary>All Service Member (SM) data:</summary><br>
     <fieldset><details><summary>PRIVACY ACT OF 1974 COMPLIANCE INFORMATION</summary>
     <p>The following information is provided in accordance with 5 U.S.C. 552a(e)(3) and applies to this form. Authority for collection of the information is 44 U.S.C. 2907, 3101, and 3103, and E.O. 9397 of November 22, 1943. Disclosure of the information is voluntary. The purpose of the information on this form is to assist your unit servicing the records. This form is then filed in the requested military service record as a record of disclosure. The form may also be disclosed to the Department of Defense components, the Department of Veterans Affairs, the Department of Transportation (Coast Guard), or the National Archives and Records Administration when the original custodian of the military health and personnel records transfers all or part of those records to that agency. If the service member was a member of the National Guard, the form may also be disclosed to the Adjutant General of the appropriate state, District of Colombia, or Puerto Rico, where he or she served. The following information will not be shared with any unauthorized personnel.</p>
     </details></fieldset>
   <br>
+  <fieldset><details open><summary>Service Member (SM) info:</summary><br>
   <label for="smRank">Rank:</label>
   <select name="smRank" id="smRank">
     <optgroup label="Enlisted">
@@ -359,11 +360,10 @@ border: solid 2px;
   <label for="smNameMiddle">Middle Name:</label>
   <input type="text" id="smNameMiddle" autocomplete="on">
   <br>
-  <details open>
-    <summary><label for="smSSN">SSN:</label>
+  <details><summary><label for="smSSN">SSN:</label>
     <input type="text" id="smSSN" placeholder="123-12-1234">
     </summary>
-    <p>In order to (IOT) prevent you from sending sensitive PII, do not fill this field.
+    <p hidden>In order to (IOT) prevent you from sending sensitive PII, do not fill this field.
         <br>We will get your SSN from your orders.</p>
     <details><summary>Personally Identifiable Information (PII)</summary>
     <p>Is any information about an individual which can be used to distinguish or trace an individual's identity such as name, Social Security Number (SSN), date and place of birth, mother's maiden name, and biometric records.</p>
@@ -373,8 +373,7 @@ border: solid 2px;
     </details>
   </details>
   <br>
-  <details>
-    <summary><label for="smDODID">DoD ID:</label>
+  <details open><summary><label for="smDODID">DoD ID:</label>
     <input type="number" id="smDODID" min=1000000000>
     </summary>
     <p>Look behind your Common Access Card (CAC), it's in the middle and above the bar code. It's 10 digits in length, and usually starts with 15.</p>
@@ -396,6 +395,7 @@ border: solid 2px;
   </select>
   </summary>
   <p>IET: Initial Entry Soldier. You don't have a MOS yet.
+  <br>This also includes DLI; getting a language doesn't give you an MOS.
   <br>MOS-T: MOS Transfer/Reclass. You have a MOS, but are trying to get a new one.
   <br>Prior: Break in Service. You were in the military, got out, and are coming back. This also includes transfers from another branches (Marine Corps, Navy, etc.).</p>
   </details>
@@ -445,11 +445,10 @@ border: solid 2px;
       <option value="Reserve">Reserve</option>
   </select>
   <br>
-  <label for="smNGARState">NG/AR State (two letter) :</label>
-  <input type="text" id="smNGARState" list="usStates">
+  <label for="smNGARState">NG/AR State:</label>
+  <input type="text" id="smNGARState" list="usStates">  (two letter)
   <br>
-  <details open>
-    <summary><label for="smUnitPrev">Prev. Unit:</label>
+  <details open><summary><label for="smUnitPrev">Prev. Unit:</label>
     <input type="text" id="smUnitPrev" list="armyUnits">
     </summary>
     <p>If you know the Company and Battalion, type them. Otherwise, just type the Installation (Fort).
@@ -457,30 +456,26 @@ border: solid 2px;
   </details>
   
   <br>
-  <details open>
-    <summary><label for="smDateArrival">Arrival date:</label>
+  <details open><summary><label for="smDateArrival">Arrival date:</label>
     <input type="date" id="smDateArrival">
     </summary>
     <p>The date you arrived to Fort Huachuca (NOT the date you reported to the Company).</p>
   </details>
   
-  <details open>
-    <summary><label for="smDateDOB">DoB:</label>
+  <details open><summary><label for="smDateDOB">DoB:</label>
   <input type="date" id="smDateDOB" autocomplete="on">
   </summary>
     <p>Date of Birth</p>
   </details>
   
-  <details open>
-    <summary><label for="smDateDOR">DoR:</label>
+  <details open><summary><label for="smDateDOR">DoR:</label>
   <input type="date" id="smDateDOR">
   </summary>
     <p>Date of Rank
     <br>Usually the same date you joined the Army.</p>
   </details>
   
-  <details open>
-    <summary><label for="smDateBASD">BASD:</label>
+  <details open><summary><label for="smDateBASD">BASD:</label>
   <input type="date" id="smDateBASD">
   </summary>
     <p>Basic Active Service Date
@@ -488,16 +483,14 @@ border: solid 2px;
     <br>Active: The date you joined the Army.</p>
   </details>
   
-  <details open>
-    <summary><label for="smDatePEBD">PEBD:</label>
+  <details open><summary><label for="smDatePEBD">PEBD:</label>
   <input type="date" id="smDatePEBD">
   </summary>
     <p>Pay Entry Base Date
     <br>The date you joined the Army.</p>
   </details>
   
-  <details open>
-    <summary><label for="smDateETS">ETS:</label>
+  <details open><summary><label for="smDateETS">ETS:</label>
     <input type="date" id="smDateETS">
     <input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0>
     </summary>
@@ -516,10 +509,10 @@ border: solid 2px;
   <input type="text" id="smColorEye" list="colorEye">
   <br>
   <label for="smHeight">Height:</label>
-  <input type="number" id="smHeight" min=0 placeholder='87 in'>
+  <input type="number" id="smHeight" min=0 placeholder='87 in'> (in inches, just the number)
   <br>
   <label for="smWeight">Weight:</label>
-  <input type="number" id="smWeight" min=0 placeholder="234 lbs">
+  <input type="number" id="smWeight" min=0 placeholder="234 lbs"> (just the number)
   <br>
   <label for="smBlood">Blood type:</label>
   <select id="smBlood">
@@ -544,8 +537,7 @@ border: solid 2px;
   <input type="text" id="smReligion" list="Religion">
   <br>
   
-  <details>
-    <summary><label for="smRace">Race:</label>
+  <details><summary><label for="smRace">Race:</label>
       <select name="smRace" id="smRace">
 	<option value="White">White</option>
 	<option value="American Indian">American Indian</option>
@@ -579,8 +571,7 @@ border: solid 2px;
     <br>
   </details>
   
-  <details>
-    <summary><label for="smEthnicity">Ethnicity:</label>
+  <details><summary><label for="smEthnicity">Ethnicity:</label>
       <select name="smEthnicity" id="smEthnicity">
     <option value="Not Hispanic">Not Hispanic</option>
     <option value="Hispanic">Hispanic</option>
@@ -660,24 +651,58 @@ border: solid 2px;
   <br>
   <label for="smDLI">DLI:</label>
   <input type="text" id="smDLI" list="DLI">
-  <br>
+  
+  <br><details open><summary>
   <label for="smMedTag">Medical (red) Tag:</label>
   <input type="text" id="smMedTag" list="YN">
-  <br>
+  </summary>
+    <p>Do you have a red allergy tag?</p>
+  </details>
+  
+  <br><details open><summary>
   <label for="smHeatCat">Heat Cat (Injury):</label>
   <input type="text" id="smHeatCat" list="YN">
-  <br>
+  </summary>
+    <p>Have you suffered from a heat injury (hot climate) requiring someone to ice sheet you?</p>
+  </details>
+  
+  <br><details open><summary>
   <label for="smColdCat">Cold Cat (Injury):</label>
   <input type="text" id="smColdCat" list="YN">
-  <br>
+  </summary>
+    <p>Have you suffered from a cold climate injury?</p>
+  </details>
+  
+  <br><details open><summary>
   <label for="smFamCarePlan">Family Care Plan:</label>
   <input type="text" id="smFamCarePlan" list="YN">
-  <br>
+  </summary>
+    <p>Do you need or are required to prepare a family care plan?
+    <br>This applies to dual military with children.</p>
+  </details>
+  
+  <br><details open><summary>
   <label for="smEFMP">EFMP:</label>
   <input type="text" id="smEFMP" list="YN">
-  <br>
+  </summary>
+    <p>Do you have dependents with special needs?
+    <br>If yes, you need to enroll them in Exceptional Family Member Program (EFMP).</p>
+    <br>More info:
+    <br><a href="#ACS" target="_blank">Go to SFRC/ACS below</a>
+    <br><a href="https://efmp.amedd.army.mil" target="_blank">https://efmp.amedd.army.mil</a>
+<br>
+  </details>
+  
+  <br><details open><summary>
   <label for="smFRG">FRG:</label>
   <input type="text" id="smFRG" list="YN">
+  </summary>
+    <p>Do you or your family want to be part of the Company FRG?</p>
+    <br>Family Readiness Group (FRG) is a command-sponsored organization of family members, volunteers, and Soldiers. Established to provide activities and support to enhance the flow of information, increase the resiliency of the Soldiers and their families, provide tools for adjusting to the military lifestyle, and enhance the well-being within the unit.
+    <br><a href="https://en.m.wikipedia.org/wiki/Family_Readiness_Group" target="_blank">https://en.m.wikipedia.org/wiki/Family_Readiness_Group</a>
+    <br>
+  </details>
+  
   <br>
   <br>Place of Birth (PoB)<br>
   <label for="smPOBCity">PoB City:</label>
@@ -714,9 +739,11 @@ border: solid 2px;
   <input type="number" id="smLOCZip">
   <br>
   <br>
+</details></fieldset> <!-- SM Info -->
+  <br>
+  <fieldset><details open><summary>NoK - Next of Kin / Emergency Contact Info:</summary><br>
   
-  <p>NoK - Next of Kin / Emergency Contact</p><br>
-  
+  <br>NoK 1:<br>
   <label for="nok1Rel">Relationship:</label>
   <input type="text" id="nok1Rel" list="Relationship">
   <br>
@@ -753,9 +780,9 @@ border: solid 2px;
   <br>
   <label for="nok1Zip">Zip:</label>
   <input type="number" id="nok1Zip">
-  <br>
-  <br>
+  <br><br>
   
+  <br>NoK 2:<br>
   <label for="nok2Rel">Relationship:</label>
   <input type="text" id="nok2Rel" list="Relationship">
   <br>
@@ -795,8 +822,11 @@ border: solid 2px;
   <br>
   <br>
   
-  <p>POV - Personally Own Vehicle</p><br>
+  </details></fieldset> <!-- NoK Info -->
+  <br>
+  <fieldset><details open><summary>POV - Personally Own Vehicle Info:</summary><br>
   
+  <br>POV 1:<br>
   <label for="smPOV1Type">Type:</label>
   <input type="text" id="smPOV1Type" list="POVType">
   <br>
@@ -826,9 +856,9 @@ border: solid 2px;
   <br>
   <label for="smPOV1InsCo">Insurance Company:</label>
   <input type="text" id="smPOV1InsCo" list="POVInsCo">
-  <br>
-  <br>
+  <br><br>
   
+  <br>POV 2:<br>
   <label for="smPOV2Type">Type:</label>
   <input type="text" id="smPOV2Type" list="POVType">
   <br>
@@ -861,8 +891,11 @@ border: solid 2px;
   <br>
   <br>
   
-  <p>Dependents</p><br>
+  </details></fieldset> <!-- POV Info -->
+  <br>
+  <fieldset><details open><summary>Dependents Info:</summary><br>
   
+  <br>Dependent 1:<br>
   <label for="dep1Rel">Relationship:</label>
   <input type="text" id="dep1Rel" list="Relationship">
   <br>
@@ -902,9 +935,9 @@ border: solid 2px;
   <br>
   <label for="dep1Zip">Zip:</label>
   <input type="number" id="dep1Zip">
-  <br>
-  <br>
+  <br><br>
   
+  <br>Dependent 2:<br>
   <label for="dep2Rel">Relationship:</label>
   <input type="text" id="dep2Rel" list="Relationship">
   <br>
@@ -929,10 +962,9 @@ border: solid 2px;
   <br>
   <label for="dep2DateDOB">DoB:</label>
   <input type="date" id="dep2DateDOB">
-  <br>
-  <br>
+  <br><br>
   
-  
+  <br>Dependent 3:<br>
   <label for="dep3Rel">Relationship:</label>
   <input type="text" id="dep3Rel" list="Relationship">
   <br>
@@ -957,10 +989,9 @@ border: solid 2px;
   <br>
   <label for="dep3DateDOB">DoB:</label>
   <input type="date" id="dep3DateDOB">
-  <br>
-  <br>
+  <br><br>
   
-  
+  <br>Dependent 4:<br>
   <label for="dep4Rel">Relationship:</label>
   <input type="text" id="dep4Rel" list="Relationship">
   <br>
@@ -985,10 +1016,9 @@ border: solid 2px;
   <br>
   <label for="dep4DateDOB">DoB:</label>
   <input type="date" id="dep4DateDOB">
-  <br>
-  <br>
+  <br><br>
   
-  
+  <br>Dependent 5:<br>
   <label for="dep5Rel">Relationship:</label>
   <input type="text" id="dep5Rel" list="Relationship">
   <br>
@@ -1015,8 +1045,9 @@ border: solid 2px;
   <input type="date" id="dep5DateDOB">
   <br>
   <br>
-  
-  </details></fieldset>
+  </details></fieldset> <!-- Dependents Info -->
+  <br>
+  </details></fieldset> <!-- SM All Info -->
   <br>
   <fieldset><details open><summary>In-Processing Info:</summary>
   
@@ -1894,7 +1925,7 @@ RANK Last, First
 
 <br>
 
-<fieldset><details open><summary>Soldier & Family Readiness Center (SFRC)
+<fieldset><details open id="ACS"><summary>Soldier & Family Readiness Center (SFRC)
 <br>Army Community Service (ACS):</summary>
 
 <br><a href="tel:520-533-2330">520-533-2330</a>
