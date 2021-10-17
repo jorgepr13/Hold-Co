@@ -115,42 +115,65 @@ border: solid 2px;
 <datalist id="Relationship">
   <option value="Spouse">
   <option value="Child">
-  <option value="Mother">
   <option value="Father">
+  <option value="Mother">
+  <option value="Step-Father">
+  <option value="Step-Mother">
   <option value="Brother">
   <option value="Sister">
-  <option value="Grandmother">
   <option value="Grandfather">
+  <option value="Grandmother">
+  <option value="Grandparent">
+  <option value="Uncle">
+  <option value="Aunt">
+  <option value="Cousin">
   <option value="Friend">
   <option value="Father-in-law">
   <option value="Mother-in-law">
-  <option value="Step-Father">
-  <option value="Step-Mother">
+  <option value="Brother-in-law">
+  <option value="Sister-in-law">
+  <option value="Fiance">
+  <option value="Boyfriend">
+  <option value="Girlfriend">
 </datalist>
+
 <datalist id="COVIDVacManu">
   <option value="Moderna">
   <option value="Pfizer">
   <option value="Johnson & Johnson">
 </datalist>
+
 <datalist id="Religion">
   <option value="None">
   <option value="Christian">
   <option value="Catholic">
+  <option value="Adventist">
   <option value="Agnostic">
   <option value="Atheist">
   <option value="Baptist">
   <option value="Buddhist">
   <option value="Child of God">
+  <option value="Episcopal">
+  <option value="Hindu">
   <option value="Islam">
   <option value="Jewish">
+  <option value="Judaism">
   <option value="LDS">
+  <option value="Lutheran">
   <option value="Methodist">
   <option value="Mormon">
+  <option value="Muslim">
   <option value="Orthodox">
+  <option value="Eastern Orthodox">
+  <option value="Greek Orthodox">
+  <option value="Judaism Orthodox">
   <option value="Pagan">
+  <option value="Pentecostal">
   <option value="Presbyterian">
+  <option value="Protestant">
   <option value="Wiccan">
 </datalist>
+
 <datalist id="Allergies">
   <option value="None">
   <option value="Amoxicillin">
@@ -173,13 +196,69 @@ border: solid 2px;
   <option value="Wasps">
   <option value="Wheat">
 </datalist>
+
 <datalist id="MealPref">
   <option value="No Preference">
   <option value="Vegetarian">
   <option value="Vegan">
   <option value="No pork">
-  <option value="">
+  <option value="No red meat">
+  <option value="Pescatarian">
+  <option value="Kosher">
+  <option value="Halal">
 </datalist>
+
+<datalist id="POVType">
+  <option value="Coupe">
+  <option value="Hatchback">
+  <option value="Coupe">
+  <option value="Mini-Van">
+  <option value="Pickup">
+  <option value="Sedan">
+  <option value="SUV">
+</datalist>
+
+<datalist id="POVInsCo">
+  <option value="Allstate">
+  <option value="Farmers Insurance">
+  <option value="Geico">
+  <option value="The General">
+  <option value="Liberty Mutual">
+  <option value="Progressive">
+  <option value="State Farm">
+  <option value="USAA">
+</datalist>
+
+<datalist id="DLPTLanguage">
+  <option value="Arabic">
+  <option value="Chinese Mandarin">
+  <option value="Dutch">
+  <option value="Farsi">
+  <option value="French">
+  <option value="German">
+  <option value="Greek">
+  <option value="Hindi">
+  <option value="Italian">
+  <option value="Japanese">
+  <option value="Korean">
+  <option value="Pashto">
+  <option value="Persian">
+  <option value="Polish">
+  <option value="Russian">
+  <option value="Serbian">
+  <option value="Spanish">
+  <option value="Swedish">
+  <option value="Tagalog">
+  <option value="Turkish">
+  <option value="Urdu">
+</datalist>
+
+<datalist id="armyUnits">
+  <option value="Fort Jackson, SC">
+  <option value="Fort Leonard Wood, MO">
+  <option value="Fort Sill, OK">
+</datalist>
+
 <datalist id="usStates">
   <option value="AL">
   <option value="AK">
@@ -241,12 +320,6 @@ border: solid 2px;
   <option value="WI">
   <option value="WY">
 </datalist><!-- US States -->
-<datalist id="armyUnits">
-  <option value="Fort Jackson, SC">
-  <option value="Fort Leonard Wood, MO">
-  <option value="Fort Sill, OK">
-</datalist>
-
 
 </head>
 <body>
@@ -255,7 +328,7 @@ border: solid 2px;
 
 
 <fieldset><!--legend>Personal Datasheet</legend-->
-<details open><summary>Personal Datasheet (New inbounds)
+<details><summary>Personal Datasheet (New inbounds)
 </summary>
 <br><p hidden>Not mandatory, but highly appreciated</p>
 <br><br>
@@ -576,7 +649,7 @@ border: solid 2px;
   <input type="number" id="smDLPTs" min=0>
   <br>
   <label for="smDLPTLanguage">DLPT Language:</label>
-  <input type="text" id="smDLPTLanguage" list="Language">
+  <input type="text" id="smDLPTLanguage" list="DLPTLanguage">
   <br>
   
   <label for="smAirborne">Airborne:</label>
@@ -724,6 +797,9 @@ border: solid 2px;
   
   <p>POV - Personally Own Vehicle</p><br>
   
+  <label for="smPOV1Type">Type:</label>
+  <input type="text" id="smPOV1Type" list="POVType">
+  <br>
   <label for="smPOV1Make">Make:</label>
   <input type="text" id="smPOV1Make">
   <br>
@@ -749,10 +825,13 @@ border: solid 2px;
   <input type="date" id="smPOV1DateIns">
   <br>
   <label for="smPOV1InsCo">Insurance Company:</label>
-  <input type="text" id="smPOV1InsCo">
+  <input type="text" id="smPOV1InsCo" list="POVInsCo">
   <br>
   <br>
   
+  <label for="smPOV2Type">Type:</label>
+  <input type="text" id="smPOV2Type" list="POVType">
+  <br>
   <label for="smPOV2Make">Make:</label>
   <input type="text" id="smPOV2Make">
   <br>
@@ -778,7 +857,7 @@ border: solid 2px;
   <input type="date" id="smPOV2DateIns">
   <br>
   <label for="smPOV2InsCo">Insurance Company:</label>
-  <input type="text" id="smPOV2InsCo">
+  <input type="text" id="smPOV2InsCo" list="POVInsCo">
   <br>
   <br>
   
@@ -2241,7 +2320,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
   
-  var mos = j.smMOS;
+  var mos = j.smMOS.trim().toUpperCase();
   var bde = "111th";
   var bn = "";
   var co = "";
@@ -2269,6 +2348,7 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
     }
   }
   
+  j.smMOS = mos;
   j.smBDE = bde;
   j.smBN = bn;
   j.smCO = co;
@@ -2294,6 +2374,8 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   var ssn = j.smSSN;
   if (ssn != undefined && ssn != null && ssn != "") {
       ssn = ssn.replace(/-/g, "");
+	  ssn = "0000000000" + ssn;
+      ssn = ssn.slice(ssn.length - 9); //"'" + 
   }
   j.smSSN = ssn;
   
@@ -2347,6 +2429,9 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   var val = j.smPromotable;
   if (val == undefined || val == null || val == "") {j.smPromotable = "FALSE";}
   
+  var val = j.smCategory.toLowerCase();
+  if (val == "iet") {j.smPromotable = "FALSE";}
+  
   var val = j.smDutyStatus;
   if (val == undefined || val == null || val == "") {j.smDutyStatus = "PCS";}
   
@@ -2358,10 +2443,15 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   var val = j.smCOVIDVacVolunteer;
   if (val == undefined || val == null || val == "") {j.smCOVIDVacVolunteer = "FALSE";}
   
+  var val = j.smCOVIDVacManu;
+  if (val == "Johnson & Johnson") {j.smCOVIDVacDose2 = j.smCOVIDVacDose1;}
+  
   var val = j.smAirborne.toLowerCase();
   if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smAirborne = "No";}
   var val = j.smRanger.toLowerCase();
   if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smRanger = "No";}
+  var val = j.smAllergy.toLowerCase();
+  if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smAllergy = "None";}
   var val = j.smMedTag.toLowerCase();
   if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smMedTag = "FALSE";}
   var val = j.smHeatCat.toLowerCase();
@@ -2372,7 +2462,6 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smEFMP = "FALSE";}
   var val = j.smFamCarePlan.toLowerCase();
   if (val == undefined || val == null || val == "" || val == "none" || val == "na" || val == "n/a") {j.smFamCarePlan = "FALSE";}
-  
   
   
   //=""""& SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A1," ","_"),"#",""),"-","") &""""&", "
@@ -2433,6 +2522,10 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.Notes = "HoR";
   var valc = j.smHORCity.trim();
   var vals = j.smHORState.trim();
+  
+  var val = j.smHORZip;
+  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.smHORZip = val;}
+  
   var val = j.smLOCAddress;
   if (val != undefined && val != null && val != "") {
   if (vals.length > 2) {j.smHORCity = valc + ", " + vals; j.smHORState = "";} else {j.smHORState = vals.toUpperCase();}
@@ -2448,6 +2541,10 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var valc = j.smLOCCity.trim();
   var vals = j.smLOCState.trim();
   if (vals.length > 2) {j.smLOCCity = valc + ", " + vals; j.smLOCState = "";} else {j.smLOCState = vals.toUpperCase();}
+  
+  var val = j.smLOCZip;
+  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.smLOCZip = val;}
+  
   var val = j.smLOCAddress;
   if (val != undefined && val != null && val != "" && val != j.smLOCAddress) {
 	  j.Notes = "Local";
@@ -2459,180 +2556,192 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  str = str + sepRow;
   }
   
+  //NoK
   j.Notes = "";
-  var val = j.dep1Rel.toLowerCase();
   j.NoK = "TRUE";
+  
+  var relDep = j.dep1Rel;
+  if (relDep != undefined && relDep != null && relDep != "") {relDep = "";} else {relDep = relDep.toLowerCase();}
   
   //NoK1
   j.FRG = "FALSE";
-  var valc = j.nok1City.trim();
-  var vals = j.nok1State.trim();
-  if (vals.length > 2) {j.nok1City = valc + ", " + vals; j.nok1State = "";} else {j.nok1State = vals.toUpperCase();}
-  var val2 = j.nok1Rel.toLowerCase();
-  if (val2 != undefined && val2 != null && val2 != "") {
-  if (val == val2) {
-	j.FRG = j.smFRG;
-	j.DoB = j.dep1DateDOB;
+  var relNOK1 = j.nok1Rel;
+  if (relNOK1 != undefined && relNOK1 != null && relNOK1 != "") {
+	  relNOK1 = relNOK1.toLowerCase();
+	  if (relDep == relNOK1) {
+		j.FRG = j.smFRG;
+		j.DoB = j.dep1DateDOB;
+	  }
+	  
+	  var valc = j.nok1City.trim();
+	  var vals = j.nok1State.trim();
+	  if (vals.length > 2) {j.nok1City = valc + ", " + vals; j.nok1State = "";} else {j.nok1State = vals.toUpperCase();}
+	  
+	  var val = j.nok1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.nok1Phone = val;
+	  
+	  var val = j.nok1Email.trim();
+	  if (/.*\@.*\.\w/i.test(val)) {j.nok1Email = val.toLowerCase();} else {j.nok1Email = "";}
+	  
+	  var val = j.nok1Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.nok1Gender = val.slice(0,1).toUpperCase();
+	  
+	  var val = j.nok1Zip;
+	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok1Zip = val;}
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok1Rel", 	"nok1NameLast", 	"nok1NameFirst", 	"nok1NameMiddle", 	"nok1Gender", 	"DoB", 	"nok1Phone", 	"nok1Email", 	"nok1Address", 	"nok1City", 	"nok1State", 	"nok1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
-  var val = j.nok1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.nok1Phone = val;
   
-  var val = j.nok1Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.nok1Email = val;} else {j.nok1Email = "";}
-  
-  var val = j.nok1Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.nok1Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok1Rel", 	"nok1NameLast", 	"nok1NameFirst", 	"nok1NameMiddle", 	"nok1Gender", 	"DoB", 	"nok1Phone", 	"nok1Email", 	"nok1Address", 	"nok1City", 	"nok1State", 	"nok1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
-  }
   
   //NoK2
   j.DoB = "";
   j.FRG = "FALSE";
-  var valc = j.nok2City.trim();
-  var vals = j.nok2State.trim();
-  if (vals.length > 2) {j.nok2City = valc + ", " + vals; j.nok2State = "";} else {j.nok2State = vals.toUpperCase();}
-  var val3 = j.nok2Rel.toLowerCase();
-  if (val3 != undefined && val3 != null && val3 != "") {
-  if (val == val3) {
-	j.FRG = j.smFRG;
-	j.DoB = j.dep1DateDOB;
+  
+  var relNOK2 = j.nok2Rel.toLowerCase();
+  if (relNOK2 != undefined && relNOK2 != null && relNOK2 != "") {
+	  relNOK2 = relNOK2.toLowerCase();
+	  if (relDep == relNOK2) {
+		j.FRG = j.smFRG;
+		j.DoB = j.dep1DateDOB;
+	  }
+	  
+	  var valc = j.nok2City.trim();
+	  var vals = j.nok2State.trim();
+	  if (vals.length > 2) {j.nok2City = valc + ", " + vals; j.nok2State = "";} else {j.nok2State = vals.toUpperCase();}
+	  
+	  var val = j.nok2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.nok2Phone = val;
+	  
+	  var val = j.nok2Email.trim();
+	  if (/.*\@.*\.\w/i.test(val)) {j.nok2Email = val.toLowerCase();} else {j.nok2Email = "";}
+	  
+	  var val = j.nok2Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.nok2Gender = val.slice(0,1).toUpperCase();
+	  
+	  var val = j.nok2Zip;
+	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok2Zip = val;}
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok2Rel", 	"nok2NameLast", 	"nok2NameFirst", 	"nok2NameMiddle", 	"nok2Gender", 	"DoB", 	"nok2Phone", 	"nok2Email", 	"nok2Address", 	"nok2City", 	"nok2State", 	"nok2Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
-  var val = j.nok2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.nok2Phone = val;
   
-  var val = j.nok2Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.nok2Email = val;} else {j.nok2Email = "";}
   
-  var val = j.nok2Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.nok2Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok2Rel", 	"nok2NameLast", 	"nok2NameFirst", 	"nok2NameMiddle", 	"nok2Gender", 	"DoB", 	"nok2Phone", 	"nok2Email", 	"nok2Address", 	"nok2City", 	"nok2State", 	"nok2Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
-  }
-  
+  //Dependents
   j.DoB = "";
   j.NoK = "FALSE";
   j.FRG = j.smFRG;
   
   //Dep1
-  var valc = j.dep1City.trim();
-  var vals = j.dep1State.trim();
-  if (vals.length > 2) {j.dep1City = valc + ", " + vals; j.dep1State = "";} else {j.dep1State = vals.toUpperCase();}
-  var val = j.dep1Rel.toLowerCase();
+  var val = j.dep1Rel;
   if (val != undefined && val != null && val != "") {
-  if (val != val2 && val != val3) {
-    var val = j.dep1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-    j.dep1Phone = val;
-	
-	var val = j.dep1Email.trim().toLowerCase();
-    if (/.*\@.*\.\w/i.test(val)) {j.dep1Email = val;} else {j.dep1Email = "";}
-	
-	var val = j.dep1Gender;
-    if (val == undefined || val == null || val == "") {val = "Male";}
-    j.dep1Gender = val.slice(0,1).toUpperCase();
-	
-	var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep1Rel", 	"dep1NameLast", 	"dep1NameFirst", 	"dep1NameMiddle", 	"dep1Gender", 	"dep1DateDOB", 	"dep1Phone", 	"dep1Email", 	"dep1Address", 	"dep1City", 	"dep1State", 	"dep1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-    orderJSON.forEach(function (property) {
-      str += csvTextReplace(j[property]) + sepField;
-    })
-    str = str.slice(0,-sepField.length);
-    str = str + sepRow;
-  }
+	  if (val != relNOK1 && val != relNOK2) {
+		var valc = j.dep1City.trim();
+		var vals = j.dep1State.trim();
+		if (vals.length > 2) {j.dep1City = valc + ", " + vals; j.dep1State = "";} else {j.dep1State = vals.toUpperCase();}
+	  
+		var val = j.dep1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+		j.dep1Phone = val;
+		
+		var val = j.dep1Email.trim();
+		if (/.*\@.*\.\w/i.test(val)) {j.dep1Email = val.toLowerCase();} else {j.dep1Email = "";}
+		
+		var val = j.dep1Gender;
+		if (val == undefined || val == null || val == "") {val = "Male";}
+		j.dep1Gender = val.slice(0,1).toUpperCase();
+		
+		var val = j.dep1Zip;
+		if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.dep1Zip = val;}
+		
+		var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep1Rel", 	"dep1NameLast", 	"dep1NameFirst", 	"dep1NameMiddle", 	"dep1Gender", 	"dep1DateDOB", 	"dep1Phone", 	"dep1Email", 	"dep1Address", 	"dep1City", 	"dep1State", 	"dep1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+		orderJSON.forEach(function (property) {
+		  str += csvTextReplace(j[property]) + sepField;
+		})
+		str = str.slice(0,-sepField.length);
+		str = str + sepRow;
+	  }
   }
   
   //Dep2
-  var val = j.dep2Rel.toLowerCase();
+  var val = j.dep2Rel;
   if (val != undefined && val != null && val != "") {
-  var val = j.dep2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.dep2Phone = val;
-  
-  var val = j.dep2Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.dep2Email = val;} else {j.dep2Email = "";}
-  
-  var val = j.dep2Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.dep2Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep2Rel", 	"dep2NameLast", 	"dep2NameFirst", 	"dep2NameMiddle", 	"dep2Gender", 	"dep2DateDOB", 	"dep2Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+	  var val = j.dep2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.dep2Phone = val;
+	  
+	  var val = j.dep2Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.dep2Gender = val.slice(0,1).toUpperCase();
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep2Rel", 	"dep2NameLast", 	"dep2NameFirst", 	"dep2NameMiddle", 	"dep2Gender", 	"dep2DateDOB", 	"dep2Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
   
   //Dep3
-  var val = j.dep3Rel.toLowerCase();
+  var val = j.dep3Rel;
   if (val != undefined && val != null && val != "") {
-  var val = j.dep3Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.dep3Phone = val;
-  
-  var val = j.dep3Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.dep3Email = val;} else {j.dep3Email = "";}
-  
-  var val = j.dep3Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.dep3Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep3Rel", 	"dep3NameLast", 	"dep3NameFirst", 	"dep3NameMiddle", 	"dep3Gender", 	"dep3DateDOB", 	"dep3Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+	  var val = j.dep3Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.dep3Phone = val;
+	  
+	  var val = j.dep3Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.dep3Gender = val.slice(0,1).toUpperCase();
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep3Rel", 	"dep3NameLast", 	"dep3NameFirst", 	"dep3NameMiddle", 	"dep3Gender", 	"dep3DateDOB", 	"dep3Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
   
   //Dep4
-  var val = j.dep4Rel.toLowerCase();
+  var val = j.dep4Rel;
   if (val != undefined && val != null && val != "") {
-  var val = j.dep4Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.dep4Phone = val;
-  
-  var val = j.dep4Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.dep4Email = val;} else {j.dep4Email = "";}
-  
-  var val = j.dep4Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.dep4Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep4Rel", 	"dep4NameLast", 	"dep4NameFirst", 	"dep4NameMiddle", 	"dep4Gender", 	"dep4DateDOB", 	"dep4Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+	  var val = j.dep4Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.dep4Phone = val;
+	  
+	  var val = j.dep4Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.dep4Gender = val.slice(0,1).toUpperCase();
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep4Rel", 	"dep4NameLast", 	"dep4NameFirst", 	"dep4NameMiddle", 	"dep4Gender", 	"dep4DateDOB", 	"dep4Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
+  
   //Dep5
-  var val = j.dep5Rel.toLowerCase();
+  var val = j.dep5Rel;
   if (val != undefined && val != null && val != "") {
-  var val = j.dep5Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-  j.dep5Phone = val;
-  
-  var val = j.dep5Email.trim().toLowerCase();
-  if (/.*\@.*\.\w/i.test(val)) {j.dep5Email = val;} else {j.dep5Email = "";}
-  
-  var val = j.dep5Gender;
-  if (val == undefined || val == null || val == "") {val = "Male";}
-  j.dep5Gender = val.slice(0,1).toUpperCase();
-  
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep5Rel", 	"dep5NameLast", 	"dep5NameFirst", 	"dep5NameMiddle", 	"dep5Gender", 	"dep5DateDOB", 	"dep5Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+	  var val = j.dep5Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+	  j.dep5Phone = val;
+	  
+	  var val = j.dep5Gender;
+	  if (val == undefined || val == null || val == "") {val = "Male";}
+	  j.dep5Gender = val.slice(0,1).toUpperCase();
+	  
+	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep5Rel", 	"dep5NameLast", 	"dep5NameFirst", 	"dep5NameMiddle", 	"dep5Gender", 	"dep5DateDOB", 	"dep5Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+	  orderJSON.forEach(function (property) {
+		str += csvTextReplace(j[property]) + sepField;
+	  })
+	  str = str.slice(0,-sepField.length);
+	  str = str + sepRow;
   }
   
   if (header && str != "") {str = hdr + sepRow + str};
@@ -2653,7 +2762,7 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.smPOV1Make;
   if (val != undefined && val != null && val != "") {
   j.smPOV1State = j.smPOV1State.toUpperCase();
-  var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+  var orderJSON = ["ID", 	"Student_ID", 	"smPOV1Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
     hdr += csvTextReplace(property) + sepField;
     str += csvTextReplace(j[property]) + sepField;
@@ -2666,7 +2775,7 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.smPOV2Make;
   if (val != undefined && val != null && val != "") {
   j.smPOV2State = j.smPOV2State.toUpperCase();
-  var orderJSON = ["ID", 	"Student_ID", 	"Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+  var orderJSON = ["ID", 	"Student_ID", 	"smPOV2Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
 	hdr += csvTextReplace(property) + sepField;
     str += csvTextReplace(j[property]) + sepField;
@@ -2726,20 +2835,29 @@ function jsonFileDownload() {
 
 function jsonShow(){ alert( jsonGenerate() ); }
 function jsonGenerate(){
-  var ets = document.getElementById("smDateETS").value;
+  var ets = document.getElementById("smDateETS").value.trim();
+  var basd = document.getElementById("smDateBASD").value.trim();
+  var pebd = document.getElementById("smDatePEBD").value.trim();
+  if (pebd == undefined || pebd == null || pebd == "") {pebd = basd; document.getElementById("smDatePEBD").value = basd;}
   if (ets == undefined || ets == null || ets == "") {
-    var pebd = document.getElementById("smDatePEBD").value;
     var yrs = parseInt(document.getElementById("smDateETSyrs").value);
     if (yrs == undefined || yrs == null || yrs == "" || isNaN(yrs)) {yrs = 0;} else {yrs = parseInt(yrs);}
     if (pebd == undefined || pebd == null || pebd == "") {var d = new Date(); d.setDate(d.getDate() - 1);} else {var d = new Date(pebd);}
     d.setFullYear(d.getFullYear() + yrs);
-    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd};
-    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm};
+    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
+    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
     var yy = d.getFullYear();
     ets = yy + "-" + mm + "-" + dd;
   }
   
+  var comp = document.getElementById("smComponent").value.trim();
+  var dor = document.getElementById("smDateDOR").value.trim();
+  if (dor == undefined || dor == null || dor == "") { 
+    if (comp.toLowerCase() == "active") {dor = basd;}
+  }
   var j = {
+	fileName : "0-" + document.getElementById("smNameLast").value.trim() + "_" + document.getElementById("smNameFirst").value.trim() + ".json",
+  
     smRank : document.getElementById("smRank").value.trim(),
     smNameLast : document.getElementById("smNameLast").value.trim(),
     smNameFirst : document.getElementById("smNameFirst").value.trim(),
@@ -2757,7 +2875,7 @@ function jsonGenerate(){
     smPhone : document.getElementById("smPhone").value.trim(),
     smEmail : document.getElementById("smEmail").value.trim(),
     smEmailMil : document.getElementById("smEmailMil").value.trim(),
-    smComponent : document.getElementById("smComponent").value.trim(),
+    smComponent : comp,
     smNGARState : document.getElementById("smNGARState").value.trim(),
     smUnitPrev : document.getElementById("smUnitPrev").value.trim(),
     
@@ -2768,9 +2886,9 @@ function jsonGenerate(){
     
     smDateArrival : document.getElementById("smDateArrival").value.trim(),
     smDateDOB : document.getElementById("smDateDOB").value.trim(),
-    smDateDOR : document.getElementById("smDateDOR").value.trim(),
-    smDateBASD : document.getElementById("smDateBASD").value.trim(),
-    smDatePEBD : document.getElementById("smDatePEBD").value.trim(),
+    smDateDOR : dor,
+    smDateBASD : basd,
+    smDatePEBD : pebd,
     smDateETS : ets,
     smDateMarried : document.getElementById("smDateMarried").value.trim(),
     
@@ -2850,6 +2968,7 @@ function jsonGenerate(){
     nok2State : document.getElementById("nok2State").value.trim(),
     nok2Zip : document.getElementById("nok2Zip").value.trim(),
     
+    smPOV1Type : document.getElementById("smPOV1Type").value.trim(),
     smPOV1Make : document.getElementById("smPOV1Make").value.trim(),
     smPOV1Model : document.getElementById("smPOV1Model").value.trim(),
     smPOV1Year : document.getElementById("smPOV1Year").value.trim(),
@@ -2860,6 +2979,7 @@ function jsonGenerate(){
     smPOV1DateIns : document.getElementById("smPOV1DateIns").value.trim(),
     smPOV1InsCo : document.getElementById("smPOV1InsCo").value.trim(),
     
+    smPOV2Type : document.getElementById("smPOV2Type").value.trim(),
     smPOV2Make : document.getElementById("smPOV2Make").value.trim(),
     smPOV2Model : document.getElementById("smPOV2Model").value.trim(),
     smPOV2Year : document.getElementById("smPOV2Year").value.trim(),
@@ -3027,6 +3147,7 @@ function jsonLoad(src){
   document.getElementById("nok2State").value = ("nok2State" in j) ? j.nok2State.trim() : "";
   document.getElementById("nok2Zip").value = ("nok2Zip" in j) ? j.nok2Zip.trim() : "";
   
+  document.getElementById("smPOV1Type").value = ("smPOV1Type" in j) ? j.smPOV1Type.trim() : "";
   document.getElementById("smPOV1Make").value = ("smPOV1Make" in j) ? j.smPOV1Make.trim() : "";
   document.getElementById("smPOV1Model").value = ("smPOV1Model" in j) ? j.smPOV1Model.trim() : "";
   document.getElementById("smPOV1Year").value = ("smPOV1Year" in j) ? j.smPOV1Year.trim() : "";
@@ -3037,6 +3158,7 @@ function jsonLoad(src){
   document.getElementById("smPOV1DateIns").value = ("smPOV1DateIns" in j) ? j.smPOV1DateIns.trim() : "";
   document.getElementById("smPOV1InsCo").value = ("smPOV1InsCo" in j) ? j.smPOV1InsCo.trim() : "";
   
+  document.getElementById("smPOV2Type").value = ("smPOV2Type" in j) ? j.smPOV2Type.trim() : "";
   document.getElementById("smPOV2Make").value = ("smPOV2Make" in j) ? j.smPOV2Make.trim() : "";
   document.getElementById("smPOV2Model").value = ("smPOV2Model" in j) ? j.smPOV2Model.trim() : "";
   document.getElementById("smPOV2Year").value = ("smPOV2Year" in j) ? j.smPOV2Year.trim() : "";
@@ -3093,7 +3215,12 @@ function jsonLoad(src){
   document.getElementById("dep5DateDOB").value = ("dep5DateDOB" in j) ? j.dep5DateDOB.trim() : "";
   
   //document.getElementById("sm").value = ("sm" in j) ? j.sm.trim() : "";
+  
 }
+
+//@AA3 DB_sID 
+//@AJ3 MatchKey =LOWER(AB3&"_"&AC3&"_"&AD3&"_"&AI3)
+//@B2 ID_Match =OFFSET($AJ$1,IFERROR(MATCH(LOWER(U2),AJ:AJ,0)-1,0),-9)
 
 </script>
 
