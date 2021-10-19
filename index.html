@@ -468,18 +468,18 @@ border: solid 2px;
   <details open><summary><label for="smDateDOB">DoB:</label>
   <input type="date" id="smDateDOB" autocomplete="on">
   </summary>
-    <p>Date of Birth (DoB)</p>
+    <p>Date of Birth (DoB)<br><br><br></p>
   </details>
   
   <details open><summary><label for="smDateDOR">DoR:</label>
-  <input type="date" id="smDateDOR">
+  <input type="date" id="smDateDOR" onchange="dateChange()">
   </summary>
     <p>Date of Rank (DoR)
     <br>Usually the same date you joined the Army.</p>
   </details>
   
   <details open><summary><label for="smDateBASD">BASD:</label>
-  <input type="date" id="smDateBASD">
+  <input type="date" id="smDateBASD" onchange="dateChange()">
   </summary>
     <p>Basic Active Service Date (BASD)
     <br>NG/Reserve: The date you went to BCT.
@@ -487,7 +487,7 @@ border: solid 2px;
   </details>
   
   <details open><summary><label for="smDatePEBD">PEBD:</label>
-  <input type="date" id="smDatePEBD">
+  <input type="date" id="smDatePEBD" onchange="dateChange()">
   </summary>
     <p>Pay Entry Base Date (PEBD)
     <br>The date you joined the Army.</p>
@@ -495,8 +495,8 @@ border: solid 2px;
   
   <details open><summary><label for="smDateETS">ETS:</label>
     <input type="date" id="smDateETS"> (date)
-    <input type="number" id="smDateETSwks" placeholder="40 wks" min=0>  weeks, 
-    <br><input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0> years
+    <input type="number" id="smDateETSwks" placeholder="40 wks" min=0 onchange="dateChange()">  weeks, 
+    <br><input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0 onchange="dateChange()"> years
     </summary>
     <p>Expiration of Term of Service (ETS)
     <br>If unknown, write for how many weeks and/or years was your contract.</p>
@@ -2930,16 +2930,25 @@ function dateChange(){
   var ets = document.getElementById("smDateETS").value.toString().trim();
   var wks = parseInt(document.getElementById("smDateETSwks").value);
   var yrs = parseInt(document.getElementById("smDateETSyrs").value);
+  if (wks == undefined || wks == null || wks == "" || isNaN(wks)) {wks = 0;}
+  if (yrs == undefined || yrs == null || yrs == "" || isNaN(yrs)) {yrs = 0;}
+  
+  //alert("Comp: " + comp + "\nDoR: " + dor + "\nBASD: " + basd + "\nPEBD: " + pebd + "\nETS: " + ets + "\nWeeks: " + wks + "\nYears: " + yrs);
   
   if (dor == "" && basd != "" && comp == "active") {dor = basd;}
   
   if (basd == "" && dor != "" && comp == "active") {basd = dor;}
   if (pebd == "" && dor != "") {pebd = dor;}
-  if (pebd != "" && dor != pebd && dor == basd && comp != "" && comp != "active") {dor = pebd;}
+  
+  if (dor == "" && pebd != "") {dor = pebd;}
+  if (basd == "" && pebd != "" && comp == "active") {basd = pebd;}
+  
+  if (dor == basd && pebd != "" && dor != pebd && comp != "active") {dor = pebd;}
   
   if (pebd != "" && (wks > 0 || yrs > 0)) {
       var d = new Date(pebd);
       d.setFullYear(d.getFullYear() + yrs);
+      d.setDate(d.getDate() + (wks * 7));
       
       var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
       var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
@@ -2947,12 +2956,14 @@ function dateChange(){
       ets = yy + "-" + mm + "-" + dd;
   }
   
+  //alert("Comp: " + comp + "\nDoR: " + dor + "\nBASD: " + basd + "\nPEBD: " + pebd + "\nETS: " + ets + "\nWeeks: " + wks + "\nYears: " + yrs);
+  
   document.getElementById("smDateDOR").value = dor;
-  document.getElementById("smDateBASD").value = basq;
+  document.getElementById("smDateBASD").value = basd;
   document.getElementById("smDatePEBD").value = pebd;
   document.getElementById("smDateETS").value = ets;
-  document.getElementById("smDateETSwks").value = "";
-  document.getElementById("smDateETSyrs").value = "";
+  //document.getElementById("smDateETSwks").value = "";
+  //document.getElementById("smDateETSyrs").value = "";
 }
 
 function jsonShow(){ alert( jsonGenerate() ); }
