@@ -338,6 +338,9 @@ border: solid 2px;
     </details></fieldset>
   <br>
   <fieldset><details open><summary>Service Member (SM) info:</summary><br>
+  
+  <form name="dataSM" autocomplete="off">
+  
   <label for="smRank">Rank:</label>
   <select name="smRank" id="smRank">
     <optgroup label="Enlisted">
@@ -430,7 +433,7 @@ border: solid 2px;
   </select>
   <br>
   <label for="smPhone">Phone:</label>
-  <input type="tel" id="smPhone" placeholder="123-123-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  <input type="tel" id="smPhone" autocomplete="on" placeholder="123-123-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
   <br>
   <label for="smEmail">Email:</label>
   <input type="text" id="smEmail" autocomplete="on" placeholder="@gmail.com / @yahoo.com">
@@ -491,11 +494,12 @@ border: solid 2px;
   </details>
   
   <details open><summary><label for="smDateETS">ETS:</label>
-    <input type="date" id="smDateETS">
-    <input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0>
+    <input type="date" id="smDateETS"> (date)
+    <input type="number" id="smDateETSwks" placeholder="40 wks" min=0>  weeks, 
+    <br><input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0> years
     </summary>
     <p>Expiration of Term of Service
-    <br>If unknown, write for how many years was your contract.</p>
+    <br>If unknown, write for how many weeks and/or years was your contract.</p>
   </details>
   
   <label for="smDateMarried">Marriage date:</label>
@@ -512,7 +516,7 @@ border: solid 2px;
   <input type="number" id="smHeight" min=0 placeholder='87 in'> (in inches, just the number)
   <br>
   <label for="smWeight">Weight:</label>
-  <input type="number" id="smWeight" min=0 placeholder="234 lbs"> (just the number)
+  <input type="number" id="smWeight" min=0 placeholder="234 lbs"> (lbs, just the number)
   <br>
   <label for="smBlood">Blood type:</label>
   <select id="smBlood">
@@ -704,51 +708,57 @@ border: solid 2px;
   </details>
   
   <br>
-  <br>Place of Birth (PoB)<br>
-  <label for="smPOBCity">PoB City:</label>
-  <input type="text" id="smPOBCity">
+  <br>Place of Birth (PoB):<br>
+  <label for="smPOBCity">City:</label>
+  <input type="text" id="smPOBCity" autocomplete="on">
   <br>
-  <label for="smPOBState">PoB State (two letter)
+  <label for="smPOBState">State (two letter)
   <br>or Country (if you were born outside of US):</label>
-  <br><input type="text" id="smPOBState" list="usStates">
-  <br>
+  <br><input type="text" id="smPOBState" autocomplete="on" list="usStates">
+  <br><br>
+  
   <br>Home of Record (HoR)<br>
-  <label for="smHORAddress">HoR Street:</label>
-  <input type="text" id="smHORAddress">
+  <label for="smHORAddress">Street:</label>
+  <input type="text" id="smHORAddress" autocomplete="on">
   <br>
-  <label for="smHORCity">HoR City:</label>
-  <input type="text" id="smHORCity">
+  <label for="smHORCity">City:</label>
+  <input type="text" id="smHORCity" autocomplete="on">
   <br>
-  <label for="smHORState">HoR State:</label>
-  <input type="text" id="smHORState" list="usStates"> (two letter)
+  <label for="smHORState">State:</label>
+  <input type="text" id="smHORState" autocomplete="on" list="usStates"> (two letter)
   <br>
-  <label for="smHORZip">HoR Zip:</label>
-  <input type="number" id="smHORZip">
-  <br>
-  <br>
-  <label for="smLOCAddress">Local Street:</label>
+  <label for="smHORZip">Zip:</label>
+  <input type="number" id="smHORZip" autocomplete="on">
+  <br><br>
+  
+  <br>Local:<br>
+  <label for="smLOCAddress">Street:</label>
   <input type="text" id="smLOCAddress">
   <br>
-  <label for="smLOCCity">Local City:</label>
+  <label for="smLOCCity">City:</label>
   <input type="text" id="smLOCCity">
   <br>
-  <label for="smLOCState">Local State:</label>
+  <label for="smLOCState">State:</label>
   <input type="text" id="smLOCState" list="usStates"> (two letter)
   <br>
-  <label for="smLOCZip">Local Zip:</label>
+  <label for="smLOCZip">Zip:</label>
   <input type="number" id="smLOCZip">
-  <br>
-  <br>
+  <br><br>
+  
+  </form><!-- dataSM -->
+  
 </details></fieldset> <!-- SM Info -->
   <br>
   <fieldset><details open><summary>NoK - Next of Kin / Emergency Contact Info:</summary><br>
+  
+  <form name="dataNoK1" autocomplete="off">
   
   <br>NoK 1:<br>
   <label for="nok1Rel">Relationship:</label>
   <input type="text" id="nok1Rel" list="Relationship">
   <br>
   <label for="nok1NameLast">Last Name:</label>
-  <input type="text" id="nok1NameLast">
+  <input type="text" id="nok1NameLast" autocomplete="on">
   <br>
   <label for="nok1NameFirst">First Name:</label>
   <input type="text" id="nok1NameFirst">
@@ -770,24 +780,27 @@ border: solid 2px;
   <input type="text" id="nok1Email">
   <br>  
   <label for="nok1Address">Street:</label>
-  <input type="text" id="nok1Address">
+  <input type="text" id="nok1Address" autocomplete="on">
   <br>
   <label for="nok1City">City:</label>
-  <input type="text" id="nok1City">
+  <input type="text" id="nok1City" autocomplete="on">
   <br>
   <label for="nok1State">State:</label>
-  <input type="text" id="nok1State" list="usStates"> (two letter)
+  <input type="text" id="nok1State" autocomplete="on" list="usStates"> (two letter)
   <br>
   <label for="nok1Zip">Zip:</label>
-  <input type="number" id="nok1Zip">
+  <input type="number" id="nok1Zip" autocomplete="on">
   <br><br>
+  
+  </form><!-- dataNoK1 -->
+  <form name="dataNoK2" autocomplete="off">
   
   <br>NoK 2:<br>
   <label for="nok2Rel">Relationship:</label>
   <input type="text" id="nok2Rel" list="Relationship">
   <br>
   <label for="nok2NameLast">Last Name:</label>
-  <input type="text" id="nok2NameLast">
+  <input type="text" id="nok2NameLast" autocomplete="on">
   <br>
   <label for="nok2NameFirst">First Name:</label>
   <input type="text" id="nok2NameFirst">
@@ -819,12 +832,15 @@ border: solid 2px;
   <br>
   <label for="nok2Zip">Zip:</label>
   <input type="number" id="nok2Zip">
-  <br>
-  <br>
+  <br><br>
+  
+  </form><!-- dataNoK2 -->
   
   </details></fieldset> <!-- NoK Info -->
   <br>
   <fieldset><details open><summary>POV - Personally Own Vehicle Info:</summary><br>
+  
+  <form name="dataPOV1" autocomplete="on">
   
   <br>POV 1:<br>
   <label for="smPOV1Type">Type:</label>
@@ -858,6 +874,10 @@ border: solid 2px;
   <input type="text" id="smPOV1InsCo" list="POVInsCo">
   <br><br>
   
+  </form><!-- dataPOV1 -->
+  <form name="dataPOV2" autocomplete="on">
+  
+  
   <br>POV 2:<br>
   <label for="smPOV2Type">Type:</label>
   <input type="text" id="smPOV2Type" list="POVType">
@@ -888,12 +908,15 @@ border: solid 2px;
   <br>
   <label for="smPOV2InsCo">Insurance Company:</label>
   <input type="text" id="smPOV2InsCo" list="POVInsCo">
-  <br>
-  <br>
+  <br><br>
+  
+  </form><!-- dataPOV2 -->
   
   </details></fieldset> <!-- POV Info -->
   <br>
   <fieldset><details open><summary>Dependents Info:</summary><br>
+  
+  <form name="dataDep1" autocomplete="on">
   
   <br>Dependent 1:<br>
   <label for="dep1Rel">Relationship:</label>
@@ -937,6 +960,9 @@ border: solid 2px;
   <input type="number" id="dep1Zip">
   <br><br>
   
+  </form><!-- dataDep1 -->
+  <form name="dataDep2" autocomplete="on">
+  
   <br>Dependent 2:<br>
   <label for="dep2Rel">Relationship:</label>
   <input type="text" id="dep2Rel" list="Relationship">
@@ -963,6 +989,9 @@ border: solid 2px;
   <label for="dep2DateDOB">DoB:</label>
   <input type="date" id="dep2DateDOB">
   <br><br>
+  
+  </form><!-- dataDep2 -->
+  <form name="dataDep3" autocomplete="on">
   
   <br>Dependent 3:<br>
   <label for="dep3Rel">Relationship:</label>
@@ -991,6 +1020,9 @@ border: solid 2px;
   <input type="date" id="dep3DateDOB">
   <br><br>
   
+  </form><!-- dataDep3 -->
+  <form name="dataDep4" autocomplete="on">
+  
   <br>Dependent 4:<br>
   <label for="dep4Rel">Relationship:</label>
   <input type="text" id="dep4Rel" list="Relationship">
@@ -1017,6 +1049,9 @@ border: solid 2px;
   <label for="dep4DateDOB">DoB:</label>
   <input type="date" id="dep4DateDOB">
   <br><br>
+  
+  </form><!-- dataDep4 -->
+  <form name="dataDep5" autocomplete="on">
   
   <br>Dependent 5:<br>
   <label for="dep5Rel">Relationship:</label>
@@ -1045,6 +1080,9 @@ border: solid 2px;
   <input type="date" id="dep5DateDOB">
   <br>
   <br>
+  
+  </form><!-- dataDep5 -->
+  
   </details></fieldset> <!-- Dependents Info -->
   <br>
   </details></fieldset> <!-- SM All Info -->
