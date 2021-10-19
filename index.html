@@ -468,20 +468,20 @@ border: solid 2px;
   <details open><summary><label for="smDateDOB">DoB:</label>
   <input type="date" id="smDateDOB" autocomplete="on">
   </summary>
-    <p>Date of Birth</p>
+    <p>Date of Birth (DoB)</p>
   </details>
   
   <details open><summary><label for="smDateDOR">DoR:</label>
   <input type="date" id="smDateDOR">
   </summary>
-    <p>Date of Rank
+    <p>Date of Rank (DoR)
     <br>Usually the same date you joined the Army.</p>
   </details>
   
   <details open><summary><label for="smDateBASD">BASD:</label>
   <input type="date" id="smDateBASD">
   </summary>
-    <p>Basic Active Service Date
+    <p>Basic Active Service Date (BASD)
     <br>NG/Reserve: The date you went to BCT.
     <br>Active: The date you joined the Army.</p>
   </details>
@@ -489,7 +489,7 @@ border: solid 2px;
   <details open><summary><label for="smDatePEBD">PEBD:</label>
   <input type="date" id="smDatePEBD">
   </summary>
-    <p>Pay Entry Base Date
+    <p>Pay Entry Base Date (PEBD)
     <br>The date you joined the Army.</p>
   </details>
   
@@ -498,7 +498,7 @@ border: solid 2px;
     <input type="number" id="smDateETSwks" placeholder="40 wks" min=0>  weeks, 
     <br><input type="number" id="smDateETSyrs" placeholder="6 yrs" min=0> years
     </summary>
-    <p>Expiration of Term of Service
+    <p>Expiration of Term of Service (ETS)
     <br>If unknown, write for how many weeks and/or years was your contract.</p>
   </details>
   
@@ -2920,6 +2920,36 @@ function jsonFileDownload() {
   var j = JSON.parse(data);
   var file = '0-' + j.smNameLast.replace(' ', '') + '_' + j.smNameFirst.replace(' ', '') + '.json';
   fileDownload(data, file, 'text/json;charset=utf-8;');
+}
+
+function dateChange(){
+  var comp = document.getElementById("smComponent").value.toString().trim().toLowerCase();
+  var dor = document.getElementById("smDateDOR").value.toString().trim();
+  var basd = document.getElementById("smDateBASD").value.toString().trim();
+  var pebd = document.getElementById("smDatePEBD").value.toString().trim();
+  var ets = document.getElementById("smDateETS").value.toString().trim();
+  var wks = parseInt(document.getElementById("smDateETSwks").value);
+  var yrs = parseInt(document.getElementById("smDateETSyrs").value);
+  //var dETS = new Date();
+  
+  
+  if (pebd == "") {pebd = basd; document.getElementById("smDatePEBD").value = basd;}
+  if (ets == "") {
+    
+    if (isNaN(wks)) {yrs = 0;}
+    if (isNaN(yrs)) {yrs = 4;}
+    
+    if (pebd == "") {var d = new Date(); d.setDate(d.getDate() - 1);} else {var d = new Date(pebd);}
+    d.setFullYear(d.getFullYear() + yrs);
+    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
+    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
+    var yy = d.getFullYear();
+    ets = yy + "-" + mm + "-" + dd;
+  }
+  
+  if (dor == undefined || dor == null || dor == "") { 
+    if (comp.toLowerCase() == "active") {dor = basd;}
+  }
 }
 
 function jsonShow(){ alert( jsonGenerate() ); }
