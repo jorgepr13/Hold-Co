@@ -2968,26 +2968,7 @@ function dateChange(){
 
 function jsonShow(){ alert( jsonGenerate() ); }
 function jsonGenerate(){
-  var ets = document.getElementById("smDateETS").value.trim();
-  var basd = document.getElementById("smDateBASD").value.trim();
-  var pebd = document.getElementById("smDatePEBD").value.trim();
-  if (pebd == undefined || pebd == null || pebd == "") {pebd = basd; document.getElementById("smDatePEBD").value = basd;}
-  if (ets == undefined || ets == null || ets == "") {
-    var yrs = parseInt(document.getElementById("smDateETSyrs").value);
-    if (yrs == undefined || yrs == null || yrs == "" || isNaN(yrs)) {yrs = 4;} else {yrs = parseInt(yrs);}
-    if (pebd == undefined || pebd == null || pebd == "") {var d = new Date(); d.setDate(d.getDate() - 1);} else {var d = new Date(pebd);}
-    d.setFullYear(d.getFullYear() + yrs);
-    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
-    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
-    var yy = d.getFullYear();
-    ets = yy + "-" + mm + "-" + dd;
-  }
-  
-  var comp = document.getElementById("smComponent").value.trim();
-  var dor = document.getElementById("smDateDOR").value.trim();
-  if (dor == undefined || dor == null || dor == "") { 
-    if (comp.toLowerCase() == "active") {dor = basd;}
-  }
+    dateChange();
   var j = {
 	fileName : "0-" + document.getElementById("smNameLast").value.trim() + "_" + document.getElementById("smNameFirst").value.trim() + ".json",
   
@@ -3008,7 +2989,7 @@ function jsonGenerate(){
     smPhone : document.getElementById("smPhone").value.trim(),
     smEmail : document.getElementById("smEmail").value.trim(),
     smEmailMil : document.getElementById("smEmailMil").value.trim(),
-    smComponent : comp,
+    smComponent : document.getElementById("smComponent").value.trim(),
     smNGARState : document.getElementById("smNGARState").value.trim(),
     smUnitPrev : document.getElementById("smUnitPrev").value.trim(),
     
@@ -3019,10 +3000,10 @@ function jsonGenerate(){
     
     smDateArrival : document.getElementById("smDateArrival").value.trim(),
     smDateDOB : document.getElementById("smDateDOB").value.trim(),
-    smDateDOR : dor,
-    smDateBASD : basd,
-    smDatePEBD : pebd,
-    smDateETS : ets,
+    smDateDOR : document.getElementById("smDateDOR").value.trim(),
+    smDateBASD : document.getElementById("smDateBASD").value.trim(),
+    smDatePEBD : document.getElementById("smDatePEBD").value.trim(),
+    smDateETS : document.getElementById("smDateETS").value.trim(),
     smDateMarried : document.getElementById("smDateMarried").value.trim(),
     
     smColorHair : document.getElementById("smColorHair").value.trim(),
