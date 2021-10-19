@@ -2930,26 +2930,29 @@ function dateChange(){
   var ets = document.getElementById("smDateETS").value.toString().trim();
   var wks = parseInt(document.getElementById("smDateETSwks").value);
   var yrs = parseInt(document.getElementById("smDateETSyrs").value);
-  //var dETS = new Date();
   
+  if (dor == "" && basd != "" && comp == "active") {dor = basd;}
   
-  if (pebd == "") {pebd = basd; document.getElementById("smDatePEBD").value = basd;}
-  if (ets == "") {
-    
-    if (isNaN(wks)) {yrs = 0;}
-    if (isNaN(yrs)) {yrs = 4;}
-    
-    if (pebd == "") {var d = new Date(); d.setDate(d.getDate() - 1);} else {var d = new Date(pebd);}
-    d.setFullYear(d.getFullYear() + yrs);
-    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
-    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
-    var yy = d.getFullYear();
-    ets = yy + "-" + mm + "-" + dd;
+  if (basd == "" && dor != "" && comp == "active") {basd = dor;}
+  if (pebd == "" && dor != "") {pebd = dor;}
+  if (pebd != "" && dor != pebd && dor == basd && comp != "" && comp != "active") {dor = pebd;}
+  
+  if (pebd != "" && (wks > 0 || yrs > 0)) {
+      var d = new Date(pebd);
+      d.setFullYear(d.getFullYear() + yrs);
+      
+      var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
+      var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
+      var yy = d.getFullYear();
+      ets = yy + "-" + mm + "-" + dd;
   }
   
-  if (dor == undefined || dor == null || dor == "") { 
-    if (comp.toLowerCase() == "active") {dor = basd;}
-  }
+  document.getElementById("smDateDOR").value = dor;
+  document.getElementById("smDateBASD").value = basq;
+  document.getElementById("smDatePEBD").value = pebd;
+  document.getElementById("smDateETS").value = ets;
+  document.getElementById("smDateETSwks").value = "";
+  document.getElementById("smDateETSyrs").value = "";
 }
 
 function jsonShow(){ alert( jsonGenerate() ); }
