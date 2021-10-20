@@ -2349,7 +2349,8 @@ function checkTxt(txt){
 
 function csvTextReplace(txt){
   if (txt == null || txt == undefined ) {txt = "";} else {txt = txt.toString().trim();}
-  txt = checkTxt(txt);
+  //txt = checkTxt(txt);
+  txt = toLatinChar(txt);
   // We remove blanks and check if the column contains other whitespace,`,` or `"`.
   // In that case, we need to quote the column.
   if (txt.replace(/ /g, '').match(/[\s,"]/)) {
@@ -2414,6 +2415,10 @@ function csvFileLoadWait(file, tgt, csvSM, csvFam, csvVeh, callback) {
 function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n") {
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
+  
+  j.smNameLast = checkTxt(j.smNameLast);
+  j.smNameFirst = checkTxt(j.smNameFirst);
+  j.smNameMiddle = checkTxt(j.smNameMiddle);
   
   var mos = j.smMOS.trim().toUpperCase();
   var bde = "111th";
@@ -2563,7 +2568,6 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
     //var orderDB = ["ID", 	"Last Name", 	"First Name", 	"Middle Name", 	"Rank", 	"Promotable", 	"Gender", 	"Student SSN", 	"DOD ID#", 	"MOS", 	"MOS_Prev", 	"Marital Status", 	"Category", 	"BadgeID", 	"Phase Level", 	"Phase Date", 	"Shift", 	"Building #", 	"Room #", 	"Component", 	"State_NG_AR", 	"BDE", 	"BN", 	"CO", 	"Platoon", 	"Squad", 	"Leadership Position", 	"Unit_Prev", 	"Mobile Phone", 	"E-mail Address", 	"Arrival Date", 	"Date of Birth", 	"Date of Anniversary", 	"Date of Rank", 	"BASD", 	"PEBD", 	"ETS Date", 	"Class Graduation Date", 	"Class #", 	"Academic Probation", 	"Recycle", 	"ASVAB_GT", 	"DLI", 	"DLAB_Score", 	"DLPT_Read", 	"DLPT_Listen", 	"DLPT_Speak", 	"Language", 	"ABN", 	          "Ranger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"Duty_Status", 	"Citizenship", 	"Meal Preference", 	"Religion", 	    "Race", 	"Ethnicity", 	"Color_Hair", 	"Color_Eye", 	      "Height", 	"Weight", 	"Blood_Type", 	"Allergies", 	"Medical_Tag", 	"HeatCat", 	"ColdCat", 	"COVID_Vac_Dose1", 	"COVID_Vac_Dose2", 	"COVID_Vac_Dose3", 	"COVID_Vac_Manu", 	      "COVID_Vac_Vol", 	        "SASH", 	"TAPS", 	"CIF", 	"DX", 	"DX_Items", 	"Student Account", 	"Remedial PT", 	"Recovery_PT", 	"EFMP", 	"Req Fam Care Plan", 	"brief_IP_BDE", 	"brief_IP_CO", 	"brief_REACH", 	"brief_RAPIDS", 	"brief_Finance", 	"brief_Safety", 	"brief_EO", 	"brief_ABN", 	"brief_RASP", 	"brief_MI_History", 	"biref_H2F", 	"brief_AWC", 	"Active_Student", 	"Notes", 	"timestamp"];
   var orderJSON = ["ID", 	"smNameLast", 	"smNameFirst", 	"smNameMiddle", "smRank", 	"smPromotable", 	"smGender", 	"smSSN", 	"smDODID", 	"smMOS", "smMOSPrev", 	"smMarital", 		"smCategory", 	"smBadgeSN", 	"smPhaseLvl", 	"Phase_Date", 	"smShift", 	"smBuilding", 	"smRoom", 	"smComponent", 	"smNGARState", 	"smBDE", 	"smBN", 	"smCO", 	"smPLT", 	"Squad", 	"Leadership_Position", 	"smUnitPrev", 	"smPhone", 			"smEmail", 			"smDateArrival", 	"smDateDOB", 		"smDateMarried", 		"smDateDOR", 		"smDateBASD", 	"smDatePEBD", 	"smDateETS", 	"Class_Graduation_Date", 	"Class_num", 	"Academic_Probation", 	"Recycle", 	"smGT", 	"smDLI",	"smDLAB", 	"smDLPTr", 	"smDLPTl", 	"smDLPTs", 	"smDLPTLanguage", 	"smAirborne", 	"smRanger", 	"Clearance_lvl", 	"Inv_Type", 	"Inv_Date", 	"smDutyStatus", 	"smCitizenship", 	"smMealPref", 	"smReligion", 	"smRace", 	"smEthnicity", 	"smColorHair", 	"smColorEye", 	"smHeight", 	"smWeight", 	"smBlood", 	"smAllergy", 	"smMedTag", 	"smHeatCat", 	"smColdCat", 	"smCOVIDVacDose1",  	"smCOVIDVacDose2",  	"smCOVIDVacDose3",  	"smCOVIDVacManu",  	"smCOVIDVacVolunteer",  "SASH", 	"TAPS", 	"CIF", 	"DX", 	"smDXItems", 	"Student_Account", 	"Remedial_PT", 	"Recovery_PT", 	"smEFMP", 	"smFamCarePlan", 	"brief_IP_BDE", 	"brief_IP_CO", 	"brief_REACH", 	"brief_RAPIDS", 	"brief_Finance", 	"brief_Safety", 	"brief_EO", 	"brief_ABN", 	"brief_RASP", 	"brief_MI_History", 	"biref_H2F", 	"brief_AWC", 	"Active_Student", 	"Notes", 	"timestamp" ];
   
-  
   var str = "", hdr = "";
   
   orderJSON.forEach(function (property) {
@@ -2584,6 +2588,10 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   //data_Family
   //var orderDB = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"Relationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp"];
 
+  j.smNameLast = checkTxt(j.smNameLast);
+  j.smNameFirst = checkTxt(j.smNameFirst);
+  j.smNameMiddle = checkTxt(j.smNameMiddle);
+
   var matchKey = j.smNameLast + "_" + j.smNameFirst + "_" + j.smNameMiddle + "_" + j.smDODID;
   j.MatchKey = matchKey;
   
@@ -2601,7 +2609,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.Notes = "PoB";
   var val = j.smPOBCity.trim();
   var vals = j.smPOBState.trim();
-  if (vals.length > 2) {j.smPOBCity = val + ", " + vals; j.smPOBState = "";} else {j.smPOBState = vals.toUpperCase();}
+  if (vals.length > 2) {j.smPOBCity = checkTxt(val + ", " + vals); j.smPOBState = "";} else {j.smPOBState = vals.toUpperCase();}
   var orderJSON = ["ID", 	"Student_ID", 	"smFRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"smEmailMil", 	"Address", 	"smPOBCity", 	"smPOBState", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
   orderJSON.forEach(function (property) {
     hdr += csvTextReplace(property) + sepField;
@@ -2621,31 +2629,34 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   var val = j.smHORZip;
   if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.smHORZip = val;}
   
-  var val = j.smLOCAddress;
+  var val = j.smHORAddress;
   if (val != undefined && val != null && val != "") {
-  if (vals.length > 2) {j.smHORCity = valc + ", " + vals; j.smHORState = "";} else {j.smHORState = vals.toUpperCase();}
-  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smHORAddress", 	"smHORCity", 	"smHORState", 	"smHORZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+    j.smHORAddress = checkTxt(val);
+    if (vals.length > 2) {j.smHORCity = checkTxt(valc + ", " + vals); j.smHORState = "";} else {j.smHORState = vals.toUpperCase();}
+    var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smHORAddress", 	"smHORCity", 	"smHORState", 	"smHORZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+    orderJSON.forEach(function (property) {
+      str += csvTextReplace(j[property]) + sepField;
+    })
+    str = str.slice(0,-sepField.length);
+    str = str + sepRow;
   }
   
   //Local
-  var valc = j.smLOCCity.trim();
-  var vals = j.smLOCState.trim();
-  if (vals.length > 2) {j.smLOCCity = valc + ", " + vals; j.smLOCState = "";} else {j.smLOCState = vals.toUpperCase();}
-  
-  var val = j.smLOCZip;
-  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.smLOCZip = val;}
-  
   var val = j.smLOCAddress;
-  if (val != undefined && val != null && val != "" && val != j.smLOCAddress) {
+  if (val != undefined && val != null && val != "" && val != j.smHORAddress) {
 	  j.Notes = "Local";
+    j.smLOCAddress = checkTxt(val);
+    
+    var valc = j.smLOCCity.trim();
+    var vals = j.smLOCState.trim();
+    if (vals.length > 2) {j.smLOCCity = checkTxt(valc + ", " + vals); j.smLOCState = "";} else {j.smLOCState = vals.toUpperCase();}
+    
+    var val = j.smLOCZip;
+    if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.smLOCZip = val;}
+    
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"smRelationship", 	"Last Name", 	"First Name", 	"Middle Name", 	"Gender", 	"DoB", 	"Phone", 	"Email", 	"smLOCAddress", 	"smLOCCity", 	"smLOCState", 	"smLOCZip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2656,7 +2667,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.NoK = "TRUE";
   
   var relDep = j.dep1Rel;
-  if (relDep != undefined && relDep != null && relDep != "") {relDep = "";} else {relDep = relDep.toLowerCase();}
+  if (relDep == undefined || relDep == null || relDep == "") {relDep = "";} else {relDep = relDep.toLowerCase();}
   
   //NoK1
   j.FRG = "FALSE";
@@ -2664,13 +2675,21 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   if (relNOK1 != undefined && relNOK1 != null && relNOK1 != "") {
 	  relNOK1 = relNOK1.toLowerCase();
 	  if (relDep == relNOK1) {
-		j.FRG = j.smFRG;
-		j.DoB = j.dep1DateDOB;
+      j.FRG = j.smFRG;
+      j.DoB = j.dep1DateDOB;
 	  }
 	  
+    j.nok1NameLast = checkTxt(j.nok1NameLast);
+    j.nok1NameFirst = checkTxt(j.nok1NameFirst);
+    j.nok1NameMiddle = checkTxt(j.nok1NameMiddle);
+    j.nok1Address = checkTxt(j.nok1Address);
+    
 	  var valc = j.nok1City.trim();
 	  var vals = j.nok1State.trim();
-	  if (vals.length > 2) {j.nok1City = valc + ", " + vals; j.nok1State = "";} else {j.nok1State = vals.toUpperCase();}
+	  if (vals.length > 2) {j.nok1City = checkTxt(valc + ", " + vals); j.nok1State = "";} else {j.nok1State = vals.toUpperCase();}
+    
+	  var val = j.nok1Zip;
+	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok1Zip = val;}
 	  
 	  var val = j.nok1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
 	  j.nok1Phone = val;
@@ -2682,34 +2701,38 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.nok1Gender = val.slice(0,1).toUpperCase();
 	  
-	  var val = j.nok1Zip;
-	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok1Zip = val;}
-	  
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok1Rel", 	"nok1NameLast", 	"nok1NameFirst", 	"nok1NameMiddle", 	"nok1Gender", 	"DoB", 	"nok1Phone", 	"nok1Email", 	"nok1Address", 	"nok1City", 	"nok1State", 	"nok1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
   }
   
-  
   //NoK2
   j.DoB = "";
   j.FRG = "FALSE";
   
-  var relNOK2 = j.nok2Rel.toLowerCase();
+  var relNOK2 = j.nok2Rel;
   if (relNOK2 != undefined && relNOK2 != null && relNOK2 != "") {
 	  relNOK2 = relNOK2.toLowerCase();
 	  if (relDep == relNOK2) {
-		j.FRG = j.smFRG;
-		j.DoB = j.dep1DateDOB;
+      j.FRG = j.smFRG;
+      j.DoB = j.dep1DateDOB;
 	  }
 	  
+    j.nok2NameLast = checkTxt(j.nok2NameLast);
+    j.nok2NameFirst = checkTxt(j.nok2NameFirst);
+    j.nok2NameMiddle = checkTxt(j.nok2NameMiddle);
+    j.nok2Address = checkTxt(j.nok2Address);
+    
 	  var valc = j.nok2City.trim();
 	  var vals = j.nok2State.trim();
-	  if (vals.length > 2) {j.nok2City = valc + ", " + vals; j.nok2State = "";} else {j.nok2State = vals.toUpperCase();}
-	  
+	  if (vals.length > 2) {j.nok2City = checkTxt(valc + ", " + vals); j.nok2State = "";} else {j.nok2State = vals.toUpperCase();}
+    
+	  var val = j.nok2Zip;
+	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok2Zip = val;}
+    
 	  var val = j.nok2Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
 	  j.nok2Phone = val;
 	  
@@ -2720,12 +2743,9 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.nok2Gender = val.slice(0,1).toUpperCase();
 	  
-	  var val = j.nok2Zip;
-	  if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.nok2Zip = val;}
-	  
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"nok2Rel", 	"nok2NameLast", 	"nok2NameFirst", 	"nok2NameMiddle", 	"nok2Gender", 	"DoB", 	"nok2Phone", 	"nok2Email", 	"nok2Address", 	"nok2City", 	"nok2State", 	"nok2Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2740,30 +2760,36 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   //Dep1
   var val = j.dep1Rel;
   if (val != undefined && val != null && val != "") {
+    val = val.toLowerCase();
 	  if (val != relNOK1 && val != relNOK2) {
-		var valc = j.dep1City.trim();
-		var vals = j.dep1State.trim();
-		if (vals.length > 2) {j.dep1City = valc + ", " + vals; j.dep1State = "";} else {j.dep1State = vals.toUpperCase();}
-	  
-		var val = j.dep1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
-		j.dep1Phone = val;
-		
-		var val = j.dep1Email.trim();
-		if (/.*\@.*\.\w/i.test(val)) {j.dep1Email = val.toLowerCase();} else {j.dep1Email = "";}
-		
-		var val = j.dep1Gender;
-		if (val == undefined || val == null || val == "") {val = "Male";}
-		j.dep1Gender = val.slice(0,1).toUpperCase();
-		
-		var val = j.dep1Zip;
-		if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.dep1Zip = val;}
-		
-		var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep1Rel", 	"dep1NameLast", 	"dep1NameFirst", 	"dep1NameMiddle", 	"dep1Gender", 	"dep1DateDOB", 	"dep1Phone", 	"dep1Email", 	"dep1Address", 	"dep1City", 	"dep1State", 	"dep1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
-		orderJSON.forEach(function (property) {
-		  str += csvTextReplace(j[property]) + sepField;
-		})
-		str = str.slice(0,-sepField.length);
-		str = str + sepRow;
+      var valc = j.dep1City.trim();
+      var vals = j.dep1State.trim();
+      if (vals.length > 2) {j.dep1City = checkTxt(valc + ", " + vals); j.dep1State = "";} else {j.dep1State = vals.toUpperCase();}
+      
+      var val = j.dep1Zip;
+      if (val != undefined && val != null && val != "") {val = val.slice(0, 5); j.dep1Zip = val;}
+      
+      j.dep1Address = checkTxt(j.dep1Address);
+      j.dep1NameLast = checkTxt(j.dep1NameLast);
+      j.dep1NameFirst = checkTxt(j.dep1NameFirst);
+      j.dep1NameMiddle = checkTxt(j.dep1NameMiddle);
+      
+      var val = j.dep1Phone.replace(/\+1|\s|-|\(|\)/g, ""); val = val.slice(val.length - 10);
+      j.dep1Phone = val;
+      
+      var val = j.dep1Email.trim();
+      if (/.*\@.*\.\w/i.test(val)) {j.dep1Email = val.toLowerCase();} else {j.dep1Email = "";}
+      
+      var val = j.dep1Gender;
+      if (val == undefined || val == null || val == "") {val = "Male";}
+      j.dep1Gender = val.slice(0,1).toUpperCase();
+      
+      var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep1Rel", 	"dep1NameLast", 	"dep1NameFirst", 	"dep1NameMiddle", 	"dep1Gender", 	"dep1DateDOB", 	"dep1Phone", 	"dep1Email", 	"dep1Address", 	"dep1City", 	"dep1State", 	"dep1Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
+      orderJSON.forEach(function (property) {
+        str += csvTextReplace(j[property]) + sepField;
+      })
+      str = str.slice(0,-sepField.length);
+      str = str + sepRow;
 	  }
   }
   
@@ -2777,9 +2803,13 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.dep2Gender = val.slice(0,1).toUpperCase();
 	  
+    j.dep2NameLast = checkTxt(j.dep2NameLast);
+    j.dep2NameFirst = checkTxt(j.dep2NameFirst);
+    j.dep2NameMiddle = checkTxt(j.dep2NameMiddle);
+    
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep2Rel", 	"dep2NameLast", 	"dep2NameFirst", 	"dep2NameMiddle", 	"dep2Gender", 	"dep2DateDOB", 	"dep2Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2795,9 +2825,13 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.dep3Gender = val.slice(0,1).toUpperCase();
 	  
+    j.dep3NameLast = checkTxt(j.dep3NameLast);
+    j.dep3NameFirst = checkTxt(j.dep3NameFirst);
+    j.dep3NameMiddle = checkTxt(j.dep3NameMiddle);
+    
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep3Rel", 	"dep3NameLast", 	"dep3NameFirst", 	"dep3NameMiddle", 	"dep3Gender", 	"dep3DateDOB", 	"dep3Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2813,9 +2847,13 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.dep4Gender = val.slice(0,1).toUpperCase();
 	  
+    j.dep4NameLast = checkTxt(j.dep4NameLast);
+    j.dep4NameFirst = checkTxt(j.dep4NameFirst);
+    j.dep4NameMiddle = checkTxt(j.dep4NameMiddle);
+    
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep4Rel", 	"dep4NameLast", 	"dep4NameFirst", 	"dep4NameMiddle", 	"dep4Gender", 	"dep4DateDOB", 	"dep4Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2831,9 +2869,13 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
 	  if (val == undefined || val == null || val == "") {val = "Male";}
 	  j.dep5Gender = val.slice(0,1).toUpperCase();
 	  
+    j.dep5NameLast = checkTxt(j.dep5NameLast);
+    j.dep5NameFirst = checkTxt(j.dep5NameFirst);
+    j.dep5NameMiddle = checkTxt(j.dep5NameMiddle);
+    
 	  var orderJSON = ["ID", 	"Student_ID", 	"FRG", 	"NoK", 	"dep5Rel", 	"dep5NameLast", 	"dep5NameFirst", 	"dep5NameMiddle", 	"dep5Gender", 	"dep5DateDOB", 	"dep5Phone", 	"Email", 	"Address", 	"City", 	"State", 	"Zip", 	"lat", 	"lon", 	"Notes", 	"timestamp", "MatchKey"];
 	  orderJSON.forEach(function (property) {
-		str += csvTextReplace(j[property]) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
 	  })
 	  str = str.slice(0,-sepField.length);
 	  str = str + sepRow;
@@ -2848,36 +2890,40 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
   //var j = JSON.parse(jsonGenerate());
   var j = JSON.parse(data);
   
-  var matchKey = j.smNameLast + "_" + j.smNameFirst + "_" + j.smNameMiddle + "_" + j.smDODID;
-  j.MatchKey = matchKey;
-  
   //data_Vehicle
   //var orderDB = ["ID", 	"Student_ID", 	"Type", 	"Make", 	"Model", 	"Year", 	"Color", 	"Plate", 	"State", 	"Registration_exp_Date", 	"Insurance_exp_Date", 	"Insurance_Co", 	"VIN", 	"Notes", 	"timestamp"];
+  
+  j.smNameLast = checkTxt(j.smNameLast);
+  j.smNameFirst = checkTxt(j.smNameFirst);
+  j.smNameMiddle = checkTxt(j.smNameMiddle);
+  
+  var matchKey = j.smNameLast + "_" + j.smNameFirst + "_" + j.smNameMiddle + "_" + j.smDODID;
+  j.MatchKey = matchKey;
 
   var val = j.smPOV1Make;
   if (val != undefined && val != null && val != "") {
-  j.smPOV1State = j.smPOV1State.toUpperCase();
-  var orderJSON = ["ID", 	"Student_ID", 	"smPOV1Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-    hdr += csvTextReplace(property) + sepField;
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  hdr = hdr.slice(0,-sepField.length);
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+    j.smPOV1State = j.smPOV1State.toUpperCase();
+    var orderJSON = ["ID", 	"Student_ID", 	"smPOV1Type", 	"smPOV1Make", 	"smPOV1Model", 	"smPOV1Year", 	"smPOV1Color", 	"smPOV1Plate", 	"smPOV1State", 	"smPOV1DateReg", 	"smPOV1DateIns", 	"smPOV1InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+    orderJSON.forEach(function (property) {
+      hdr += csvTextReplace(property) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
+    })
+    hdr = hdr.slice(0,-sepField.length);
+    str = str.slice(0,-sepField.length);
+    str = str + sepRow;
   }
   
   var val = j.smPOV2Make;
   if (val != undefined && val != null && val != "") {
-  j.smPOV2State = j.smPOV2State.toUpperCase();
-  var orderJSON = ["ID", 	"Student_ID", 	"smPOV2Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
-  orderJSON.forEach(function (property) {
-	hdr += csvTextReplace(property) + sepField;
-    str += csvTextReplace(j[property]) + sepField;
-  })
-  hdr = hdr.slice(0,-sepField.length);
-  str = str.slice(0,-sepField.length);
-  str = str + sepRow;
+    j.smPOV2State = j.smPOV2State.toUpperCase();
+    var orderJSON = ["ID", 	"Student_ID", 	"smPOV2Type", 	"smPOV2Make", 	"smPOV2Model", 	"smPOV2Year", 	"smPOV2Color", 	"smPOV2Plate", 	"smPOV2State", 	"smPOV2DateReg", 	"smPOV2DateIns", 	"smPOV2InsCo", 	"VIN", 	"Notes", 	"timestamp", "MatchKey"];
+    orderJSON.forEach(function (property) {
+    hdr += csvTextReplace(property) + sepField;
+      str += csvTextReplace(j[property]) + sepField;
+    })
+    hdr = hdr.slice(0,-sepField.length);
+    str = str.slice(0,-sepField.length);
+    str = str + sepRow;
   }
 
   if (header && str != "") {str = hdr + sepRow + str};
@@ -2886,39 +2932,39 @@ function csvGenerateVeh(data, header = false, sepField = ",", sepRow = "\r\n") {
 
 
 function copyToClipboard(txt){
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(txt);
-    } else {
-        var textArea = document.createElement("copyTextArea");
-        textArea.style.top = "0";
-        textArea.style.left = "0";
-        textArea.style.position = "fixed";
-        textArea.style.display = "none";
-        
-        textArea.value = txt;
-        
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand("copy");
-        } catch (e) {
-            console.error("Copy error", e);
-        }
-        document.body.removeChild(textArea);
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt);
+  } else {
+    var textArea = document.createElement("copyTextArea");
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    textArea.style.display = "none";
+    
+    textArea.value = txt;
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand("copy");
+    } catch (e) {
+      console.error("Copy error", e);
     }
+    document.body.removeChild(textArea);
+  }
 }
 
 function jsonCopy(){
-    copyToClipboard(jsonGenerate());
+  copyToClipboard(jsonGenerate());
     
-    var tooltip = document.getElementById("tooltipCopyJSON");
-    tooltip.innerHTML = "Text copied to Clipboard";
+  var tooltip = document.getElementById("tooltipCopyJSON");
+  tooltip.innerHTML = "Text copied to Clipboard";
 }
 
 function jsonCopyOut(){
-    var tooltip = document.getElementById("tooltipCopyJSON");
-    tooltip.innerHTML = "Copy to Clipboard";
+  var tooltip = document.getElementById("tooltipCopyJSON");
+  tooltip.innerHTML = "Copy to Clipboard";
 }
 
 function jsonFileDownload() {
@@ -2952,14 +2998,14 @@ function dateChange(){
   if (dor == basd && pebd != "" && dor != pebd && comp != "active") {dor = pebd;}
   
   if (pebd != "" && (wks > 0 || yrs > 0)) {
-      var d = new Date(pebd);
-      d.setFullYear(d.getFullYear() + yrs);
-      d.setDate(d.getDate() + (wks * 7));
-      
-      var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
-      var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
-      var yy = d.getFullYear();
-      ets = yy + "-" + mm + "-" + dd;
+    var d = new Date(pebd);
+    d.setFullYear(d.getFullYear() + yrs);
+    d.setDate(d.getDate() + (wks * 7));
+    
+    var dd = d.getDate(); if (dd < 10) {dd = "0" + dd;}
+    var mm = d.getMonth() + 1; if (mm < 10) {mm = "0" + mm;}
+    var yy = d.getFullYear();
+    ets = yy + "-" + mm + "-" + dd;
   }
   
   //alert("Comp: " + comp + "\nDoR: " + dor + "\nBASD: " + basd + "\nPEBD: " + pebd + "\nETS: " + ets + "\nWeeks: " + wks + "\nYears: " + yrs);
@@ -3338,7 +3384,6 @@ function jsonLoad(src){
   
 }
 
-
 function toTitleCase(str){
   var i, j, lowers, uppers;
   str = str.replace(/([^\W_]+[^\s-']*)*/g, function(txt) {
@@ -3357,7 +3402,7 @@ function toTitleCase(str){
   }
   
   // Certain words such as initialisms or acronyms should be left uppercase
-  uppers = ['Id', 'Tv', 'Ii', 'Iii', 'Iv', 'Vi', 'Vii', 'Viii', 'Ix', 'Xi', 'Xii', 'Xiii'];
+  uppers = ['Id', 'Tv', 'USA', 'Ii', 'Iii', 'Iv', 'Vi', 'Vii', 'Viii', 'Ix', 'Xi', 'Xii', 'Xiii'];
   for (i = 0, j = uppers.length; i < j; i++) {
     str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'), 
       function(txt) {return txt.toUpperCase();}
