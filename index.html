@@ -3384,6 +3384,49 @@ function jsonLoad(src){
   
 }
 
+
+var addressAbbrev = {
+    "apartment":"Apt", 
+    "avenue":"Ave", 
+    "boulevard":"Blvd", 
+    "building":"BLDG", 
+    "circle": "Cir", 
+    "court":"Ct", 
+    "drive": "Dr", 
+    "expressway":"Expwy", 
+    "freeway":"Fwy", 
+    "highway":"Hwy", 
+    "junction":"Jct", 
+    "lane":"Ln", 
+    "loop":"Lp", 
+    "parkway":"Pkwy", 
+    "place":"Pl", 
+    //"plaza":"Plz", 
+    "road":"Rd", 
+    "route":"Rte", 
+    "street": "St", 
+    "trail":"Trl",
+    "north":"N", 
+    "northeast":"NE", 
+    "northwest":"NW", 
+    "east":"E", 
+    "south":"S", 
+    "southeast":"SE", 
+    "southwest":"SW", 
+    "west":"W"
+};
+function addressCheck(str) {
+    str = str.replace(/\b\w*\b/gi,
+        function(txt) {
+            var old = txt;
+            txt = txt.toLowerCase();
+            return addressAbbrev[txt] || old;
+        });
+    if (str.slice(-1) == "."){str = str.slice(0, str.length -1);}
+    return str;
+}
+
+
 function toTitleCase(str){
   var i, j, lowers, uppers;
   str = str.replace(/([^\W_]+[^\s-']*)*/g, function(txt) {
