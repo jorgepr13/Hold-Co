@@ -3484,6 +3484,110 @@ String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,fu
 String.prototype.latinize=String.prototype.latinise;
 String.prototype.isLatin=function(){return this==this.latinise()}
 
+        function numPad(num, pad = "00") {
+            if (num == undefined || num == null || num == "") {num = 0;}
+            var numStr = num.toString();
+            if (pad == "") {return numStr;}
+            var padLen = pad.toString().length;
+            var padStr = pad.toString().substr(0,1);
+            while (numStr.length < padLen) {
+                numStr = padStr + numStr;
+            }
+            return numStr;
+        }
+        function dateFormat(dateSent, format) {
+            if (dateSent == undefined || dateSent == null || dateSent == "") {return "";}
+            if (format == undefined || format == null || format == "") {format = "yyyy-mm-dd";}
+            
+            try {
+                dateSent = dateSent.toString().toLowerCase();
+                if (dateSent == "today") {
+                    dateSent = new Date();
+                    dateSent.setDate(dateSent.getDate() - 1);
+                }
+                
+                var date = new Date(dateSent);
+            } catch (e){ return "";}
+            
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            date.setDate(date.getDate() + 1);
+            
+            var H = date.getHours() || 0,
+            h  = H % 12,
+            hh = numPad(h),
+            HH = numPad(H),
+            n  = date.getMinutes() || 0,
+            nn = numPad(n),
+            s  = date.getSeconds() || 0,
+            ss = numPad(s),
+            ms = numPad(date.getMilliseconds() || 0,"000"),
+            aaa = H < 12 ? "AM" : "PM",
+            tz  = date.getTimezoneOffset(),
+            dddd = days[date.getDay()],
+            //dddd = d.toLocaleDateString("en-US", { day: "long" }),
+            ddd  = dddd.substr(0, 3),
+            d  = date.getDate(),
+            dd = numPad(d),
+            month = date.getMonth(),
+            m  = month + 1,
+            mm = numPad(m),
+            mmmm = months[month],
+            //mmmm = d.toLocaleDateString("en-US", { month: "long" }),
+            mmm = mmmm.substr(0, 3),
+            yyyy = date.getFullYear().toString(),
+            yy = yyyy.substr(2, 2);
+            
+            format = format
+              .replace('hh', hh).replace('h', h)
+              .replace('HH', HH).replace('H', H)
+              .replace('nn', nn).replace('NN', nn)
+              .replace('n', n).replace('N', n)
+              .replace('ss', ss).replace('SS', ss)
+              .replace('s', s)
+              .replace('S',  ms)
+              .replace('yyyy', yyyy).replace('YYYY', yyyy)
+              .replace('yy', yy).replace('YY', yy);
+            
+            if (format.indexOf('ddd') < 0) {
+                format = format
+                  .replace('dd', dd)
+                  .replace('DD', dd)
+                  .replace('d',  d)
+                  .replace('D',  d);
+            }
+            if (format.indexOf('mmm') < 0) {
+                format = format
+                  .replace('mm', mm)
+                  .replace('MM', mm)
+                  .replace('m',  m)
+                  .replace('M',  m);
+            }
+            format = format
+              .replace('tz', tz)
+              .replace('TZ', tz)
+              .replace('aaa', aaa);
+            
+            if (format.indexOf('mmm') > -1) {
+                format = format
+                  .replace('mmmm', mmmm)
+                  .replace('MMMM', mmmm.toUpperCase())
+                  .replace('mmm', mmm)
+                  .replace('MMM', mmm.toUpperCase());
+            }
+            
+            if (format.indexOf('ddd') > -1) {
+                format = format
+                  .replace('dddd', dddd)
+                  .replace('DDDD', dddd.toUpperCase())
+                  .replace('ddd', ddd)
+                  .replace('DDD', ddd.toUpperCase());
+            }
+            
+            return format;
+        }
+
 
 //@AA3 DB_sID 
 //@AJ3 MatchKey =LOWER(AB3&"_"&AC3&"_"&AD3&"_"&AI3)
