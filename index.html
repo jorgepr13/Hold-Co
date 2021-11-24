@@ -2527,15 +2527,11 @@ function csvGenerateStudent(data, header = false, sepField = ",", sepRow = "\r\n
   
   //dateFormat(val)
   /*
-  var comp = document.getElementById("smComponent").value.toString().trim().toLowerCase();
-  var dor = document.getElementById("smDateDOR").value.toString().trim();
-  var basd = document.getElementById("smDateBASD").value.toString().trim();
-  var pebd = document.getElementById("smDatePEBD").value.toString().trim();
-  var ets = document.getElementById("smDateETS").value.toString().trim();
-  var wks = parseInt(document.getElementById("smDateETSwks").value);
-  var yrs = parseInt(document.getElementById("smDateETSyrs").value);
-  if (wks == undefined || wks == null || wks == "" || isNaN(wks)) {wks = 0;}
-  if (yrs == undefined || yrs == null || yrs == "" || isNaN(yrs)) {yrs = 0;}
+  var comp = j.smComponent.toLowerCase();
+  var dor  = j.smDateDOR;
+  var basd = j.smDateBASD;
+  var pebd = j.smDatePEBD;
+  var ets  = j.smDateETS;
   
   //alert("Comp: " + comp + "\nDoR: " + dor + "\nBASD: " + basd + "\nPEBD: " + pebd + "\nETS: " + ets + "\nWeeks: " + wks + "\nYears: " + yrs);
   
