@@ -187,7 +187,7 @@ border: solid 2px;
   <input type="text" id="smEmail" autocomplete="on" placeholder="@gmail.com / @yahoo.com">
   <br>
   <label for="smEmailMil">Mil. Email:</label>
-  <input type="text" id="smEmailMil" placeholder=".mil@mail.mil" value=".mil@mail.mil">
+  <input type="text" id="smEmailMil" placeholder=".mil@army.mil" value=".mil@army.mil">
   <br>
   <label for="smComponent">Component:</label>
   <select name="smComponent" id="smComponent">
@@ -1652,7 +1652,7 @@ RANK Last, First
 
 <br><br><a href="tel:520-533-1144">520-533-1144</a><label> - IG (Inspector General)</label>
 <br>Hours: M, Tu, W, F: 0830-1630; Th: 1330-1630
-<br><a href="mailto:usarmy.huachuca.icoe.mbx.inspector-general@mail.mil">usarmy.huachuca.icoe.mbx.inspector-general@mail.mil</a>
+<br><a href="mailto:usarmy.huachuca.icoe.mbx.inspector-general@army.mil">usarmy.huachuca.icoe.mbx.inspector-general@army.mil</a>
 <br>Website: <a href="https://www.ikn.army.mil/apps/IKNHostedWebsites/IG" target="_blank">https://www.ikn.army.mil/apps/IKNHostedWebsites/IG</a>
 <br>Services: Violations of Regulations/Policy,
 <br>reach to the agencies to get the right processes (to get BAH, FSA, correct pay, etc.),
@@ -2641,7 +2641,7 @@ function csvGenerateFam(data, header = false, sepField = ",", sepRow = "\r\n") {
   j.smRelationship = "Self";
   j.NoK = "FALSE";
   var val = j.smEmailMil.toLowerCase().trim();
-  if (val == ".mil@mail.mil" || val == "none" || val == "na" || val == "n/a" || val == "no") {j.smEmailMil = "";} else {j.smEmailMil = val;}
+  if (val == ".mil@army.mil" || val == "none" || val == "na" || val == "n/a" || val == "no") {j.smEmailMil = "";} else {j.smEmailMil = val;}
   var val = j.smEmailMil;
   if (/.*\@.*\.mil/i.test(val)) {j.smEmailMil = val;} else {j.smEmailMil = "";}
   
